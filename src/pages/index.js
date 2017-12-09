@@ -3,12 +3,7 @@ import Link from 'gatsby-link'
 
 const IndexPage = () => (
   <div>
-    <ul>
-      <li>Testing lists</li>
-    </ul>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
+    <h1>Sign up for our newsletter</h1>
 
     <div dangerouslySetInnerHTML={{
       __html: `
