@@ -2,7 +2,11 @@
   "name": "webaudioconf.github.io",
   "description": "The website of the Web Audio Conf 2018.",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": [
+    "Christoph Guttandin",
+    "Jan Monschke",
+    "Tom Jenkinson"
+  ],
   "dependencies": {
     "gatsby": "^1.9.127",
     "gatsby-link": "^1.6.30",
