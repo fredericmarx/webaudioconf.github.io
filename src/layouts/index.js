@@ -5,32 +5,24 @@ import Helmet from 'react-helmet'
 
 import './normalize.css';
 import './skeleton.css';
+import './index.css';
 
 const Header = () => (
   <div
     style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
+      background: 'white',
+      borderBottom: '2px solid black',
+      padding: '2em 0',
+      marginBottom: '1.45rem'
     }}
   >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
+    <div className="container" >
       <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          Gatsby
-        </Link>
+        Web Audio Conf | Berlin
       </h1>
+      <h4 style={{ margin: 0 }}>
+        19th - 21st September 2018
+      </h4>
     </div>
   </div>
 )
@@ -38,21 +30,14 @@ const Header = () => (
 const TemplateWrapper = ({ children }) => (
   <div>
     <Helmet
-      title="Gatsby Default Starter"
+      title="Web Audio Conference 2018 | Berlin"
       meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
+        { name: 'description', content: '4th annual web audio conference at the technical university of Berlin.' },
+        { name: 'keywords', content: 'wac, web audio conference, conference, berlin, javascript, web, audio, web audio' },
       ]}
     />
     <Header />
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '0px 1.0875rem 1.45rem',
-        paddingTop: 0,
-      }}
-    >
+    <div className="container">
       {children()}
     </div>
   </div>

@@ -2,11 +2,6 @@
   "name": "webaudioconf.github.io",
   "description": "The website of the Web Audio Conf 2018.",
   "version": "1.0.0",
-  "author": [
-    "Christoph Guttandin",
-    "Jan Monschke",
-    "Tom Jenkinson"
-  ],
   "dependencies": {
     "gatsby": "^1.9.127",
     "gatsby-link": "^1.6.30",
@@ -18,8 +13,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format":
-      "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "gatsby build && gh-pages -d public --branch master"
   },
