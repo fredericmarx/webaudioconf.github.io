@@ -9,7 +9,6 @@
     "gatsby-plugin-react-helmet": "^1.0.8",
     "gh-pages": "^1.1.0"
   },
-  "keywords": ["gatsby"],
   "license": "MIT",
   "main": "n/a",
   "scripts": {
