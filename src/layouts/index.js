@@ -8,23 +8,37 @@ import './skeleton.css';
 import './index.css';
 
 const Header = () => (
-  <div
-    style={{
-      background: 'white',
-      borderBottom: '2px solid black',
-      padding: '2em 0',
-      marginBottom: '1.45rem'
-    }}
-  >
-    <div className="container" >
-      <h1 style={{ margin: 0 }}>
-        Web Audio Conf | Berlin
-      </h1>
-      <h4 style={{ margin: 0 }}>
-        19th - 21st September 2018
-      </h4>
-    </div>
-  </div>
+  <section className="header">
+    <span className="header__title">Web Audio Conf</span>
+    <ul className="header__navigation">
+      <li className="header__navigationItem">
+        <a href="#" className="header__navigationLink m-active">Home</a>
+      </li>
+      <li className="header__navigationItem">
+        <a href="#" className="header__navigationLink">Tickets</a>
+      </li>
+      <li className="header__navigationItem">
+        <a href="#" className="header__navigationLink">Speakers</a>
+      </li>
+      <li className="header__navigationItem">
+        <a href="#" className="header__navigationLink">Schedule</a>
+      </li>
+      <li className="header__navigationItem">
+        <a href="#" className="header__navigationLink">Venue</a>
+      </li>
+    </ul>
+  </section>
+);
+
+const HeaderSplash = () => (
+  <section className="header__splash">
+    <h1 className="header__headline">
+      Web Audio Conf | Berlin
+    </h1>
+    <h4 className="header__headline">
+      19th - 21st September 2018
+    </h4>
+  </section>
 )
 
 const TemplateWrapper = ({ children }) => (
@@ -36,7 +50,10 @@ const TemplateWrapper = ({ children }) => (
         { name: 'keywords', content: 'wac, web audio conference, conference, berlin, javascript, web, audio, web audio' },
       ]}
     />
-    <Header />
+    <div className="container">
+      <Header />
+      <HeaderSplash />
+    </div>
     <div className="container">
       {children()}
     </div>
