@@ -9,7 +9,7 @@ import './index.css';
 
 const Header = () => (
   <section className="header">
-    <span className="header__title">Web Audio Conf</span>
+    <span className="header__title">Web Audio Conf Logo</span>
     <ul className="header__navigation">
       <li className="header__navigationItem">
         <a href="#" className="header__navigationLink m-active">Home</a>

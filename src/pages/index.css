@@ -1,0 +1,17 @@
+.index__text {
+  font-size: 1.2em;
+  margin-bottom: 0.3em;
+}
+
+.index__welcome {
+  margin-bottom: 1.5em;
+}
+
+.index__moreInfo {
+  margin-bottom: 2em;
+}
+
+.index__newsletter {
+  display: flex;
+  justify-content: center;
+}
