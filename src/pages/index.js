@@ -5,7 +5,15 @@ import './index.css';
 
 const IndexPage = () => (
   <div>
-    <div className="index__welcome row">
+    <div className="index__splash">
+      <h1 className="index__headline">
+        Web Audio Conf | Berlin
+      </h1>
+      <h4 className="index__headline">
+        19th - 21st September 2018
+      </h4>
+    </div>
+    <div className="index__welcome">
       <p className="index__text">
         The Web Audio Conference is an international conference dedicated to emerging audio-related web technologies such as Web Audio API, Web MIDI and Web RTC / WebGL.
       </p>

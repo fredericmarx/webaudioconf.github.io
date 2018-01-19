@@ -7,39 +7,80 @@ import './normalize.css';
 import './skeleton.css';
 import './index.css';
 
-const Header = () => (
-  <section className="header">
-    <span className="header__title">Web Audio Conf Logo</span>
-    <ul className="header__navigation">
-      <li className="header__navigationItem">
-        <a href="#" className="header__navigationLink m-active">Home</a>
-      </li>
-      <li className="header__navigationItem">
-        <a href="#" className="header__navigationLink">Tickets</a>
-      </li>
-      <li className="header__navigationItem">
-        <a href="#" className="header__navigationLink">Speakers</a>
-      </li>
-      <li className="header__navigationItem">
-        <a href="#" className="header__navigationLink">Schedule</a>
-      </li>
-      <li className="header__navigationItem">
-        <a href="#" className="header__navigationLink">Venue</a>
-      </li>
-    </ul>
-  </section>
-);
+class Header extends React.Component {
+  state = {
+    showMobileMenu: false
+  };
 
-const HeaderSplash = () => (
-  <section className="header__splash">
-    <h1 className="header__headline">
-      Web Audio Conf | Berlin
-    </h1>
-    <h4 className="header__headline">
-      19th - 21st September 2018
-    </h4>
-  </section>
-)
+  toggleMenu = () => {
+    this.setState({
+      showMobileMenu: !this.state.showMobileMenu
+    });
+  }
+
+  render() {
+    const { showMobileMenu } = this.state;
+    console.log(showMobileMenu)
+    return (
+      <section className="header">
+        {!showMobileMenu && <span className="header__title">Web Audio Conf Logo</span>}
+        <button
+          className="header__navigationTrigger"
+          onClick={this.toggleMenu}
+        >
+          Menu
+        </button>
+        <ul className={`header__navigation ${showMobileMenu ? 'm-visible' : 'm-hidden'}`}>
+          <li className="header__navigationItem">
+            <Link
+              to="#"
+              className="header__navigationLink m-active"
+              onClick={this.toggleMenu}
+            >
+              Home
+            </Link>
+          </li>
+          <li className="header__navigationItem">
+            <Link
+              to="#"
+              className="header__navigationLink"
+              onClick={this.toggleMenu}
+            >
+              Tickets
+            </Link>
+          </li>
+          <li className="header__navigationItem">
+            <Link
+              to="#"
+              className="header__navigationLink"
+              onClick={this.toggleMenu}
+            >
+              Speakers
+            </Link>
+          </li>
+          <li className="header__navigationItem">
+            <Link
+              to="#"
+              className="header__navigationLink"
+              onClick={this.toggleMenu}
+            >
+              Schedule
+            </Link>
+          </li>
+          <li className="header__navigationItem">
+            <Link
+              to="#"
+              className="header__navigationLink"
+              onClick={this.toggleMenu}
+            >
+              Venue
+            </Link>
+          </li>
+        </ul>
+      </section>
+    );
+  }
+}
 
 const TemplateWrapper = ({ children }) => (
   <div>
@@ -52,7 +93,6 @@ const TemplateWrapper = ({ children }) => (
     />
     <div className="container">
       <Header />
-      <HeaderSplash />
     </div>
     <div className="container">
       {children()}
