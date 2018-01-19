@@ -20,7 +20,7 @@ class Header extends React.Component {
 
   render() {
     const { showMobileMenu } = this.state;
-    console.log(showMobileMenu)
+
     return (
       <section className="header">
         {!showMobileMenu && <span className="header__title">Web Audio Conf Logo</span>}
