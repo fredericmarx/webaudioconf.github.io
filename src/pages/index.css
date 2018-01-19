@@ -1,0 +1,29 @@
+.index__splash {
+  padding: 5em 0;
+  margin-bottom: 1.45rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.index__headline {
+  margin: 0;
+}
+
+.index__text {
+  font-size: 1.2em;
+  margin-bottom: 0.3em;
+}
+
+.index__welcome {
+  margin-bottom: 1.5em;
+}
+
+.index__moreInfo {
+  margin-bottom: 2em;
+}
+
+.index__newsletter {
+  display: flex;
+  justify-content: center;
+}
