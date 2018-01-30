@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 
 import './normalize.css';
 import './skeleton.css';
+import './skeleton-overwrite.css';
 import './index.css';
 
 class Header extends React.Component {
@@ -18,62 +19,47 @@ class Header extends React.Component {
     });
   }
 
+  hideMenu = () => {
+    this.setState({
+      showMobileMenu: false
+    });
+  }
+
   render() {
     const { showMobileMenu } = this.state;
 
     return (
       <section className="header">
-        {!showMobileMenu && <span className="header__title">Web Audio Conf Logo</span>}
+        <Link to="/">
+          <img src="wac-logo.svg" alt="Web Audio Conf logo" className="header__logo" />
+        </Link>
         <button
           className="header__navigationTrigger"
           onClick={this.toggleMenu}
         >
-          Menu
+          ☰
         </button>
-        <ul className={`header__navigation ${showMobileMenu ? 'm-visible' : 'm-hidden'}`}>
+        <ul
+          className={`header__navigation ${showMobileMenu ? 'm-visible' : 'm-hidden'}`}
+          onClick={this.hideMenu}
+        >
           <li className="header__navigationItem">
             <Link
-              to="#"
-              className="header__navigationLink m-active"
-              onClick={this.toggleMenu}
+              to="/"
+              exact
+              className="header__navigationLink"
+              activeClassName="m-active"
             >
               Home
             </Link>
           </li>
           <li className="header__navigationItem">
             <Link
-              to="#"
+              to="/call-for-submissions"
               className="header__navigationLink"
-              onClick={this.toggleMenu}
+              activeClassName="m-active"
             >
-              Tickets
-            </Link>
-          </li>
-          <li className="header__navigationItem">
-            <Link
-              to="#"
-              className="header__navigationLink"
-              onClick={this.toggleMenu}
-            >
-              Speakers
-            </Link>
-          </li>
-          <li className="header__navigationItem">
-            <Link
-              to="#"
-              className="header__navigationLink"
-              onClick={this.toggleMenu}
-            >
-              Schedule
-            </Link>
-          </li>
-          <li className="header__navigationItem">
-            <Link
-              to="#"
-              className="header__navigationLink"
-              onClick={this.toggleMenu}
-            >
-              Venue
+              Call for Submissions
             </Link>
           </li>
         </ul>

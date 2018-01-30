@@ -1,17 +1,19 @@
 .header {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1em 0;
-  display: none;
 }
 
-.header__title {
-  margin-right: 5em;
-  font-size: 1.5em;
-  flex-grow: 1;
+.header__logo {
+  height: 70px;
 }
 
 .header__navigationTrigger {
   display: none;
+  width: 50px;
+  padding: 0;
+  border-radius: 25px;
 }
 
 .header__navigation {
@@ -46,7 +48,7 @@
 
 @media only screen and (max-device-width : 480px) {
   .header__navigationTrigger {
-    display: none;
+    display: block;
   }
   .header__navigation.m-hidden {
     display: none;
