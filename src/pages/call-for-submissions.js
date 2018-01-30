@@ -30,7 +30,7 @@ const CallForSubmissions = () => (
       <li>Hardware and tangible interfaces in web applications</li>
       <li>Codecs and standards for remote audio transmission</li>
     </ul>
-    <p>For any further questions please contact us via Twitter (<a href="https://twitter.com/webaudioconf">@webaudioconf</a>) or email (<a href="mailto:webaudioconf@gmail.com">webaudioconf@gmail.com</a>).</p>
+    <p>For any further questions please contact us via Twitter (<a href="https://twitter.com/webaudioconf" target="_blank">@webaudioconference</a>) or email (<a href="mailto:webaudioconf@gmail.com">webaudioconf@gmail.com</a>).</p>
 
     <h3>Keynote Speakers</h3>
     <p>The WAC 2018 features two keynotes by Chris Rogers (inventor of the Web Audio API) and Ruth John (web developer and creative technologist).</p>
@@ -62,11 +62,11 @@ const CallForSubmissions = () => (
     </ul>
 
     <h3>Templates and Submission System</h3>
-    <p>The submissions for WAC are handled through the EasyChair conference management system. In case you need assistance with your submission, please contact us via Twitter (<a href="https://twitter.com/webaudioconf">@webaudioconf</a>) or email (<a href="mailto:webaudioconf@gmail.com">webaudioconf@gmail.com</a>)</p>
+    <p>The submissions for WAC are handled through the EasyChair conference management system. In case you need assistance with your submission, please contact us via Twitter (<a href="https://twitter.com/webaudioconf" target="_blank">@webaudioconference</a>) or email (<a href="mailto:webaudioconf@gmail.com">webaudioconf@gmail.com</a>)</p>
     <p>All submissions of papers and abstracts to be published in the conference proceedings have to use the <a href={withPrefix('/wac-templates-2018-01-30.zip')}>WAC 2018 templates for Word or LaTex</a>.</p>
 
     <h3>Code of Conduct</h3>
-    <p>By submitting your work to the WAC, you agree to abide by our code of conduct that can be found on <a href="http://berlincodeofconduct.org">berlincodeofconduct.org</a>. Violations against the code of conduct will result in exclusion from the conference.</p>
+    <p>By submitting your work to the WAC, you agree to abide by our code of conduct that can be found on <a href="http://berlincodeofconduct.org" target="_blank">berlincodeofconduct.org</a>. Violations against the code of conduct will result in exclusion from the conference.</p>
 
     <p>Best wishes,<br />The WAC 2018 Committee</p>
   </div>
