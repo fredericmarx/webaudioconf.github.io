@@ -1,0 +1,8 @@
+.cfs p {
+  margin-bottom: 1em;
+}
+
+.cfs ul {
+  padding-left: 0.75em;
+  list-style-type: disc;
+}
