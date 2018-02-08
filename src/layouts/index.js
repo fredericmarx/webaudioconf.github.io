@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import Link, { withPrefix } from 'gatsby-link'
 import Helmet from 'react-helmet'
 
 import './normalize.css';
@@ -31,7 +31,7 @@ class Header extends React.Component {
     return (
       <section className="header">
         <Link to="/">
-          <img src="wac-logo.svg" alt="Web Audio Conf logo" className="header__logo" />
+          <img src={withPrefix('/wac-logo.svg')} alt="Web Audio Conf logo" className="header__logo" />
         </Link>
         <button
           className="header__navigationTrigger"
