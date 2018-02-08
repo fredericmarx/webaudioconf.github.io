@@ -56,7 +56,7 @@ const CallForSubmissions = () => (
     <p>Companies and institutions covering travel expenses and tickets for presenters without being involved in the presented work will be included on the sponsors page of the conference website.</p>
 
     <h3>Code of Conduct</h3>
-    <p>By submitting your work to the WAC, you agree to abide by our code of conduct that can be found on <a href="http://berlincodeofconduct.org" target="_blank">berlincodeofconduct.org</a>. Violations against the code of conduct will result in exclusion from the conference.</p>
+    <p>By submitting your work to the WAC, you agree to abide by our code of conduct that can be found on <a href="http://berlincodeofconduct.org" target="_blank" rel="noopener">berlincodeofconduct.org</a>. Violations against the code of conduct will result in exclusion from the conference.</p>
 
     <h3>Important Dates</h3>
     <ul>
@@ -68,11 +68,11 @@ const CallForSubmissions = () => (
     </ul>
 
     <h3>Templates and Submission System</h3>
-    <p>The submissions for WAC are handled through the <a href={easyChairLocation} target="_blank">WAC2018 conference management system</a> (EasyChair). In case you need assistance with your submission, please contact us at <Email name="program" />.</p>
-    <p>All submissions of papers and abstracts to be published in the conference proceedings have to use the <a href={withPrefix('/wac-templates-2018-01-30.zip')}>WAC 2018 templates for Word or LaTex</a>.</p>
+    <p>The submissions for WAC are handled through the <a href={easyChairLocation} target="_blank" rel="noopener">WAC2018 conference management system</a> (EasyChair). In case you need assistance with your submission, please contact us at <Email name="program" />.</p>
+    <p>All submissions of papers and abstracts to be published in the conference proceedings have to use the <a href={withPrefix('/wac-templates-2018-01-30.zip')} rel="noopener">WAC 2018 templates for Word or LaTex</a>.</p>
 
     <p style={{ display: 'none' }}>
-      <a className="button button-primary" target="_blank" href={easyChairLocation}>Submit now!</a>
+      <a className="button button-primary" target="_blank" href={easyChairLocation} rel="noopener">Submit now!</a>
     </p>
 
     <p>Best wishes,<br />The WAC 2018 Committee</p>

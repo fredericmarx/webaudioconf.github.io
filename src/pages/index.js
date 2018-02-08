@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import Twitter from '../components/twitter';
 
 import './index.css';
 
@@ -26,7 +27,7 @@ const IndexPage = () => (
       <h4>More info soon</h4>
       <p className="index__text">
         We are just getting started and will announce more information soon 📣.<br /> The date is set, so mark it in your calendar 📅✌️.
-        <br />In the meantime, please subscribe to our newsletter to receive updates, or follow us on twitter: <a href="https://twitter.com/webaudioconf" target="_blank">@webaudioconference</a>
+        <br />In the meantime, please subscribe to our newsletter to receive updates, or follow us on twitter: <Twitter />.
       </p>
     </div>
 
