@@ -30,7 +30,7 @@
 }
 
 @media (max-width: 650px) {
-  .index__headline__delimiter {
+  .index__headlineDelimiter {
     display: block;
     height: 0px;
     visibility: hidden;
