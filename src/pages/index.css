@@ -8,6 +8,7 @@
 
 .index__headline {
   margin: 0;
+  text-align: center;
 }
 
 .index__text {
@@ -26,4 +27,13 @@
 .index__newsletter {
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 650px) {
+  .index__headlineDelimiter {
+    display: block;
+    height: 0px;
+    visibility: hidden;
+    width: 0px;
+  }
 }
