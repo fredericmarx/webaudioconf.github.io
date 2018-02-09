@@ -8,7 +8,7 @@ const IndexPage = () => (
   <div>
     <div className="index__splash">
       <h1 className="index__headline">
-        Web Audio Conf<span className="index__headline__delimiter"> | </span>Berlin
+        Web Audio Conf<span className="index__headlineDelimiter"> | </span>Berlin
       </h1>
       <h4 className="index__headline">
         19th - 21st September 2018
