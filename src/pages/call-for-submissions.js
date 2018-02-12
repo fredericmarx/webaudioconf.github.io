@@ -73,7 +73,7 @@ const CallForSubmissions = () => (
     <p>The submissions for WAC are handled through the <a href={easyChairLocation} target="_blank" rel="noopener">WAC2018 conference management system</a> (EasyChair). In case you need assistance with your submission, please contact us at <Email name="program" />.</p>
     <p>All submissions of papers and abstracts to be published in the conference proceedings have to use the <a href={withPrefix('/wac-templates-2018-01-30.zip')} rel="noopener">WAC 2018 templates for Word or LaTex</a>.</p>
 
-    <p style={{ display: 'none' }}>
+    <p>
       <a className="button button-primary" target="_blank" href={easyChairLocation} rel="noopener">Submit now!</a>
     </p>
 
