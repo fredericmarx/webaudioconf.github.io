@@ -42,16 +42,16 @@ const CallForSubmissions = () => (
     <h3>Submission Types</h3>
     <p>We welcome submissions in the following tracks: papers, talks, posters, demos, performances, and installations. All submissions will be single-blind peer reviewed. The conference proceedings, which will include both papers (for papers and posters) and extended abstracts (for talks, demos, performances, and artworks), will be published open-access online.</p>
 
-    <p><strong>Paper</strong> <em>(Plenary or Poster)</em>: Submit a paper to be given as a plenary presentation (max. 6 pages) or a poster (max. 4 pages). Paper submission have to use the provided templates.</p>
-    <p><strong>Talk</strong>: Submit a talk to be given in a plenary session. Talk submissions should consist of an extended abstract (max. 2 pages) which outlines the talk and describes the presented work including links to additional documentation.</p>
-    <p><strong>Demo</strong>: Submit a work to be presented at a hands-on demo session. Demo submissions should consist of a description of the presented work with links to additional documentation and a list of technical requirements (including anything expected to be provided by the conference organizers).</p>
-    <p><strong>Artistic Work</strong> <em>(Performance or Installation)</em>: Submit a performance or installation making creative use of web audio standards. Works can include elements such as audience device participation and collaboration, web-based interfaces, and/or other imaginative approaches to web technology. Submissions to this track should consist of two parts: (1.) a description of the work with links to audio/video/image documentation and a complete list of technical requirements (including anything expected to be provided by conference organizers), (2.) short program notes with names and one-paragraph biographies of the authors (max 1 page).</p>
+    <p><strong>Paper</strong> <em>(Plenary or Poster)</em>: Submit a paper to be given as a plenary presentation (max. 6 pages) or a poster (max. 4 pages). Paper submissions have to use the provided templates.</p>
+    <p><strong>Talk</strong>: Submit a talk to be given in a plenary session. Talk submissions consist of an abstract and a description of the talk including an outline of the talk and a detailed overview of the presented work or idea (max. 2 pages) together with links to additional documentation.</p>
+    <p><strong>Demo</strong>: Submit a work to be presented at a hands-on demo session. Demo submissions consist of an abstract and a detailed description of the presented work and setup (max. 2 pages), links to additional documentation, and a complete list of technical requirements.</p>
+    <p><strong>Artistic Work</strong> <em>(Performance or Installation)</em>: Submit a performance or installation making creative use of web audio standards. Works can include elements such as audience device participation and collaboration, web-based interfaces, and/or other imaginative approaches to web technology. Apart from an abstract, submissions to this track consist of a description of the work (max. 2 pages), links to audio/video/image documentation, and a complete list of technical requirements as well as short program notes (max. 5000 characters) and one-paragraph biographies of the authors (max. 1000 characters per author).</p>
 
     <h3>Workshops and Tutorials</h3>
     <p>The third day of the conference (September 21st) is dedicated to workshops and tutorials. It’s the perfect time to dive deeper into topics learned at the conference with a more hands-on approach. If you are interested in running a tutorial session or a workshop at the conference, please contact the organizers directly at <Email name="workshops" /> with a short description of your tutorial or workshop.</p>
 
-    <h3>Presenter Tickets and Travel Support</h3>
-    <p>The WAC is a community-run conference with a very limited budget. Nevertheless, this year we would like to provide free tickets to speakers and artists presenting a performance or installation as well as reduced-price tickets to presenters of posters and demos (free and reduced tickets are limited to a single ticket per submission).</p>
+    <h3>Free Attendance and Assistance for Contributors</h3>
+    <p>The WAC is a community-run conference with a very limited budget. Nevertheless, we would like to make sure that at least one author of each submission selected in the peer-review process can attend the conference. For submissions that are not affiliated to an institution or corporation, authors can request the waiving of the conference fee (the request is limited to one author per submission and hidden from the review).</p>
     <p>If you are from an underrepresented group and need financial assistance to present your work at the conference, you can apply for financial aid at <Email name="chairs" />.</p>
     <p>Companies and institutions covering travel expenses and tickets for presenters without being involved in the presented work will be included on the sponsors page of the conference website.</p>
 
@@ -61,11 +61,13 @@ const CallForSubmissions = () => (
     <h3>Important Dates</h3>
     <ul>
       <li><strong>February 12th, 2018</strong>: submission system opens</li>
-      <li><strong>April 13th, 2018</strong>: submission deadline (updates possible until April 20, 2018)</li>
+      <li><strong>April 23rd, 2018</strong>: submission deadline (updates possible until April 30, 2018)</li>
       <li><strong>June 15th, 2018</strong>: author notification</li>
-      <li><strong>August 17th, 2018</strong>: final versions of papers and abstracts</li>
+      <li><strong>August 17th, 2018</strong>: final versions of papers, abstracts and program notes</li>
       <li><strong>September 19th-21st, 2018</strong>: conference</li>
     </ul>
+
+    <p>Preliminary versions of all submissions are due on April 23, 2018. The submission system will stay open until April 30, 2018 allowing authors to update their submissions during that time.</p>
 
     <h3>Templates and Submission System</h3>
     <p>The submissions for WAC are handled through the <a href={easyChairLocation} target="_blank" rel="noopener">WAC2018 conference management system</a> (EasyChair). In case you need assistance with your submission, please contact us at <Email name="program" />.</p>
