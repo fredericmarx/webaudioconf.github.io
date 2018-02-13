@@ -33,36 +33,38 @@ class Header extends React.Component {
         <Link to="/">
           <img src={withPrefix('/wac-logo.svg')} alt="Web Audio Conf logo" className="header__logo" />
         </Link>
-        <button
-          className="header__navigationTrigger"
-          onClick={this.toggleMenu}
-        >
-          ☰
-        </button>
-        <ul
-          className={`header__navigation ${showMobileMenu ? 'm-visible' : 'm-hidden'}`}
-          onClick={this.hideMenu}
-        >
-          <li className="header__navigationItem">
-            <Link
-              to="/"
-              exact
-              className="header__navigationLink"
-              activeClassName="m-active"
-            >
-              Home
-            </Link>
-          </li>
-          <li className="header__navigationItem">
-            <Link
-              to="/call-for-submissions"
-              className="header__navigationLink"
-              activeClassName="m-active"
-            >
-              Call for Submissions
-            </Link>
-          </li>
-        </ul>
+        <nav>
+          <button
+            className="header__navigationTrigger"
+            onClick={this.toggleMenu}
+          >
+            ☰
+          </button>
+          <ul
+            className={`header__navigation ${showMobileMenu ? 'm-visible' : 'm-hidden'}`}
+            onClick={this.hideMenu}
+          >
+            <li className="header__navigationItem">
+              <Link
+                to="/"
+                exact
+                className="header__navigationLink"
+                activeClassName="m-active"
+              >
+                Home
+              </Link>
+            </li>
+            <li className="header__navigationItem">
+              <Link
+                to="/call-for-submissions"
+                className="header__navigationLink"
+                activeClassName="m-active"
+              >
+                Call for Submissions
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </section>
     );
   }

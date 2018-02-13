@@ -46,7 +46,7 @@
   padding-left: 0;
 }
 
-@media only screen and (max-device-width : 480px) {
+@media (max-width : 480px) {
   .header__navigationTrigger {
     display: block;
   }
