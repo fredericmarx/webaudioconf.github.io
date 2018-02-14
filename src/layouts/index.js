@@ -79,7 +79,7 @@ const TemplateWrapper = ({ children }) => (
         { name: 'keywords', content: 'wac, web audio conference, conference, berlin, javascript, web, audio, web audio' },
       ]}
       link={[
-        { rel: 'shortcut icon', href: '/favicon.ico' }
+        { rel: 'icon', href: '/favicon.ico' }
       ]}
     />
     <div className="container">
