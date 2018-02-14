@@ -24,7 +24,7 @@ const IndexPage = () => (
     </div>
 
     <div className="index__moreInfo">
-      <h4>More info soon</h4>
+      <h4>Stay up to date</h4>
       <p className="index__text">
         We are just getting started and will announce more information soon 📣.<br /> The date is set, so mark it in your calendar 📅✌️.
         <br />In the meantime, please subscribe to our newsletter to receive updates, or follow us on twitter: <Twitter />.
