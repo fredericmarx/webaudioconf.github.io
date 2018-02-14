@@ -5,17 +5,17 @@ import Twitter from '../components/twitter';
 import './index.css';
 
 const IndexPage = () => (
-  <div>
+  <section itemScope itemType="http://schema.org/Event">
     <div className="index__splash">
       <h1 className="index__headline">
-        Web Audio Conf<span className="index__headlineDelimiter"> | </span>Berlin
+        <span itemProp="name">Web Audio Conf</span><span className="index__headlineDelimiter"> | </span><span itemProp="location">Berlin</span>
       </h1>
       <h2 className="index__headline m-small">
-        19th - 21st September 2018
+        <time itemProp="startDate" dateTime="2018-09-19">19th</time> - <time itemProp="endDate" dateTime="2018-09-21">21st September 2018</time>
       </h2>
     </div>
     <div className="index__welcome">
-      <p className="index__text">
+      <p className="index__text" itemProp="summary">
         The Web Audio Conference is an international conference dedicated to emerging audio-related web technologies such as Web Audio API, Web MIDI and Web RTC / WebGL.
       </p>
       <p className="index__text">
@@ -42,7 +42,7 @@ const IndexPage = () => (
         </form>
       </div>
     </div>
-  </div >
+  </section>
 )
 
 export default IndexPage
