@@ -10,9 +10,9 @@ const IndexPage = () => (
       <h1 className="index__headline">
         Web Audio Conf<span className="index__headlineDelimiter"> | </span>Berlin
       </h1>
-      <h4 className="index__headline">
+      <h2 className="index__headline m-small">
         19th - 21st September 2018
-      </h4>
+      </h2>
     </div>
     <div className="index__welcome">
       <p className="index__text">
