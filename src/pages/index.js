@@ -36,7 +36,7 @@ const IndexPage = () => (
         <form action="https://webaudioconf.us17.list-manage.com/subscribe/post?u=786ac969cb6e9a620eda77728&amp;id=84c4ce8f63" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate>
           <input type="email" name="EMAIL" id="mce-EMAIL" className="u-full-width" placeholder="E-mail address" />
           <input type="submit" value="Subscribe" name="subscribe" className="button-primary" id="mc-embedded-subscribe" />
-          <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+          <div className="index__hiddenInputContainer" aria-hidden="true">
             <input type="text" value="" name="b_786ac969cb6e9a620eda77728_84c4ce8f63" tabIndex="-1" />
           </div>
         </form>
