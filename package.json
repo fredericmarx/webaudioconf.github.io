@@ -3,8 +3,10 @@
   "description": "The website of the Web Audio Conf 2018.",
   "version": "1.0.0",
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "gatsby": "^1.9.127",
     "gatsby-link": "^1.6.30",
+    "gatsby-plugin-less": "^1.1.6",
     "gatsby-plugin-react-helmet": "^1.0.8",
     "gatsby-plugin-sitemap": "^1.2.13",
     "gh-pages": "^1.1.0"
