@@ -46,6 +46,14 @@
   padding-left: 0;
 }
 
+.img-responsive {
+  width: 100%;
+}
+
+.img-rounded {
+  border-radius: 50%;
+}
+
 @media (max-width : 480px) {
   .header__navigationTrigger {
     display: block;
