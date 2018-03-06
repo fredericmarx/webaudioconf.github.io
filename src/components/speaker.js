@@ -16,7 +16,7 @@ export default function({
   );
   const image = imagePath ? (
     <div className='four columns'>
-      <img src={withPrefix(imagePath)} alt={name} className='img-responsive img-rounded' itemProp="image" />
+      <img src={withPrefix(imagePath)} alt={`photo of ${givenName} ${familyName}`} className='img-responsive img-rounded' itemProp="image" />
     </div>
   ) : null;
 
