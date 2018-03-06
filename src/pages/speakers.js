@@ -16,7 +16,7 @@ const Speakers = () => (
     <Speaker
       name='Chris Rogers'
     >
-      <p>Chris Rogers is a software architect, specializing in audio production tools and music applications.  Previously he worked at Google, where he developed the Web Audio API and other advanced web platform technologies.  At Apple he was a principal designer of the Audio Units plugin architecture, and developed many of the ones shipping on Mac OS X and iOS, including the AUMatrixReverb, and the AUTimePitch time-stretching algorithm.  He's also worked for Macromedia, Motorola, Wolfram Research, and IRCAM where he worked on SVP and developed the original AudioSculpt application.</p>
+      <p>Chris Rogers is a software architect, specializing in audio production tools and music applications. Previously he worked at Google, where he developed the Web Audio API and other advanced web platform technologies. At Apple he was a principal designer of the Audio Units plugin architecture, and developed many of the ones shipping on Mac OS X and iOS, including the AUMatrixReverb, and the AUTimePitch time-stretching algorithm. He's also worked for Macromedia, Motorola, Wolfram Research, and IRCAM where he worked on SVP and developed the original AudioSculpt application.</p>
     </Speaker>
   </div>
 )
