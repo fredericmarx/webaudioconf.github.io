@@ -10,7 +10,7 @@ const Speakers = () => (
       name='Ruth John'
       imagePath='speakers/ruth.jpg'
     >
-      <p>Ruth is a web technologist and Google Developer Expert. She likes to educate people about new web technologies and inspire them to try them, coming up with exciting and engaging ways to use them. She’s a founding member of {'{'} Live: JS {'}'}, a collective of audio and visual artists that solely rely on JavaScript to create their performances. Her favourite things include hacking with hardware, evangelising about Web Audio and MIDI and taking her award nominated, hand coded, audio/visual software to the streets.</p>
+      <p>Ruth is a web technologist and Google Developer Expert. She likes to educate people about new web technologies and inspire them to try them, coming up with exciting and engaging ways to use them. She’s a founding member of <span style={{ whiteSpace: 'nowrap' }}>{'{'} Live: JS {'}'}</span>, a collective of audio and visual artists that solely rely on JavaScript to create their performances. Her favourite things include hacking with hardware, evangelising about Web Audio and MIDI and taking her award nominated, hand coded, audio/visual software to the streets.</p>
       <p><Twitter account='Rumyra' withIcon /></p>
     </Speaker>
     <Speaker
