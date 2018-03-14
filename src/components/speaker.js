@@ -1,16 +1,19 @@
 import React from 'react';
 import { withPrefix } from 'gatsby-link';
+import Badge from './badge';
 import './speaker.css';
 
 export default function({
   givenName,
   familyName,
   imagePath,
+  keynote=false,
   children
 }) {
+  const keynoteBadge = keynote ? <Badge style={{ marginLeft: '10px' }}>Keynote</Badge> : null;
   const text = (
     <div className={imagePath ? 'eight columns' : 'twelve columns'}>
-      <h2><span itemProp="givenName">{ givenName }</span> <span itemProp="familyName">{ familyName }</span></h2>
+      <h2><span itemProp="givenName">{ givenName }</span> <span itemProp="familyName">{ familyName }</span>{ keynoteBadge }</h2>
       { children }
     </div>
   );
