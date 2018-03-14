@@ -11,7 +11,7 @@ export default function ({ style, children }) {
     lineHeight: 1,
     textAlign: 'center',
     whiteSpace: 'nowrap',
-    verticalAlign: 'super',
+    verticalAlign: 'text-top',
     borderRadius: '.25rem',
     ...style
   }}>{ children }</span>;
