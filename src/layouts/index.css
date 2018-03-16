@@ -52,6 +52,7 @@
 
 .img-rounded {
   border-radius: 50%;
+  border: 2px solid #1EAEDB;
 }
 
 @media (max-width : 480px) {

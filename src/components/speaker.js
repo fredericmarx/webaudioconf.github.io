@@ -3,17 +3,17 @@ import { withPrefix } from 'gatsby-link';
 import Badge from './badge';
 import './speaker.css';
 
-export default function({
+export default function ({
   givenName,
   familyName,
   imagePath,
-  keynote=false,
+  keynote = false,
   children
 }) {
   const keynoteBadge = keynote ? <Badge style={{ marginLeft: '10px' }}>Keynote</Badge> : null;
   const text = (
     <div className='speaker__content'>
-      { children }
+      {children}
     </div>
   );
   const image = imagePath ? (
@@ -24,11 +24,13 @@ export default function({
 
   return (
     <div className='row speaker' itemScope itemType="http://schema.org/Person">
-      <h2><span itemProp="givenName">{ givenName }</span> <span itemProp="familyName">{ familyName }</span>{ keynoteBadge }</h2>
-      <div className='speaker__flex'>
-        { text }
-        { image }
+      <div className='speaker__textContent'>
+        <h2>
+          <span itemProp="givenName">{givenName}</span> <span itemProp="familyName">{familyName}</span>{keynoteBadge}
+        </h2>
+        {text}
       </div>
+      {image}
     </div>
   );
 }
