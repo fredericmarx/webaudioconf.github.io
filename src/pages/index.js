@@ -23,6 +23,10 @@ const IndexPage = () => (
       </p>
     </div>
 
+    <div className="index__update">
+      🎉🔊 We just announced our keynote speakers. Head over to the <Link to="speakers">speakers</Link> page to find out who it is! 🔊🎉
+    </div>
+
     <div className="index__moreInfo">
       <h4>Stay up to date</h4>
       <p className="index__text">
