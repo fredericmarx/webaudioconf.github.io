@@ -1,5 +1,11 @@
 import React from 'react';
+import Icon from './icon';
+import Link from './link';
 
 export default function ({ account = 'webaudioconf' }) {
-  return <a href={`https://twitter.com/${account}`} target="_blank" rel="noopener">{`@${account}`}</a>;
+  return (
+    <Link href={`https://twitter.com/${account}`}>
+      <span style={{ whiteSpace: 'nowrap' }}><Icon name='twitter'/>{`@${account}`}</span>
+    </Link>
+  );
 }

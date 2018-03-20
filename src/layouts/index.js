@@ -63,6 +63,15 @@ class Header extends React.Component {
                 Call for Submissions
               </Link>
             </li>
+            <li className="header__navigationItem">
+              <Link
+                to="/speakers"
+                className="header__navigationLink"
+                activeClassName="m-active"
+              >
+                Speakers
+              </Link>
+            </li>
           </ul>
         </nav>
       </section>
