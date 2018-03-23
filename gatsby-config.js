@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: 'http://webaudioconf.com',
+    siteUrl: 'https://webaudioconf.com',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
