@@ -4,6 +4,10 @@
   align-items: flex-start
 }
 
+.person__textContent {
+  overflow: hidden;
+}
+
 .person__photo {
   width: 35%;
   max-width: 250px;
