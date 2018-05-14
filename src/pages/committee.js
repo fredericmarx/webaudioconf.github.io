@@ -21,7 +21,13 @@ const Committee = () => (
       familyName='Guttandin'
       imagePath='committee/christoph.jpg'
       >
-      <p>TODO</p>
+      <p>Christoph is a freelance Web Developer based in Berlin. He is specialized in multi media applications that leverage all the new and shiny APIs that are available in todays browsers. He has recently worked on streaming solutions and interactive music applications for clients like TV stations, streaming services, synthesizer vendors, and artists.</p>
+      <p>He is currently about to complete a master’s degree in International Media and Computing and is a certified Audiovisual Media Designer.</p>
+      <p>Christoph was a speaker at the last two Web Audio Conferences in London and Atlanta.</p>
+      <p>
+        <Website url='https://media-codings.com/' /><br />
+        <GitHub account='chrisguttandin'/>
+      </p>
     </Person>
     <Person
       givenName='Frederic'
