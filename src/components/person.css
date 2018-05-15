@@ -6,6 +6,7 @@
 
 .person__textContent {
   overflow: hidden;
+  flex-grow: 1;
 }
 
 .person__photo {
