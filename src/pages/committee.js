@@ -35,11 +35,14 @@ const Committee = () => (
       <p><GitHub account='chrisguttandin'/></p>
     </Person>
     <Person
-      givenName='Frederic'
-      familyName='Marx'
-      imagePath='committee/frederic.jpg'
+      givenName='Norbert'
+      familyName='Schnell'
+      imagePath='committee/norbert.jpg'
       >
-      <p><em>Coming soon!</em></p>
+      <p>Norbert Schnell is professor of Music Design at the Digital Media Faculty at the Furtwangen University. He studied Music Technology in Graz before entering the Ircam in Paris as researcher and developer in the field of interactive digital audio processing and interaction design.</p>
+      <p>He chaired the 6th International Conference on New Interfaces for Musical Expression (NIME 2006) and the first Web Audio Conference (WAC 2015).</p>
+      <p>In 2013 he obtained his doctorate on key aspects of sound and interaction design with recorded sounds.</p>
+      <p>Over the past years, he coordinated the CoSiMa project exploring collective interactions in the context of participative art and music projects, collaborative digital media, and music pedagogy based on mobile and web technologies.</p>
     </Person>
     <Person
       givenName='Stefan'
@@ -65,24 +68,11 @@ const Committee = () => (
       </p>
     </Person>
     <Person
-      givenName='Norbert'
-      familyName='Schnell'
-      imagePath='committee/norbert.jpg'
+      givenName='Frederic'
+      familyName='Marx'
+      // imagePath='committee/frederic.jpg'
       >
-      <p>Norbert Schnell is professor of Music Design at the Digital Media Faculty at the Furtwangen University. He studied Music Technology in Graz before entering the Ircam in Paris as researcher and developer in the field of interactive digital audio processing and interaction design.</p>
-      <p>He chaired the 6th International Conference on New Interfaces for Musical Expression (NIME 2006) and the first Web Audio Conference (WAC 2015).</p>
-      <p>In 2013 he obtained his doctorate on key aspects of sound and interaction design with recorded sounds.</p>
-      <p>Over the past years, he coordinated the CoSiMa project exploring collective interactions in the context of participative art and music projects, collaborative digital media, and music pedagogy based on mobile and web technologies.</p>
-    </Person>
-    <Person
-      givenName='Tom'
-      familyName='Jenkinson'
-      imagePath='committee/tom.jpg'
-      >
-      <p>Tom is a web streaming engineer at SoundCloud. He works on the playback library for the web applications, which uses <code>{"<audio />"}</code>, Media Source Extensions, and WebAudio.</p>
-      <p>He previously studied software engineering at Lancaster University in the UK, and was an active member of the student TV station.</p>
-      <p>In his free time he enjoys playing trumpet and drums in a few bands in Berlin, and contributes to the open source HLS client HLS.JS.</p>
-      <p><GitHub account='tjenkinson' /></p>
+      <p><em>Coming soon!</em></p>
     </Person>
     <Person
       givenName='Jack'
@@ -97,6 +87,16 @@ const Committee = () => (
         <GitHub account='jackschaedler' /><br />
         <Twitter account='jackschaedler' />
       </p>
+    </Person>
+    <Person
+      givenName='Tom'
+      familyName='Jenkinson'
+      imagePath='committee/tom.jpg'
+      >
+      <p>Tom is a web streaming engineer at SoundCloud. He works on the playback library for the web applications, which uses <code>{"<audio />"}</code>, Media Source Extensions, and WebAudio.</p>
+      <p>He previously studied software engineering at Lancaster University in the UK, and was an active member of the student TV station.</p>
+      <p>In his free time he enjoys playing trumpet and drums in a few bands in Berlin, and contributes to the open source HLS client HLS.JS.</p>
+      <p><GitHub account='tjenkinson' /></p>
     </Person>
   </div>
 )
