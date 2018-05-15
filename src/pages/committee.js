@@ -5,6 +5,7 @@ import Website from '../components/website';
 import LinkedIn from '../components/linked-in';
 import Twitter from '../components/twitter';
 import Icon from '../components/icon';
+import Link from '../components/link';
 
 const Committee = () => (
   <div className="committee">
@@ -14,7 +15,14 @@ const Committee = () => (
       familyName='Monschke'
       imagePath='committee/jan.jpg'
       >
-      <p>TODO</p>
+      <p>Jan Monschke is a frontend engineer working at SoundCloud in Berlin. He works on the main web app, as well as the Xbox app and occasionally some of the mobile apps.</p>
+      <p>He discovered his interest in the Web Audio API when he was writing his master’s thesis on building a fully collaborative DAW purely with web technology. This project was presented at the very first Web Audio Conference in Paris in 2015.</p>
+      <p>Nowadays his main music-related focus is his Web Audio Band the <Link href="https://www.youtube.com/watch?v=lCn-XCASn98">nested_loops</Link> who is regularly performing at the biggest JavaScript conference in europe.</p>
+      <p>
+        <Website url='http://janmonschke.com/' /><br />
+        <GitHub account='janmonschke' /><br />
+        <Twitter account='thedeftone' />
+      </p>
     </Person>
     <Person
       givenName='Christoph'
@@ -34,7 +42,7 @@ const Committee = () => (
       familyName='Marx'
       imagePath='committee/frederic.jpg'
       >
-      <p>TODO</p>
+      <p><em>Coming soon!</em></p>
     </Person>
     <Person
       givenName='Stefan'
