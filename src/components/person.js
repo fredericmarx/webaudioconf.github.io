@@ -8,9 +8,11 @@ export default function ({
   familyName,
   imagePath,
   role,
+  tag,
   children
 }) {
-  const keynoteBadge = role ? <Badge style={{ marginLeft: '10px' }}>{ role }</Badge> : null;
+  const badge = tag ? <Badge style={{ marginLeft: '10px' }}>{ tag }</Badge> : null;
+  const roleHeading = role ? <h4>{role}</h4> : null;
   const text = (
     <div className='person__content'>
       {children}
@@ -25,9 +27,10 @@ export default function ({
   return (
     <div className='row person' itemScope itemType="http://schema.org/Person">
       <div className='person__textContent'>
-        <h2>
-          <span itemProp="givenName">{givenName}</span> <span itemProp="familyName">{familyName}</span>{keynoteBadge}
+        <h2 style={{ marginBottom: role ? 0 : undefined }}>
+          <span itemProp="givenName">{givenName}</span> <span itemProp="familyName">{familyName}</span>{badge}
         </h2>
+        {roleHeading}
         {text}
       </div>
       {image}

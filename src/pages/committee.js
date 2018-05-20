@@ -14,6 +14,7 @@ const Committee = () => (
       givenName='Jan'
       familyName='Monschke'
       imagePath='committee/jan.jpg'
+      role='Conference/Installation/Performance Chair'
       >
       <p>Jan Monschke is a frontend engineer working at SoundCloud in Berlin. He works on the main web app, as well as the Xbox app and occasionally some of the mobile apps.</p>
       <p>He discovered his interest in the Web Audio API when he was writing his master’s thesis on building a fully collaborative DAW purely with web technology. This project was presented at the very first Web Audio Conference in Paris in 2015.</p>
@@ -28,6 +29,7 @@ const Committee = () => (
       givenName='Christoph'
       familyName='Guttandin'
       imagePath='committee/christoph.jpg'
+      role='Conference/Program Chair'
       >
       <p>Christoph is a freelance Web Developer based in Berlin. He is specialized in multi media applications that leverage all the new and shiny APIs that are available in todays browsers. He has recently worked on streaming solutions and interactive music applications for clients like TV stations, streaming services, synthesizer vendors, and artists.</p>
       <p>He is currently about to complete a master’s degree in International Media and Computing and is a certified Audiovisual Media Designer.</p>
@@ -38,6 +40,7 @@ const Committee = () => (
       givenName='Norbert'
       familyName='Schnell'
       imagePath='committee/norbert.jpg'
+      role='Scientific/Program Chair'
       >
       <p>Norbert Schnell is professor of Music Design at the Digital Media Faculty at the Furtwangen University. He studied Music Technology in Graz before entering the Ircam in Paris as researcher and developer in the field of interactive digital audio processing and interaction design.</p>
       <p>He chaired the 6th International Conference on New Interfaces for Musical Expression (NIME 2006) and the first Web Audio Conference (WAC 2015).</p>
@@ -48,6 +51,7 @@ const Committee = () => (
       givenName='Stefan'
       familyName='Weinzierl'
       imagePath='committee/stefan.jpg'
+      role='Local Chair'
       >
       <p>Stefan Weinzierl is head of the Audio Communication Group at the Technische Universität Berlin. His activities in research are focused on audio technology, virtual acoustics, room acoustics, and musical acoustics.</p>
       <p>He is coordinator of a master program in Audio Communication and Technology at TU Berlin.</p>
@@ -58,6 +62,7 @@ const Committee = () => (
       givenName='Athanasios'
       familyName='Lykartsis'
       imagePath='committee/athanasios.jpg'
+      role='Local Chair'
       >
       <p>Athanasios Lykartsis received his Diploma in Electrical and Computer Engineering at the Aristoteles University of Thessaloniki in 2009. He then completed a Master's degree in Audio Technology at the TU Berlin in 2014, with further specialization in audio signal processing.</p>
       <p>Now he is a research associate and PhD candidate at the Audio Communication Group, as well as a freelance consultant for audio-based projects.</p>
@@ -71,6 +76,7 @@ const Committee = () => (
       givenName='Frederic'
       familyName='Marx'
       // imagePath='committee/frederic.jpg'
+      role='Demos/Posters Chair'
       >
       <p><em>Coming soon!</em></p>
     </Person>
@@ -78,6 +84,7 @@ const Committee = () => (
       givenName='Jack'
       familyName='Schaedler'
       imagePath='committee/jack.jpg'
+      role='Demos/Posters Chair'
       >
       <p>Jack Schaedler is a software developer at Ableton. He has worked on Ableton Live, and most recently, Ableton's microsite for learning music fundamentals.</p>
       <p>His personal work explores the use of interactive media to explain difficult concepts like Fourier analysis, handwriting recognition, and music theory.</p>
@@ -92,6 +99,7 @@ const Committee = () => (
       givenName='Tom'
       familyName='Jenkinson'
       imagePath='committee/tom.jpg'
+      role='Installation/Performance Chair'
       >
       <p>Tom is a web streaming engineer at SoundCloud. He works on the playback library for the web applications, which uses <code>{"<audio />"}</code>, Media Source Extensions, and WebAudio.</p>
       <p>He previously studied software engineering at Lancaster University in the UK, and was an active member of the student TV station.</p>
