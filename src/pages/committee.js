@@ -73,14 +73,6 @@ const Committee = () => (
       </p>
     </Person>
     <Person
-      givenName='Frederic'
-      familyName='Marx'
-      // imagePath='committee/frederic.jpg'
-      role='Demos/Posters Chair'
-      >
-      <p><em>Coming soon!</em></p>
-    </Person>
-    <Person
       givenName='Jack'
       familyName='Schaedler'
       imagePath='committee/jack.jpg'
