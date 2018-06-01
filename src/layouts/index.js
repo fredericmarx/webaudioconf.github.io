@@ -72,6 +72,15 @@ class Header extends React.Component {
                 Speakers
               </Link>
             </li>
+            <li className="header__navigationItem">
+              <Link
+                to="/committee"
+                className="header__navigationLink"
+                activeClassName="m-active"
+              >
+                Committee
+              </Link>
+            </li>
           </ul>
         </nav>
       </section>
