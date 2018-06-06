@@ -1,6 +1,7 @@
 import React from 'react';
 import { withPrefix } from 'gatsby-link';
 import Badge from './badge';
+import { breakParts } from '../helpers/break-parts';
 import './person.css';
 
 export default function ({
@@ -12,7 +13,7 @@ export default function ({
   children
 }) {
   const badge = tag ? <Badge style={{ marginLeft: '10px' }}>{ tag }</Badge> : null;
-  const roleHeading = role ? <h4>{role}</h4> : null;
+  const roleHeading = role ? <h4>{ breakParts(role.split('/'), '/') }</h4> : null;
   const text = (
     <div className='person__content'>
       {children}
