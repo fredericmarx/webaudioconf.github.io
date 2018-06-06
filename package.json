@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "dependencies": {
     "font-awesome": "^4.7.0",
-    "gatsby": "^1.9.127",
+    "gatsby": "^1.9.270",
     "gatsby-link": "^1.6.30",
     "gatsby-plugin-less": "^1.1.6",
     "gatsby-plugin-react-helmet": "^1.0.8",
-    "gatsby-plugin-sitemap": "^1.2.13",
-    "gh-pages": "^1.1.0"
+    "gatsby-plugin-sitemap": "^1.2.25",
+    "gh-pages": "^1.2.0"
   },
   "license": "MIT",
   "main": "n/a",
@@ -22,7 +22,7 @@
     "deploy": "gatsby build && gh-pages -d public --branch master"
   },
   "devDependencies": {
-    "prettier": "^1.8.2",
+    "prettier": "^1.13.4",
     "shorten-url": "^1.0.0"
   },
   "private": true
