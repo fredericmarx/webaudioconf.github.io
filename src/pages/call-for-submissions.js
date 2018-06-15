@@ -63,7 +63,7 @@ const CallForSubmissions = () => (
     <ul>
       <li><strong>February 12th, 2018</strong>: submission system opens</li>
       <li><strong>April 23rd, 2018</strong>: submission deadline (updates possible until April 30, 2018)</li>
-      <li><strong>June 15th, 2018</strong>: author notification</li>
+      <li><strong>June 22nd, 2018</strong>: author notification</li>
       <li><strong>August 17th, 2018</strong>: final versions of papers, abstracts and program notes</li>
       <li><strong>September 19th-21st, 2018</strong>: conference</li>
     </ul>
