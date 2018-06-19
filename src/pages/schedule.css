@@ -16,6 +16,14 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
+.schedule__entry.m-current {
+  background-color: rgba(0,0,0,0.05);
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .schedule__entry:last-child {
   border-bottom: none;
 }
