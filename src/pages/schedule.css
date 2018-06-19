@@ -12,7 +12,12 @@
 .schedule__entry {
   display: flex;
   font-size: 1.7rem;
-  margin-bottom: 1.5rem;
+  padding: 1.7rem 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.schedule__entry:last-child {
+  border-bottom: none;
 }
 
 .schedule__entryTime {
@@ -25,7 +30,10 @@
 
 .schedule__entryTitle {
   font-weight: bold;
-  margin-bottom: 10px;
+}
+
+.schedule__entryDescription {
+  margin-top: 10px;
 }
 
 .schedule__entryLocation {
