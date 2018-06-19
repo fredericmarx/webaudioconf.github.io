@@ -1,0 +1,45 @@
+.schedule__headlineDay {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #333;
+  margin-bottom: 2.5rem;
+  font-size: 2.5rem;
+}
+
+.schedule__day {
+  margin-bottom: 4rem;
+}
+
+.schedule__entry {
+  display: flex;
+  font-size: 1.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.schedule__entryTime {
+  width: 25%;
+}
+
+.schedule__entryInfo {
+  width: 75%
+}
+
+.schedule__entryTitle {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.schedule__entryLocation {
+  margin-left: 0.5rem;
+  font-weight: normal;
+}
+
+@media (max-width : 480px) {
+  .schedule__entry {
+    flex-direction: column;
+  }
+
+  .schedule__entryTime,
+  .schedule__entryInfo {
+    width: inherit;
+  }
+}

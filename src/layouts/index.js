@@ -56,11 +56,11 @@ class Header extends React.Component {
             </li>
             <li className="header__navigationItem">
               <Link
-                to="/call-for-submissions"
+                to="/schedule"
                 className="header__navigationLink"
                 activeClassName="m-active"
               >
-                Call for Submissions
+                Schedule
               </Link>
             </li>
             <li className="header__navigationItem">
