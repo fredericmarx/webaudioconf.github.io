@@ -140,7 +140,7 @@ const schedule = {
 function renderDay(day) {
   return (
     <div className="schedule__day">
-      <h2 className="schedule__headlineDay">Wednesday, Sept 19th</h2>
+      <h2 className="schedule__headlineDay">{day.title}</h2>
       <div className="schedule__timeTable">
         {day.entries.map((entry) => (
           <div key={`${day.title}${entry.time}`} className="schedule__entry">
