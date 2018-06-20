@@ -184,13 +184,14 @@ export default class Schedule extends React.Component {
         <div className="schedule__timeTable">
           {day.entries.map((entry) => {
             const isCurrent = currentTime >= entry.startTime && currentTime <= entry.endTime;
-            const entryStart = new Date(entry.startTime);
-            const entryEnd = new Date(entry.endTime);
+            const entryStart = dateToBerlinTZ(new Date(entry.startTime));
+            const entryEnd = dateToBerlinTZ(new Date(entry.endTime));
+
             const time = "" +
-              zeroPad(entryStart.getUTCHours()) + ":" + zeroPad(entryStart.getUTCMinutes()) +
+              zeroPad(entryStart.getHours()) + ":" + zeroPad(entryStart.getMinutes()) +
               " - " +
-              zeroPad(entryEnd.getUTCHours()) +
-              ":" + zeroPad(entryEnd.getUTCMinutes())
+              zeroPad(entryEnd.getHours()) +
+              ":" + zeroPad(entryEnd.getMinutes())
               ;
 
             return (
@@ -250,4 +251,10 @@ function nowInUTC() {
     now.getUTCHours(),
     now.getUTCMinutes()
   );
+}
+
+function dateToBerlinTZ(date) {
+  return new Date(date.toLocaleString('en-US', {
+    timeZone: 'Europe/Berlin'
+  }))
 }
