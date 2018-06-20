@@ -6,8 +6,8 @@ const schedule = {
     title: 'Wednesday, Sept 19th',
     entries: [
       {
-        startTime: Date.UTC(2018, 8, 19, 8, 0),
-        endTime: Date.UTC(2018, 9, 19, 9, 0),
+        startTime: Date.UTC(2018, 8, 19, 6, 0),
+        endTime: Date.UTC(2018, 9, 19, 7, 0),
         title: 'Registration',
         description: 'Get your conference badge and mingle with other attendees',
         location: {
@@ -16,34 +16,34 @@ const schedule = {
         }
       },
       {
-        startTime: Date.UTC(2018, 8, 19, 9, 0),
-        endTime: Date.UTC(2018, 8, 19, 10, 0),
+        startTime: Date.UTC(2018, 8, 19, 7, 0),
+        endTime: Date.UTC(2018, 8, 19, 8, 0),
         title: 'Keynote',
         description: 'The opening keynote for WAC 2018'
       },
       {
-        startTime: Date.UTC(2018, 8, 19, 10, 0),
-        endTime: Date.UTC(2018, 8, 19, 10, 30),
+        startTime: Date.UTC(2018, 8, 19, 8, 0),
+        endTime: Date.UTC(2018, 8, 19, 8, 30),
         title: 'Coffee & Tea break'
       },
       {
-        startTime: Date.UTC(2018, 8, 19, 10, 30),
-        endTime: Date.UTC(2018, 8, 19, 12, 30),
+        startTime: Date.UTC(2018, 8, 19, 8, 30),
+        endTime: Date.UTC(2018, 8, 19, 10, 30),
         title: 'Presentations'
       },
       {
-        startTime: Date.UTC(2018, 8, 19, 12, 30),
-        endTime: Date.UTC(2018, 8, 19, 14, 0),
+        startTime: Date.UTC(2018, 8, 19, 10, 30),
+        endTime: Date.UTC(2018, 8, 19, 12, 0),
         title: 'Lunch break'
+      },
+      {
+        startTime: Date.UTC(2018, 8, 19, 12, 0),
+        endTime: Date.UTC(2018, 8, 19, 14, 0),
+        title: 'Presentations'
       },
       {
         startTime: Date.UTC(2018, 8, 19, 14, 0),
         endTime: Date.UTC(2018, 8, 19, 16, 0),
-        title: 'Presentations'
-      },
-      {
-        startTime: Date.UTC(2018, 8, 19, 16, 0),
-        endTime: Date.UTC(2018, 8, 19, 18, 0),
         title: 'Demos, Posters and Installations',
         description: `
           Check out a variety of demos, posters and installations in various locations on the campus.
@@ -51,8 +51,8 @@ const schedule = {
         `
       },
       {
-        startTime: Date.UTC(2018, 8, 19, 20, 0),
-        endTime: Date.UTC(2018, 8, 19, 23, 0),
+        startTime: Date.UTC(2018, 8, 19, 18, 0),
+        endTime: Date.UTC(2018, 8, 19, 21, 0),
         title: 'Concert',
         location: {
           name: 'SoundCloud',
@@ -65,8 +65,8 @@ const schedule = {
     title: 'Thursday, Sept 20th',
     entries: [
       {
-        startTime: Date.UTC(2018, 8, 20, 8, 0),
-        endTime: Date.UTC(2018, 8, 20, 9, 0),
+        startTime: Date.UTC(2018, 8, 19, 6, 0),
+        endTime: Date.UTC(2018, 9, 19, 7, 0),
         title: 'Registration',
         description: 'Get your conference badge and mingle with other attendees',
         location: {
@@ -75,34 +75,34 @@ const schedule = {
         }
       },
       {
-        startTime: Date.UTC(2018, 8, 20, 9, 0),
-        endTime: Date.UTC(2018, 8, 20, 10, 0),
+        startTime: Date.UTC(2018, 8, 19, 7, 0),
+        endTime: Date.UTC(2018, 8, 19, 8, 0),
         title: 'Keynote',
         description: 'The second keynote of WAC 2018'
       },
       {
-        startTime: Date.UTC(2018, 8, 20, 10, 0),
-        endTime: Date.UTC(2018, 8, 20, 10, 30),
+        startTime: Date.UTC(2018, 8, 19, 8, 0),
+        endTime: Date.UTC(2018, 8, 19, 8, 30),
         title: 'Coffee & Tea break'
       },
       {
-        startTime: Date.UTC(2018, 8, 20, 10, 30),
-        endTime: Date.UTC(2018, 8, 20, 12, 30),
+        startTime: Date.UTC(2018, 8, 19, 8, 30),
+        endTime: Date.UTC(2018, 8, 19, 10, 30),
         title: 'Presentations'
       },
       {
-        startTime: Date.UTC(2018, 8, 20, 12, 30),
-        endTime: Date.UTC(2018, 8, 20, 14, 0),
+        startTime: Date.UTC(2018, 8, 19, 10, 30),
+        endTime: Date.UTC(2018, 8, 19, 12, 0),
         title: 'Lunch break'
       },
       {
-        startTime: Date.UTC(2018, 8, 20, 14, 0),
-        endTime: Date.UTC(2018, 8, 20, 16, 0),
+        startTime: Date.UTC(2018, 8, 19, 12, 0),
+        endTime: Date.UTC(2018, 8, 19, 14, 0),
         title: 'Presentations'
       },
       {
-        startTime: Date.UTC(2018, 8, 20, 16, 0),
-        endTime: Date.UTC(2018, 8, 20, 18, 0),
+        startTime: Date.UTC(2018, 8, 19, 14, 0),
+        endTime: Date.UTC(2018, 8, 19, 16, 0),
         title: 'Demos, Posters and Installations',
         description: `
           Check out a variety of demos, posters and installations in various locations on the campus.
@@ -110,8 +110,8 @@ const schedule = {
         `
       },
       {
-        startTime: Date.UTC(2018, 8, 20, 20, 0),
-        endTime: Date.UTC(2018, 8, 20, 23, 0),
+        startTime: Date.UTC(2018, 8, 19, 18, 0),
+        endTime: Date.UTC(2018, 8, 19, 21, 0),
         title: 'Dinner',
         description: 'We are preparing a very special audio-enhanced dinner together with Ben Houge and Brlo',
         location: {
@@ -125,8 +125,8 @@ const schedule = {
     title: 'Friday, Sept 21st',
     entries: [
       {
-        startTime: Date.UTC(2018, 8, 21, 8, 0),
-        endTime: Date.UTC(2018, 8, 21, 9, 0),
+        startTime: Date.UTC(2018, 8, 21, 6, 0),
+        endTime: Date.UTC(2018, 8, 21, 7, 0),
         title: 'Registration',
         description: 'Get your conference badge and mingle with other attendees',
         location: {
@@ -135,23 +135,23 @@ const schedule = {
         }
       },
       {
-        startTime: Date.UTC(2018, 8, 21, 9, 0),
-        endTime: Date.UTC(2018, 8, 21, 12, 30),
+        startTime: Date.UTC(2018, 8, 21, 7, 0),
+        endTime: Date.UTC(2018, 8, 21, 10, 30),
         title: 'Workshops'
       },
       {
-        startTime: Date.UTC(2018, 8, 21, 12, 30),
-        endTime: Date.UTC(2018, 8, 21, 14, 0),
+        startTime: Date.UTC(2018, 8, 21, 10, 30),
+        endTime: Date.UTC(2018, 8, 21, 12, 0),
         title: 'Lunch break'
       },
       {
-        startTime: Date.UTC(2018, 8, 21, 14, 0),
-        endTime: Date.UTC(2018, 8, 21, 18, 0),
+        startTime: Date.UTC(2018, 8, 21, 12, 0),
+        endTime: Date.UTC(2018, 8, 21, 16, 0),
         title: 'Workshops'
       },
       {
-        startTime: Date.UTC(2018, 8, 21, 18, 0),
-        endTime: Date.UTC(2018, 8, 21, 18, 15),
+        startTime: Date.UTC(2018, 8, 21, 16, 0),
+        endTime: Date.UTC(2018, 8, 21, 16, 15),
         title: 'End of the conference'
       }
     ]
