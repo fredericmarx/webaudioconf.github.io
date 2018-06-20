@@ -1,5 +1,6 @@
 import React from 'react';
 import './schedule.css';
+const moment = require('moment-timezone');
 
 const schedule = {
   day1: {
@@ -184,14 +185,14 @@ export default class Schedule extends React.Component {
         <div className="schedule__timeTable">
           {day.entries.map((entry) => {
             const isCurrent = currentTime >= entry.startTime && currentTime <= entry.endTime;
-            const entryStart = dateToBerlinTZ(new Date(entry.startTime));
-            const entryEnd = dateToBerlinTZ(new Date(entry.endTime));
+            const entryStart = utcTSToBerlinTZ(entry.startTime);
+            const entryEnd = utcTSToBerlinTZ(entry.endTime);
 
             const time = "" +
-              zeroPad(entryStart.getHours()) + ":" + zeroPad(entryStart.getMinutes()) +
+              zeroPad(entryStart.hours()) + ":" + zeroPad(entryStart.minutes()) +
               " - " +
-              zeroPad(entryEnd.getHours()) +
-              ":" + zeroPad(entryEnd.getMinutes())
+              zeroPad(entryEnd.hours()) +
+              ":" + zeroPad(entryEnd.minutes())
               ;
 
             return (
@@ -253,8 +254,6 @@ function nowInUTC() {
   );
 }
 
-function dateToBerlinTZ(date) {
-  return new Date(date.toLocaleString('en-US', {
-    timeZone: 'Europe/Berlin'
-  }))
+function utcTSToBerlinTZ(utcTimestamp) {
+  return moment.tz(utcTimestamp, 'Europe/Berlin');
 }
