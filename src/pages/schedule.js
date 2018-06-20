@@ -164,7 +164,6 @@ export default class Schedule extends React.Component {
 
   componentDidMount() {
     this.updateHandle = setInterval(this.updateTime, 1000 * 60)
-    this.updateTime();
   }
 
   componentWillUnmount() {
