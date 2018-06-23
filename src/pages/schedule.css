@@ -49,6 +49,10 @@
   font-weight: normal;
 }
 
+.schedule__submissionTitle {
+  width: 60%;
+}
+
 @media (max-width : 480px) {
   .schedule__entry {
     flex-direction: column;
@@ -57,5 +61,9 @@
   .schedule__entryTime,
   .schedule__entryInfo {
     width: inherit;
+  }
+
+  .schedule__submissionTitle {
+    width: 50%;
   }
 }
