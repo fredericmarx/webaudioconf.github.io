@@ -8,6 +8,14 @@ import './skeleton.css';
 import './skeleton-overwrite.css';
 import './index.css';
 
+const menuItems = [
+  { link: '/', text: 'Home', exact: true },
+  { link: '/schedule', text: 'Schedule' },
+  { link: '/program', text: 'Program' },
+  { link: '/speakers', text: 'Speakers' },
+  { link: '/committee', text: 'Committee' }
+];
+
 class Header extends React.Component {
   state = {
     showMobileMenu: false
@@ -44,43 +52,18 @@ class Header extends React.Component {
             className={`header__navigation ${showMobileMenu ? 'm-visible' : 'm-hidden'}`}
             onClick={this.hideMenu}
           >
-            <li className="header__navigationItem">
-              <Link
-                to="/"
-                exact
-                className="header__navigationLink"
-                activeClassName="m-active"
-              >
-                Home
-              </Link>
-            </li>
-            <li className="header__navigationItem">
-              <Link
-                to="/call-for-submissions"
-                className="header__navigationLink"
-                activeClassName="m-active"
-              >
-                Call for Submissions
-              </Link>
-            </li>
-            <li className="header__navigationItem">
-              <Link
-                to="/speakers"
-                className="header__navigationLink"
-                activeClassName="m-active"
-              >
-                Speakers
-              </Link>
-            </li>
-            <li className="header__navigationItem">
-              <Link
-                to="/committee"
-                className="header__navigationLink"
-                activeClassName="m-active"
-              >
-                Committee
-              </Link>
-            </li>
+            {menuItems.map((item) => (
+              <li className="header__navigationItem" key={item.link}>
+                <Link
+                  to={item.link}
+                  exact={item.exact}
+                  className="header__navigationLink"
+                  activeClassName="m-active"
+                >
+                  {item.text}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </section>

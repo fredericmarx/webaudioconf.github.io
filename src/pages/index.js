@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import Twitter from '../components/twitter';
+import Announcement from '../components/announcement';
 
 import './index.css';
 
@@ -23,9 +24,9 @@ const IndexPage = () => (
       </p>
     </div>
 
-    <div className="index__update">
-      🎉🔊 We just announced our keynote speakers. Head over to the <Link to="speakers">speakers</Link> page to find out who it is! 🔊🎉
-    </div>
+    <Announcement>
+      🎼🌐🎁 We published the first version of the <Link to="schedule">schedule</Link> and the <Link to="program">program</Link>! Soon we will start selling tickets! 🎁🌐🎼
+    </Announcement>
 
     <div className="index__moreInfo">
       <h4>Stay up to date</h4>

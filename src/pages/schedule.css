@@ -1,0 +1,69 @@
+.schedule__headlineDay {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #333;
+  margin-bottom: 2.5rem;
+  font-size: 2.5rem;
+}
+
+.schedule__day {
+  margin-bottom: 4rem;
+}
+
+.schedule__entry {
+  display: flex;
+  font-size: 1.7rem;
+  padding: 1.7rem 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.schedule__entry.m-current {
+  background-color: rgba(0,0,0,0.05);
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.schedule__entry:last-child {
+  border-bottom: none;
+}
+
+.schedule__entryTime {
+  width: 25%;
+}
+
+.schedule__entryInfo {
+  width: 75%
+}
+
+.schedule__entryTitle {
+  font-weight: bold;
+}
+
+.schedule__entryDescription {
+  margin-top: 10px;
+}
+
+.schedule__entryLocation {
+  margin-left: 0.5rem;
+  font-weight: normal;
+}
+
+.schedule__submissionTitle {
+  width: 60%;
+}
+
+@media (max-width : 480px) {
+  .schedule__entry {
+    flex-direction: column;
+  }
+
+  .schedule__entryTime,
+  .schedule__entryInfo {
+    width: inherit;
+  }
+
+  .schedule__submissionTitle {
+    width: 50%;
+  }
+}
