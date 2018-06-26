@@ -1,6 +1,7 @@
 import React from 'react';
 const moment = require('moment-timezone');
 import Announcement from '../components/announcement';
+import Link from '../components/link';
 
 import './schedule.css';
 
@@ -52,7 +53,7 @@ export default class Schedule extends React.Component {
                     {entry.title}
                     {entry.location && (
                       <span className="schedule__entryLocation">
-                        (<a href={entry.location.link} target="_blank">{entry.location.name}</a>)
+                        (<Link href={entry.location.link}>{entry.location.name}</Link>)
                       </span>
                     )}
                   </div>
