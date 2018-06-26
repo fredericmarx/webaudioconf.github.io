@@ -32,12 +32,11 @@ export default class Schedule extends React.Component {
             const entryStart = utcTSToBerlinTZ(entry.startTime);
             const entryEnd = utcTSToBerlinTZ(entry.endTime);
 
-            const time = "" +
-              zeroPad(entryStart.hours()) + ":" + zeroPad(entryStart.minutes()) +
-              " - " +
-              zeroPad(entryEnd.hours()) +
-              ":" + zeroPad(entryEnd.minutes())
-              ;
+            const time = `
+              ${zeroPad(entryStart.hours())}:${zeroPad(entryStart.minutes())}
+               -
+              ${zeroPad(entryEnd.hours())}:${zeroPad(entryEnd.minutes())}
+              `;
 
             return (
               <div
