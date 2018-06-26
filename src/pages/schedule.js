@@ -81,7 +81,7 @@ export default class Schedule extends React.Component {
         {this.renderDay(schedule.day1)}
         {this.renderDay(schedule.day2)}
         {this.renderDay(schedule.day3)}
-      </div >
+      </div>
     );
   }
 }
