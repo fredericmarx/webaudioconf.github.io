@@ -25,7 +25,7 @@ const IndexPage = () => (
     </div>
 
     <Announcement>
-      🎉🔊 We just announced our keynote speakers. Head over to the <Link to="speakers">speakers</Link> page to find out who it is! 🔊🎉
+      🎼🌐🎁 We published the first version of the <Link to="schedule">schedule</Link> and the <Link to="program">program</Link>! Soon we will start selling tickets! 🎁🌐🎼
     </Announcement>
 
     <div className="index__moreInfo">
