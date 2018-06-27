@@ -13,7 +13,8 @@ const menuItems = [
   { link: '/schedule', text: 'Schedule' },
   { link: '/program', text: 'Program' },
   { link: '/speakers', text: 'Speakers' },
-  { link: '/committee', text: 'Committee' }
+  { link: '/committee', text: 'Committee' },
+  { link: '/sponsors', text: 'Sponsors', extraClassName: 'header__emph' }
 ];
 
 class Header extends React.Component {
@@ -57,7 +58,7 @@ class Header extends React.Component {
                 <Link
                   to={item.link}
                   exact={item.exact}
-                  className="header__navigationLink"
+                  className={`header__navigationLink ${item.extraClassName ? item.extraClassName : ''}`}
                   activeClassName="m-active"
                 >
                   {item.text}
