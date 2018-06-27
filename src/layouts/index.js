@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link, { withPrefix } from 'gatsby-link'
+import ExternalLink from '../components/link';
 import Helmet from 'react-helmet'
 
 import './normalize.css';
@@ -10,11 +11,12 @@ import './index.css';
 
 const menuItems = [
   { link: '/', text: 'Home', exact: true },
+  { link: 'https://ti.to/web-audio-conference/wac-2018', external: true, text: 'Tickets', extraClassName: 'header__emph' },
   { link: '/schedule', text: 'Schedule' },
   { link: '/program', text: 'Program' },
   { link: '/speakers', text: 'Speakers' },
   { link: '/committee', text: 'Committee' },
-  { link: '/sponsors', text: 'Sponsors', extraClassName: 'header__emph' }
+  { link: '/sponsors', text: 'Sponsors' }
 ];
 
 class Header extends React.Component {
@@ -53,18 +55,29 @@ class Header extends React.Component {
             className={`header__navigation ${showMobileMenu ? 'm-visible' : 'm-hidden'}`}
             onClick={this.hideMenu}
           >
-            {menuItems.map((item) => (
+            {menuItems.map((item) =>
               <li className="header__navigationItem" key={item.link}>
-                <Link
-                  to={item.link}
-                  exact={item.exact}
-                  className={`header__navigationLink ${item.extraClassName ? item.extraClassName : ''}`}
-                  activeClassName="m-active"
-                >
-                  {item.text}
-                </Link>
+                { item.external && (
+                  <ExternalLink
+                    href={item.link}
+                    className={`header__navigationLink ${item.extraClassName ? item.extraClassName : ''}`}
+                  >
+                    {item.text}
+                  </ExternalLink>
+                )}
+
+                { !item.external && (
+                  <Link
+                    to={item.link}
+                    exact={item.exact}
+                    className={`header__navigationLink ${item.extraClassName ? item.extraClassName : ''}`}
+                    activeClassName="m-active"
+                  >
+                    {item.text}
+                  </Link>
+                )}
               </li>
-            ))}
+            )}
           </ul>
         </nav>
       </section>

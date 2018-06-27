@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'gatsby-link';
 import Twitter from '../components/twitter';
 import Announcement from '../components/announcement';
+import ExternalLink from '../components/link';
 
 import './index.css';
 
@@ -15,6 +16,9 @@ const IndexPage = () => (
         <time itemProp="startDate" dateTime="2018-09-19">19th</time> - <time itemProp="endDate" dateTime="2018-09-21">21st September 2018</time>
       </h2>
     </div>
+    <div className="index__ticketButtonContainer">
+      <ExternalLink href="https://ti.to/web-audio-conference/wac-2018" className="index__ticketButton button button-primary">Buy tickets</ExternalLink>
+    </div>
     <div className="index__welcome">
       <p className="index__text" itemProp="summary">
         The Web Audio Conference is an international conference dedicated to emerging audio-related web technologies such as Web Audio API, Web MIDI and Web RTC / WebGL.
@@ -25,7 +29,7 @@ const IndexPage = () => (
     </div>
 
     <Announcement>
-      🎼🌐🎁 We published the first version of the <Link to="/schedule">schedule</Link> and the <Link to="/program">program</Link>! Soon we will start selling tickets! 🎁🌐🎼
+      🎼🌐🎁 We published the first version of the <Link to="/schedule">schedule</Link> and the <Link to="/program">program</Link>! 🎁🌐🎼
     </Announcement>
 
     <div className="index__moreInfo">
