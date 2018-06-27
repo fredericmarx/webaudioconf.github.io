@@ -77,6 +77,7 @@ const TemplateWrapper = ({ children }) => (
     <Helmet
       title="Web Audio Conference 2018 | Berlin"
       meta={[
+        { 'http-equiv': 'cache-control', content: 'no-cache, no-store, must-revalidate' },
         { name: 'description', content: '4th annual web audio conference at the technical university of Berlin.' },
         { name: 'keywords', content: 'wac, web audio conference, conference, berlin, javascript, web, audio, web audio' },
       ]}
