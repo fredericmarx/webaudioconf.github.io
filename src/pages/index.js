@@ -25,7 +25,7 @@ const IndexPage = () => (
     </div>
 
     <Announcement>
-      🎼🌐🎁 We published the first version of the <Link to="schedule">schedule</Link> and the <Link to="program">program</Link>! Soon we will start selling tickets! 🎁🌐🎼
+      🎼🌐🎁 We published the first version of the <Link to="/schedule">schedule</Link> and the <Link to="/program">program</Link>! Soon we will start selling tickets! 🎁🌐🎼
     </Announcement>
 
     <div className="index__moreInfo">
