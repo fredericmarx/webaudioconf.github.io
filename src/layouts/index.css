@@ -50,6 +50,10 @@ body, html {
   padding-left: 0;
 }
 
+.header__emph {
+  font-weight: bold;
+}
+
 .img-responsive {
   width: 100%;
 }
