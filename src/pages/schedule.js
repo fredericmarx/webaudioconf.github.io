@@ -198,9 +198,9 @@ const schedule = {
         startTime: Date.UTC(2018, 8, 19, 18, 0),
         endTime: Date.UTC(2018, 8, 19, 21, 0),
         title: 'Dinner',
-        description: 'We are preparing a very special audio-enhanced dinner together with Ben Houge and Brlo',
+        description: <span>We are preparing a very special audio-enhanced dinner together with <Link href="http://www.audiogustatory.com/">Ben Houge</Link> and BRLO</span>,
         location: {
-          name: 'Brlo Brwhouse',
+          name: 'BRLO BRWHOUSE',
           link: 'https://goo.gl/maps/9ASZSQ6GZpw'
         }
       }
