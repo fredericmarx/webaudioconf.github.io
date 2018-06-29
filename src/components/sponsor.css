@@ -1,0 +1,13 @@
+.sponsor {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.sponsor__image {
+  margin-bottom: 10px;
+}
+
+.sponsor.m-silver .sponsor__image {
+  max-height: 150px;
+}
