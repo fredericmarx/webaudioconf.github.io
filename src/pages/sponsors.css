@@ -5,3 +5,9 @@
 .sponsors__ableton {
   width: 300px;
 }
+
+@media (max-width : 480px) {
+  .sponsors {
+    text-align: center;
+  }
+}
