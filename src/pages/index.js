@@ -40,6 +40,13 @@ const IndexPage = () => (
       </p>
     </div>
 
+    <div className="index__codeOfConduct">
+      <h4>Code of Conduct</h4>
+      <p className="index__text">
+        <p>All attendees, speakers, sponsors, and volunteers at the WAC are required to agree with the following code of conduct: <Link to="/coc">Read the Code of Conduct</Link>.</p>
+      </p>
+    </div>
+
     <div className="index__newsletter">
       <div className="six columns">
         <form action="https://webaudioconf.us17.list-manage.com/subscribe/post?u=786ac969cb6e9a620eda77728&amp;id=84c4ce8f63" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate>
