@@ -1,6 +1,7 @@
 import React from 'react';
 import Person from '../components/person';
 import Twitter from '../components/twitter';
+import Website from '../components/website';
 
 const KEYNOTE = "keynote";
 
@@ -23,6 +24,15 @@ const Speakers = () => (
       tag={KEYNOTE}
     >
       <p>Chris Rogers is a software architect, specializing in audio production tools and music applications. Previously he worked at Google, where he developed the Web Audio API and other advanced web platform technologies. At Apple he was a principal designer of the Audio Units plugin architecture, and developed many of the ones shipping on Mac OS X and iOS, including the AUMatrixReverb, and the AUTimePitch time-stretching algorithm. He's also worked for Macromedia, Motorola, Wolfram Research, and IRCAM where he worked on SVP and developed the original AudioSculpt application.</p>
+    </Person>
+    <Person
+      givenName='Paul'
+      familyName='Adenot'
+      imagePath='speakers/paul.jpg'
+      tag={KEYNOTE}
+    >
+      <p>Paul Adenot is a platform engineer at Mozilla, working on the Firefox web browser. He is involved in Firefox Web Audio implementation, as well as the system audio code on all platforms, and occasionally helps on WebRTC. He also co-edits the Web Audio API specification at the W3C, and dabbles in music production.</p>
+      <Website url='https://paul.cx/' />
     </Person>
   </div>
 )
