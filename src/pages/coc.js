@@ -48,7 +48,7 @@ const CodeOfConduct = () => (
 
     <h2 className="codeOfConduct__reporting">Reporting Violations</h2>
     <h4>Anonymous Report</h4>
-    <p>You can make an anonymous report <a href="TODO">here</a>. We can’t follow up an anonymous report with you directly, but we will fully investigate it and take whatever action is necessary to prevent a recurrence.</p>
+    <p>We will post a form here for submitting anonymous reports prior to the conference. We can’t follow up an anonymous report with you directly, but we will fully investigate it and take whatever action is necessary to prevent a recurrence.</p>
     <h4>Personal Report</h4>
     <p>You can make a personal report by:</p>
     <ul>
