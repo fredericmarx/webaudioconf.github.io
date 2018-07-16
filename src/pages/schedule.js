@@ -221,6 +221,12 @@ const schedule = {
       },
       {
         startTime: Date.UTC(2018, 8, 21, 7, 0),
+        endTime: Date.UTC(2018, 8, 21, 8, 30),
+        title: 'Keynote',
+        description: 'Paul Adenot will talk about the latest development of the Web Audio API'
+      },
+      {
+        startTime: Date.UTC(2018, 8, 21, 8, 30),
         endTime: Date.UTC(2018, 8, 21, 10, 30),
         title: 'Workshops'
       },

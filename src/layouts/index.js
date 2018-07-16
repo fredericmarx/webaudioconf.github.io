@@ -14,7 +14,7 @@ const menuItems = [
   { link: 'https://ti.to/web-audio-conference/wac-2018', external: true, text: 'Tickets', extraClassName: 'header__emph' },
   { link: '/schedule', text: 'Schedule' },
   { link: '/program', text: 'Program' },
-  { link: '/speakers', text: 'Speakers' },
+  { link: '/keynotes', text: 'Keynotes' },
   { link: '/committee', text: 'Committee' },
   { link: '/sponsors', text: 'Sponsors' }
 ];
