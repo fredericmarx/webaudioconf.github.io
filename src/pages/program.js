@@ -52,7 +52,6 @@ const program = {
     { authors: "Mathieu Henri", title: "AMBIENT HTML5: Music for tiny airports in 256 bytes" },
     { authors: "Nicholas Violi", title: "Auralization: Ambient aural display of real-time data" },
     { authors: "Vladimir Smirnov", title: "KiteAudio: Building a Web Audio Module and UI Library" },
-    { authors: "Eduardo Shiota Yasuda", title: "RetroJS: Writing and playing 8-bit songs using JSON and the Web Audio API" },
     { authors: "Hilke Ros", title: "From artist to software developer and back. A celloist’s perspective on Web Audio" },
     { authors: "Ben Langham", title: "Web Audio meets the London Underground - a creative journey" },
     { authors: "Tim Pulver and Thomas Kombüchen", title: "cables—a web based visual programming language for WebGL and Web Audio" },
