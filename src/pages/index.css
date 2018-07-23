@@ -42,6 +42,7 @@
 .index__newsletter {
   display: flex;
   justify-content: center;
+  margin-top: 4em;
 }
 
 .index__hiddenInputContainer {
