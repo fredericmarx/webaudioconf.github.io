@@ -16,6 +16,7 @@ const menuItems = [
   { link: '/program', text: 'Program' },
   { link: '/keynotes', text: 'Keynotes' },
   { link: '/committee', text: 'Committee' },
+  { link: '/coc', text: 'Code of Conduct' },
   { link: '/sponsors', text: 'Sponsors' }
 ];
 
