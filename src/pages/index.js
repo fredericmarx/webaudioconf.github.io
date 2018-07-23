@@ -43,7 +43,7 @@ const IndexPage = () => (
     <div className="index__codeOfConduct">
       <h4>Code of Conduct</h4>
       <p className="index__text">
-        <p>All attendees, speakers, sponsors, and volunteers at the WAC are required to agree with the following code of conduct: <Link to="/coc">Read the Code of Conduct</Link>.</p>
+        All attendees, speakers, sponsors, and volunteers at the WAC are required to agree with the following code of conduct: <Link to="/coc">Read the Code of Conduct</Link>.
       </p>
     </div>
 
