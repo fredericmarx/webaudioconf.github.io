@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://webaudioconf.com/call-for-submissions/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://webaudioconf.com/coc/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://webaudioconf.com/committee/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://webaudioconf.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://webaudioconf.com/keynotes/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://webaudioconf.com/program/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://webaudioconf.com/schedule/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://webaudioconf.com/sponsors/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+</urlset>

@@ -1,0 +1,100 @@
+{
+  "assetsByChunkName": {
+    "component---src-pages-program-js": [
+      "component---src-pages-program-js-1c91aea2b27b9acad2c9.js",
+      "component---src-pages-program-js-1c91aea2b27b9acad2c9.js.map"
+    ],
+    "path---committee": [
+      "path---committee-a0e39f21c11f6a62c5ab.js",
+      "path---committee-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-committee-js": [
+      "component---src-pages-committee-js-94b7bed6dde6a32515aa.js",
+      "component---src-pages-committee-js-94b7bed6dde6a32515aa.js.map"
+    ],
+    "path---sponsors": [
+      "path---sponsors-a0e39f21c11f6a62c5ab.js",
+      "path---sponsors-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-index-js": [
+      "component---src-pages-index-js-7e3b5d341d7bacbefd87.js",
+      "component---src-pages-index-js-7e3b5d341d7bacbefd87.js.map"
+    ],
+    "component---src-pages-schedule-js": [
+      "component---src-pages-schedule-js-8fc2fdd101961cddecff.js",
+      "component---src-pages-schedule-js-8fc2fdd101961cddecff.js.map"
+    ],
+    "path---": [
+      "path----557518bd178906f8d58a.js",
+      "path----557518bd178906f8d58a.js.map"
+    ],
+    "path---program": [
+      "path---program-a0e39f21c11f6a62c5ab.js",
+      "path---program-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-keynotes-js": [
+      "component---src-pages-keynotes-js-2ebff6231dea91e50378.js",
+      "component---src-pages-keynotes-js-2ebff6231dea91e50378.js.map"
+    ],
+    "path---keynotes": [
+      "path---keynotes-a0e39f21c11f6a62c5ab.js",
+      "path---keynotes-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-layouts-index-js": [
+      "component---src-layouts-index-js-2c9d8a58b095acd25e8f.js",
+      "component---src-layouts-index-js-2c9d8a58b095acd25e8f.js.map"
+    ],
+    "path---index": [
+      "path---index-a0e39f21c11f6a62c5ab.js",
+      "path---index-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-404-js": [
+      "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
+      "component---src-pages-404-js-4503918ea3a16cfcdb75.js.map"
+    ],
+    "commons": [
+      "commons-4b27998a015f6cb28774.js",
+      "build-js-styles.css",
+      "commons-4b27998a015f6cb28774.js.map",
+      "build-js-styles.css.map"
+    ],
+    "component---src-pages-call-for-submissions-js": [
+      "component---src-pages-call-for-submissions-js-a5ec7399ba938f03a078.js",
+      "component---src-pages-call-for-submissions-js-a5ec7399ba938f03a078.js.map"
+    ],
+    "path---404-html": [
+      "path---404-html-a0e39f21c11f6a62c5ab.js",
+      "path---404-html-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-sponsors-js": [
+      "component---src-pages-sponsors-js-e118722b3676fbd1d32b.js",
+      "component---src-pages-sponsors-js-e118722b3676fbd1d32b.js.map"
+    ],
+    "path---call-for-submissions": [
+      "path---call-for-submissions-a0e39f21c11f6a62c5ab.js",
+      "path---call-for-submissions-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "app": [
+      "app-81296ab398e7388e5d81.js",
+      "build-js-styles.css",
+      "app-81296ab398e7388e5d81.js.map",
+      "build-js-styles.css.map"
+    ],
+    "path---schedule": [
+      "path---schedule-a0e39f21c11f6a62c5ab.js",
+      "path---schedule-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-coc-js": [
+      "component---src-pages-coc-js-a4dacc24c06b09f0beed.js",
+      "component---src-pages-coc-js-a4dacc24c06b09f0beed.js.map"
+    ],
+    "path---404": [
+      "path---404-a0e39f21c11f6a62c5ab.js",
+      "path---404-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---coc": [
+      "path---coc-a0e39f21c11f6a62c5ab.js",
+      "path---coc-a0e39f21c11f6a62c5ab.js.map"
+    ]
+  }
+}
