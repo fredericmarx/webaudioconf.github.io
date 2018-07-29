@@ -89,8 +89,7 @@ const program = {
     { authors: "Arthur Carabott and Jack Armitage", title: "Web Audio And Paper Interfaces" },
     { authors: "Patrick Schmid, Kathrin Fuhrer, Johannes Schiel, Lukas Scheuerle, Sandra Kleß and Norbert Schnell", title: "Kom[bp]o" },
     { authors: "Tate Carson", title: "A more perfect union" },
-    { authors: "Max Horwich", title: "33 Null & Automatic Writing" },
-    { authors: "Eliza Struthers-Jobin", title: "Seeing Sound - How Do You Listen" }
+    { authors: "Max Horwich", title: "33 Null & Automatic Writing" }
   ],
   posters: [
     { authors: "Chase Mitchusson", title: "Lost In Space" },
