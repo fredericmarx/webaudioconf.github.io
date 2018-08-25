@@ -85,7 +85,6 @@ const program = {
     { authors: "Gerard Roma", title: "No merge conflicts" }
   ],
   installations: [
-    { authors: "Arthur Carabott and Jack Armitage", title: "Web Audio And Paper Interfaces" },
     { authors: "Patrick Schmid, Kathrin Fuhrer, Johannes Schiel, Lukas Scheuerle, Sandra Kleß and Norbert Schnell", title: "Kom[bp]o" },
     { authors: "Tate Carson", title: "A more perfect union" },
     { authors: "Max Horwich", title: "33 Null & Automatic Writing" }
