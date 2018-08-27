@@ -61,7 +61,6 @@ const program = {
     { authors: "Christoph Guttandin", title: "The Timing Object - A Pacemaker for the Web" }
   ],
   demos: [
-    { authors: "Karim Ratib", title: "Music software localization for cultural preservation" },
     { authors: "Jason Gwartz and Nicolas Gold", title: "Loop-Based Graphical Live-Coded Music in the Browser" },
     { authors: "Martin Guder", title: "The sound of Bitcoin - Sound synthesis with cryptocurrency trade data" },
     { authors: "Tim Pulver", title: "Fugue Step—a multi playhead sequencer" },
