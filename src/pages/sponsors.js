@@ -1,13 +1,20 @@
 import React from 'react';
-import Announcement from '../components/announcement';
-import Link from 'gatsby-link';
 import Sponsor from '../components/sponsor';
-import { withPrefix } from 'gatsby-link';
+
 import './sponsors.css';
 import abletonLogo from '../sponsors/ableton.svg';
 import ampedStudioLogo from '../sponsors/ampedstudio.png';
+import mozillaLogo from '../sponsors/mozilla.svg';
 
 const sponsors = {
+  banquet: {
+    link: 'https://novationmusic.com',
+    name: 'Novation',
+    image: {
+      src: ampedStudioLogo,
+      alt: 'Novation logo'
+    }
+  },
   silver: {
     link: 'https://ampedstudio.com',
     name: 'Amped Studio',
@@ -38,6 +45,11 @@ export default function Sponsors() {
   return (
     <div className="sponsors">
       <h1>Sponsors</h1>
+
+      <h2>Banquet sponsor</h2>
+      <div className="sponsors__list">
+        <Sponsor {...sponsors.banquet} type="banquet" />
+      </div>
 
       <h3>Silver sponsor</h3>
       <div className="sponsors__list">

@@ -11,3 +11,7 @@
 .sponsor.m-silver .sponsor__image {
   max-height: 150px;
 }
+
+.sponsor.m-banquet .sponsor__image {
+  max-height: 170px;
+}
