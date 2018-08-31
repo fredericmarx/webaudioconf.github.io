@@ -30,9 +30,6 @@ export default function Sponsors() {
   return (
     <div className="sponsors">
       <h1>Sponsors</h1>
-      <Announcement>
-        If you are interested in sponsoring, have a look at our <Link to={withPrefix('/sponsoring.pdf')}>sponsoring information</Link> and contact us at <Link to="mailto:chairs@webaudioconf.com">chairs@webaudioconf.com</Link>.
-      </Announcement>
 
       <h3>Silver sponsor</h3>
       <div className="sponsors__list">
