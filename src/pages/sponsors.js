@@ -23,6 +23,14 @@ const sponsors = {
       alt: 'Ableton logo',
       className: 'sponsors__ableton'
     }
+  },
+  bronze: {
+    link: "https://mozilla.com",
+    image: {
+      src: mozillaLogo,
+      alt: 'Mozilla logo',
+      className: 'sponsors__mozilla'
+    }
   }
 };
 
@@ -36,8 +44,13 @@ export default function Sponsors() {
         <Sponsor {...sponsors.silver} type="silver" />
       </div>
 
-      <h4>Diversity sponsor</h4>
-      <Sponsor {...sponsors.diversity} type="diversity" />
+      <h3>Diversity sponsor</h3>
+      <div className="sponsors__list">
+        <Sponsor {...sponsors.diversity} type="diversity" />
+      </div>
+
+      <h3>Bronze sponsor</h3>
+      <Sponsor {...sponsors.bronze} type="bronze" />
 
     </div>
   )

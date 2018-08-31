@@ -6,6 +6,10 @@
   width: 300px;
 }
 
+.sponsors__mozilla {
+  width: 200px;
+}
+
 @media (max-width : 480px) {
   .sponsors {
     text-align: center;
