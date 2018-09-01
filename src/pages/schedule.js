@@ -136,13 +136,17 @@ const schedule = {
         `
       },
       {
-        startTime: Date.UTC(2018, 8, 19, 18, 0),
+        startTime: Date.UTC(2018, 8, 19, 17, 30),
         endTime: Date.UTC(2018, 8, 19, 21, 0),
         title: 'Concert',
         location: {
-          name: 'SoundCloud',
+          name: 'Factory Berlin [entry Rheinsberger Str.]',
           link: 'https://goo.gl/maps/TgYuyZ2cKpr'
-        }
+        },
+        description: <div>
+          <div>Doors open: 19:30</div>
+          <div>Show starts: 20:00 (last admission)</div>
+        </div>
       }
     ]
   },
@@ -195,10 +199,13 @@ const schedule = {
         `
       },
       {
-        startTime: Date.UTC(2018, 8, 19, 18, 0),
-        endTime: Date.UTC(2018, 8, 19, 21, 0),
+        startTime: Date.UTC(2018, 8, 19, 17, 0),
+        endTime: Date.UTC(2018, 8, 19, 20, 0),
         title: 'Dinner',
-        description: <span>We are preparing a very special audio-enhanced dinner together with <Link href="http://www.audiogustatory.com/">Ben Houge</Link> and BRLO</span>,
+        description: <div>
+          <p>We are preparing a very special audio-enhanced dinner together with <Link href="http://www.audiogustatory.com/">Ben Houge</Link> and <Link href="http://www.brlo-brwhouse.de/">BRLO</Link>.</p>
+          <p>Doors open from 19:00 with a welcome drink + snacks. Please don't arrive later than 19:30, where we will start the 4-course dinner menu.</p>
+        </div>,
         location: {
           name: 'BRLO BRWHOUSE',
           link: 'https://goo.gl/maps/9ASZSQ6GZpw'
