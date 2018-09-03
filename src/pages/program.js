@@ -55,7 +55,6 @@ const program = {
     { authors: "Hilke Ros", title: "From artist to software developer and back. A celloist’s perspective on Web Audio" },
     { authors: "Tim Pulver and Thomas Kombüchen", title: "cables—a web based visual programming language for WebGL and Web Audio" },
     { authors: "Naomi Aro", title: "Orchestrate Your Web!" },
-    { authors: "Boris Smus", title: "Audio features for web-based ML, and simple in-browser voice command recognition" },
     { authors: "Tero Parviainen", title: "Musical Deep Neural Networks in the Browser" },
     { authors: "Walker Henderson", title: "Timing Is Everything: Latency and Performance" },
     { authors: "Christoph Guttandin", title: "The Timing Object - A Pacemaker for the Web" }
