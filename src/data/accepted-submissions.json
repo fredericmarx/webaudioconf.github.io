@@ -1,0 +1,294 @@
+{
+  "demos": [
+    {
+      "authors": "Jason Gwartz and Nicolas Gold",
+      "slug": "loop-based-graphical-live-coded-music-in-the-browser",
+      "title": "Loop-Based Graphical Live-Coded Music in the Browser"
+    },
+    {
+      "authors": "Martin Guder",
+      "slug": "the-sound-of-bitcoin-sound-synthesis-with-cryptocurrency-trade-data",
+      "title": "The sound of Bitcoin - Sound synthesis with cryptocurrency trade data"
+    },
+    {
+      "authors": "Tim Pulver",
+      "slug": "fugue-step—a-multi-playhead-sequencer",
+      "title": "Fugue Step—a multi playhead sequencer"
+    },
+    {
+      "authors": "Anthony T. Marasco and Jesse Allison",
+      "slug": "soundsling-a-framework-for-using-creative-motion-data-to-pan-audio-across-a-mobile-device-speaker-array",
+      "title": "SoundSling: A Framework for Using Creative Motion Data to Pan Audio Across a Mobile Device Speaker Array"
+    },
+    {
+      "authors": "Boris Smus",
+      "slug": "dsp-filter-playground",
+      "title": "DSP Filter playground"
+    },
+    {
+      "authors": "Jan Misker and Jacques van de Veerdonk",
+      "slug": "audio-pipes-connecting-web-audio-between-any-page",
+      "title": "Audio Pipes: Connecting Web Audio Between Any Page"
+    },
+    {
+      "authors": "Ariane Stolfi, Alessia Milo, Miguel Ceriani and Mathieu Barthet",
+      "slug": "playsound-space-demo",
+      "title": "Playsound.space Demo"
+    },
+    {
+      "authors": "Tony Wallace",
+      "slug": "live-coding-drum-machine",
+      "title": "Live Coding Drum Machine"
+    },
+    {
+      "authors": "Michel Buffa and Jerome Lebrun",
+      "slug": "guitarists-will-be-happy-guitar-tube-amp-simulators-and-fx-pedal-in-a-virtual-pedal-board-and-more",
+      "title": "Guitarists will be happy: guitar tube amp simulators and FX pedal in a virtual pedal board, and more!"
+    },
+    {
+      "authors": "Oscar Mayor, Jordi Janer, Hector Parra and Álvaro Sarasúa",
+      "slug": "voiceful-voice-analysis-transformation-and-synthesis-on-the-web",
+      "title": "VOICEFUL: Voice Analysis, Transformation and Synthesis on the Web"
+    },
+    {
+      "authors": "Jesse Allison and Tate Carson",
+      "slug": "utilizing-nexushub-and-docker-for-distributed-performance",
+      "title": "Utilizing NexusHUB and Docker for Distributed Performance"
+    },
+    {
+      "authors": "Joe Todd, Adib Mehrabi and Daniel Jones",
+      "slug": "transmitting-data-over-the-air-using-the-web-audio-api",
+      "title": "Transmitting Data Over The Air Using the Web Audio API"
+    },
+    {
+      "authors": "Francesco Cretti, Luca Morino, Marco Liuni, Stefano Gervasoni, Andrea Agostini and Antonio Servetti",
+      "slug": "web-wall-whispers",
+      "title": "Web Wall Whispers"
+    }
+  ],
+  "installations": [
+    {
+      "authors": "Patrick Schmid, Kathrin Fuhrer, Johannes Schiel, Lukas Scheuerle, Sandra Kleß and Norbert Schnell",
+      "slug": "kom-bp-o",
+      "title": "Kom[bp]o"
+    },
+    {
+      "authors": "Tate Carson",
+      "slug": "a-more-perfect-union",
+      "title": "A more perfect union"
+    },
+    {
+      "authors": "Max Horwich",
+      "slug": "33-null-2018-and-automatic-writing-2018",
+      "title": "33 Null (2018) & Automatic Writing (2018)"
+    }
+  ],
+  "papers": [
+    {
+      "authors": "Thomas Dodds",
+      "slug": "dspnode-real-time-remote-audio-rendering",
+      "title": "dspNode: Real-time remote audio rendering"
+    },
+    {
+      "authors": "Oliver Larkin, Alex Harker and Jari Kleimola",
+      "slug": "iplug2-desktop-plug-in-framework-meets-web-audio-modules",
+      "title": "iPlug2: Desktop Plug-in Framework Meets Web Audio Modules"
+    },
+    {
+      "authors": "Michel Buffa, Jerome Lebrun, Jari Kleimola, Oliver Larkin, Stéphane Letz and Guillaume Pellerin",
+      "slug": "wap-ideas-for-a-web-audio-plug-in-standard",
+      "title": "WAP: Ideas for a Web Audio Plug-in Standard"
+    },
+    {
+      "authors": "Steven Yi, Victor Lazzarini and Edward Costello",
+      "slug": "webassembly-audioworklet-csound",
+      "title": "WebAssembly AudioWorklet Csound"
+    },
+    {
+      "authors": "Jakub Fiala",
+      "slug": "r-audio-declarative-reactive-and-flexible-web-audio-graphs-in-react",
+      "title": "r-audio: Declarative, reactive and flexible Web Audio graphs in React"
+    },
+    {
+      "authors": "Ariane Stolfi, Alessia Milo, Miguel Ceriani and Mathieu Barthet",
+      "slug": "participatory-musical-improvisations-with-playsound-space",
+      "title": "Participatory musical improvisations with Playsound.space"
+    },
+    {
+      "authors": "Avneesh Sarwate, Takahiko Tsuchiya and Jason Freeman",
+      "slug": "collaborative-coding-with-music-two-case-studies-with-earsketch",
+      "title": "Collaborative Coding with Music: Two Case Studies with EarSketch"
+    },
+    {
+      "authors": "Charles Roberts",
+      "slug": "metaprogramming-strategies-for-audioworklets",
+      "title": "Metaprogramming Strategies for AudioWorklets"
+    },
+    {
+      "authors": "Oliver Major",
+      "slug": "dsp2js-a-cplusplus-framework-for-the-development-of-in-browser-dsps",
+      "title": "DSP2JS - A C++ framework for the development of in-browser DSPs"
+    },
+    {
+      "authors": "Gerard Roma, Anna Xambó, Owen Green and Pierre Alexandre Tremblay",
+      "slug": "a-javascript-library-for-flexible-visualization-of-audio-descriptors",
+      "title": "A Javascript Library for Flexible Visualization of Audio Descriptors"
+    },
+    {
+      "authors": "Jari Kleimola and Owen Campbell",
+      "slug": "native-web-audio-api-plugins",
+      "title": "Native Web Audio API Plugins"
+    },
+    {
+      "authors": "Johan Pauwels, Anna Xambó, Gerard Roma, Mathieu Barthet and György Fazekas",
+      "slug": "exploring-real-time-visualisations-to-support-chord-learning-with-a-large-music-collection",
+      "title": "Exploring Real-time Visualisations to Support Chord Learning with a Large Music Collection"
+    }
+  ],
+  "performances": [
+    {
+      "authors": "Jasmine Guffond",
+      "slug": "listening-back-the-web-never-forgets",
+      "title": "Listening Back - The Web Never Forgets"
+    },
+    {
+      "authors": "Andrey Bundin",
+      "slug": "concert-for-smartphones-and-orchestra",
+      "title": "Concert for Smartphones and Orchestra"
+    },
+    {
+      "authors": "Ariane Stolfi, Alessia Milo and Mathieu Barthet",
+      "slug": "tender-buttons-sound-space",
+      "title": "Tender Buttons | Sound | Space"
+    },
+    {
+      "authors": "Anna Xambó",
+      "slug": "imaginary-berlin",
+      "title": "Imaginary Berlin"
+    },
+    {
+      "authors": "Charles Roberts",
+      "slug": "improvisation",
+      "title": "Improvisation"
+    },
+    {
+      "authors": "Gerard Roma",
+      "slug": "no-merge-conflicts",
+      "title": "No merge conflicts"
+    }
+  ],
+  "posters": [
+    {
+      "authors": "Chase Mitchusson",
+      "slug": "lost-in-space",
+      "title": "Lost In Space"
+    },
+    {
+      "authors": "Tate Carson",
+      "slug": "a-more-perfect-union-composition-with-audience-controlled-smartphone-speaker-array-and-evolutionary-computer-music",
+      "title": "A more perfect union: Composition with audience-controlled smartphone speaker array and evolutionary computer music"
+    },
+    {
+      "authors": "Nuno Hespanhol, Óscar Rodrigues and José Alberto Gomes",
+      "slug": "0plus1equalssom-bringing-computing-closer-to-children-through-music",
+      "title": "0+1=SOM: Bringing Computing Closer to Children Through Music"
+    },
+    {
+      "authors": "Anthony T. Marasco and Jesse Allison",
+      "slug": "soundsling-a-framework-for-using-creative-motion-data-to-pan-audio-across-a-mobile-device-speaker-array",
+      "title": "SoundSling: A Framework for Using Creative Motion Data to Pan Audio Across a Mobile Device Speaker Array"
+    },
+    {
+      "authors": "Michel Buffa and Jerome Lebrun",
+      "slug": "webaudio-virtual-tube-guitar-amps-and-pedal-board-design",
+      "title": "WebAudio Virtual Tube Guitar Amps and Pedal Board Design"
+    },
+    {
+      "authors": "Lawrence Fyfe, Olivier Gladin, Cédric Fleury and Michel Beaudouin-Lafon",
+      "slug": "combining-web-audio-streaming-motion-capture-and-binaural-audio-in-a-telepresence-system",
+      "title": "Combining Web Audio Streaming, Motion Capture, and Binaural Audio in a Telepresence System"
+    },
+    {
+      "authors": "Johan Pauwels and Mark Sandler",
+      "slug": "pywebaudioplayer-bridging-the-gap-between-audio-processing-code-in-python-and-attractive-visualisations-based-on-web-technology",
+      "title": "pywebaudioplayer: Bridging the gap between audio processing code in Python and attractive visualisations based on web technology"
+    },
+    {
+      "authors": "Ben Houge",
+      "slug": "cena-concertante-alla-maniera-di-vivaldi-considering-the-testaurant-as-a-musical-interface",
+      "title": "Cena concertante alla maniera di Vivaldi: Considering the Restaurant as a Musical Interface"
+    },
+    {
+      "authors": "Xavier Favory and Xavier Serra",
+      "slug": "multi-web-audio-sequencer-collaborative-music-making",
+      "title": "Multi Web Audio Sequencer: Collaborative Music Making"
+    },
+    {
+      "authors": "Benjamin Matuszewski, Joseph Larralde and Frederic Bevilacqua",
+      "slug": "designing-movement-driven-audio-applications-using-a-web-based-interactive-machine-learning-toolkit",
+      "title": "Designing Movement Driven Audio Applications Using a Web-Based Interactive Machine Learning Toolkit"
+    },
+    {
+      "authors": "Christian Baumann, Jan-Torsten Milde and Johanna Friederike Baarlink",
+      "slug": "body-movement-sonification-using-the-web-audio-api",
+      "title": "Body Movement Sonification using the Web Audio API"
+    },
+    {
+      "authors": "Florian Thalmann, Lucas Thompson and Mark B. Sandler",
+      "slug": "a-user-adaptive-automated-dj-web-app-with-object-based-audio-and-crowd-sourced-decision-trees",
+      "title": "A User-Adaptive Automated DJ Web App with Object-Based Audio and Crowd-Sourced Decision Trees"
+    }
+  ],
+  "talks": [
+    {
+      "authors": "Lisa Passing",
+      "slug": "generative-music-playful-visualizations-and-where-to-find-them",
+      "title": "Generative music, playful visualizations and where to find them"
+    },
+    {
+      "authors": "Mathieu Henri",
+      "slug": "ambient-html5-music-for-tiny-airports-in-256-bytes",
+      "title": "AMBIENT HTML5: Music for tiny airports in 256 bytes"
+    },
+    {
+      "authors": "Nicholas Violi",
+      "slug": "websonify-ambient-aural-display-of-real-time-data",
+      "title": "WebSonify: Ambient aural display of real-time data"
+    },
+    {
+      "authors": "Vladimir Smirnov",
+      "slug": "kiteaudio-building-a-web-audio-module-and-ui-library",
+      "title": "KiteAudio: Building a Web Audio Module and UI Library"
+    },
+    {
+      "authors": "Hilke Ros",
+      "slug": "from-artist-to-software-developer-and-back-a-celloist-s-perspective-on-web-audio",
+      "title": "From artist to software developer and back. A celloist’s perspective on Web Audio"
+    },
+    {
+      "authors": "Tim Pulver and Thomas Kombüchen",
+      "slug": "cables—a-web-based-visual-programming-language-for-webgl-and-web-audio",
+      "title": "cables—a web based visual programming language for WebGL and Web Audio"
+    },
+    {
+      "authors": "Naomi Aro",
+      "slug": "orchestrate-your-web",
+      "title": "Orchestrate Your Web!"
+    },
+    {
+      "authors": "Tero Parviainen",
+      "slug": "musical-deep-neural-networks-in-the-browser",
+      "title": "Musical Deep Neural Networks in the Browser"
+    },
+    {
+      "authors": "Walker Henderson",
+      "slug": "latency-and-synchronization-in-web-audio",
+      "title": "Latency and Synchronization in Web Audio"
+    },
+    {
+      "authors": "Christoph Guttandin",
+      "slug": "the-timing-object-a-pacemaker-for-the-web",
+      "title": "The Timing Object - A Pacemaker for the Web"
+    }
+  ]
+}

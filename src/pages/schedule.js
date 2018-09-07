@@ -3,6 +3,8 @@ const moment = require('moment-timezone');
 import Announcement from '../components/announcement';
 import Link from '../components/link';
 import InternalLink from 'gatsby-link';
+import acceptedSubmissions from '../data/accepted-submissions.json';
+import { findPresentationBySlug } from '../helpers/find-presentation-by-slug';
 
 import './schedule.css';
 
@@ -123,13 +125,13 @@ const schedule = {
         endTime: Date.UTC(2018, 8, 19, 10, 30),
         title: 'Presentations: Generation & Visualization',
         presentations: [
-          { authors: "Lisa Passing", title: "Generative music, playful visualizations and where to find them" },
-          { authors: "Nicholas Violi", title: "WebSonify: Ambient aural display of real-time data" },
-          { authors: "Gerard Roma, Anna Xambó, Owen Green and Pierre Alexandre Tremblay", title: "A Javascript Library for Flexible Visualization of Audio Descriptors" },
-          { authors: "Johan Pauwels, Anna Xambó, Gerard Roma, Mathieu Barthet and György Fazekas", title: "Exploring Real-time Visualisations to Support Chord Learning with a Large Music Collection" },
-          { authors: "Tero Parviainen", title: "Musical Deep Neural Networks in the Browser" },
-          { authors: "Ariane Stolfi, Alessia Milo, Miguel Ceriani and Mathieu Barthet", title: "Participatory musical improvisations with Playsound.space" }
-        ]
+          'generative-music-playful-visualizations-and-where-to-find-them',
+          'websonify-ambient-aural-display-of-real-time-data',
+          'a-javascript-library-for-flexible-visualization-of-audio-descriptors',
+          'exploring-real-time-visualisations-to-support-chord-learning-with-a-large-music-collection',
+          'musical-deep-neural-networks-in-the-browser',
+          'participatory-musical-improvisations-with-playsound-space'
+        ].map((slug) => findPresentationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 10, 30),
@@ -141,12 +143,12 @@ const schedule = {
         endTime: Date.UTC(2018, 8, 19, 14, 0),
         title: 'Presentations: Coding Sound & Music',
         presentations: [
-          { authors: "Hilke Ros", title: "From artist to software developer and back. A celloist’s perspective on Web Audio" },
-          { authors: "Avneesh Sarwate, Takahiko Tsuchiya and Jason Freeman", title: "Collaborative Coding with Music: Two Case Studies with EarSketch" },
-          { authors: "Charles Roberts", title: "Metaprogramming Strategies for AudioWorklets" },
-          { authors: "Steven Yi, Victor Lazzarini and Edward Costello", title: "WebAssembly AudioWorklet Csound" },
-          { authors: "Mathieu Henri", title: "AMBIENT HTML5: Music for tiny airports in 256 bytes" }
-        ]
+          'from-artist-to-software-developer-and-back-a-celloist-s-perspective-on-web-audio',
+          'collaborative-coding-with-music-two-case-studies-with-earsketch',
+          'metaprogramming-strategies-for-audioworklets',
+          'webassembly-audioworklet-csound',
+          'ambient-html5-music-for-tiny-airports-in-256-bytes'
+        ].map((slug) => findPresentationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 14, 0),
@@ -201,13 +203,13 @@ const schedule = {
         endTime: Date.UTC(2018, 8, 19, 10, 30),
         title: 'Presentations: Plugins & Timing',
         presentations: [
-          { authors: "Michel Buffa, Jerome Lebrun, Jari Kleimola, Oliver Larkin, Stéphane Letz and Guillaume Pellerin", title: "WAP: Ideas for a Web Audio Plug-in Standard" },
-          { authors: "Oliver Larkin, Alex Harker and Jari Kleimola", title: "iPlug2: Desktop Plug-in Framework Meets Web Audio Modules" },
-          { authors: "Jari Kleimola and Owen Campbell", title: "Native Web Audio API Plugins" },
-          { authors: "Walker Henderson", title: "Latency and Synchronization in Web Audio" },
-          { authors: "Naomi Aro", title: "Orchestrate Your Web!" },
-          { authors: "Christoph Guttandin", title: "The Timing Object - A Pacemaker for the Web" }
-        ]
+          'wap-ideas-for-a-web-audio-plug-in-standard',
+          'iplug2-desktop-plug-in-framework-meets-web-audio-modules',
+          'native-web-audio-api-plugins',
+          'latency-and-synchronization-in-web-audio',
+          'orchestrate-your-web',
+          'the-timing-object-a-pacemaker-for-the-web'
+        ].map((slug) => findPresentationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 10, 30),
@@ -219,12 +221,12 @@ const schedule = {
         endTime: Date.UTC(2018, 8, 19, 14, 0),
         title: 'Presentations: Libraries & Tools',
         presentations: [
-          { authors: "Vladimir Smirnov", title: "KiteAudio: Building a Web Audio Module and UI Library" },
-          { authors: "Jakub Fiala", title: "r-audio: Declarative, reactive and flexible Web Audio graphs in React" },
-          { authors: "Thomas Dodds", title: "dspNode: Real-time remote audio rendering" },
-          { authors: "Oliver Major", title: "DSP2JS - A C++ framework for the development of in-browser DSPs" },
-          { authors: "Tim Pulver and Thomas Kombüchen", title: "cables—a web based visual programming language for WebGL and Web Audio" }
-        ]
+          'kiteaudio-building-a-web-audio-module-and-ui-library',
+          'r-audio-declarative-reactive-and-flexible-web-audio-graphs-in-react',
+          'dspnode-real-time-remote-audio-rendering',
+          'dsp2js-a-cplusplus-framework-for-the-development-of-in-browser-dsps',
+          'cables—a-web-based-visual-programming-language-for-webgl-and-web-audio'
+        ].map((slug) => findPresentationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 14, 0),
