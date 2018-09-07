@@ -85,7 +85,7 @@ const program = {
   installations: [
     { authors: "Patrick Schmid, Kathrin Fuhrer, Johannes Schiel, Lukas Scheuerle, Sandra Kleß and Norbert Schnell", title: "Kom[bp]o" },
     { authors: "Tate Carson", title: "A more perfect union" },
-    { authors: "Max Horwich", title: "33 Null & Automatic Writing" }
+    { authors: "Max Horwich", title: "33 Null (2018) & Automatic Writing (2018)" }
   ],
   posters: [
     { authors: "Chase Mitchusson", title: "Lost In Space" },
