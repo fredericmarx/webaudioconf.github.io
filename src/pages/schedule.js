@@ -52,6 +52,13 @@ export default class Schedule extends React.Component {
                 <div className="schedule__entryInfo">
                   <div className="schedule__entryTitle">
                     {entry.title}
+                    {entry.presentations && (
+                      <ul>
+                        {entry.presentations.map((presentation, i) =>
+                          <li key={`submission${presentation.title}`}>{presentation.authors}: {presentation.title}</li>
+                        )}
+                      </ul>
+                    )}
                     {entry.location && (
                       <span className="schedule__entryLocation">
                         (<Link href={entry.location.link}>{entry.location.name}</Link>)
@@ -114,7 +121,15 @@ const schedule = {
       {
         startTime: Date.UTC(2018, 8, 19, 8, 30),
         endTime: Date.UTC(2018, 8, 19, 10, 30),
-        title: 'Presentations'
+        title: 'Presentations: Generation & Visualization',
+        presentations: [
+          { authors: "Lisa Passing", title: "Generative music, playful visualizations and where to find them" },
+          { authors: "Nicholas Violi", title: "WebSonify: Ambient aural display of real-time data" },
+          { authors: "Gerard Roma, Anna Xambó, Owen Green and Pierre Alexandre Tremblay", title: "A Javascript Library for Flexible Visualization of Audio Descriptors" },
+          { authors: "Johan Pauwels, Anna Xambó, Gerard Roma, Mathieu Barthet and György Fazekas", title: "Exploring Real-time Visualisations to Support Chord Learning with a Large Music Collection" },
+          { authors: "Tero Parviainen", title: "Musical Deep Neural Networks in the Browser" },
+          { authors: "Ariane Stolfi, Alessia Milo, Miguel Ceriani and Mathieu Barthet", title: "Participatory musical improvisations with Playsound.space" }
+        ]
       },
       {
         startTime: Date.UTC(2018, 8, 19, 10, 30),
@@ -124,7 +139,14 @@ const schedule = {
       {
         startTime: Date.UTC(2018, 8, 19, 12, 0),
         endTime: Date.UTC(2018, 8, 19, 14, 0),
-        title: 'Presentations'
+        title: 'Presentations: Coding Sound & Music',
+        presentations: [
+          { authors: "Hilke Ros", title: "From artist to software developer and back. A celloist’s perspective on Web Audio" },
+          { authors: "Avneesh Sarwate, Takahiko Tsuchiya and Jason Freeman", title: "Collaborative Coding with Music: Two Case Studies with EarSketch" },
+          { authors: "Charles Roberts", title: "Metaprogramming Strategies for AudioWorklets" },
+          { authors: "Steven Yi, Victor Lazzarini and Edward Costello", title: "WebAssembly AudioWorklet Csound" },
+          { authors: "Mathieu Henri", title: "AMBIENT HTML5: Music for tiny airports in 256 bytes" }
+        ]
       },
       {
         startTime: Date.UTC(2018, 8, 19, 14, 0),
@@ -177,7 +199,15 @@ const schedule = {
       {
         startTime: Date.UTC(2018, 8, 19, 8, 30),
         endTime: Date.UTC(2018, 8, 19, 10, 30),
-        title: 'Presentations'
+        title: 'Presentations: Plugins & Timing',
+        presentations: [
+          { authors: "Michel Buffa, Jerome Lebrun, Jari Kleimola, Oliver Larkin, Stéphane Letz and Guillaume Pellerin", title: "WAP: Ideas for a Web Audio Plug-in Standard" },
+          { authors: "Oliver Larkin, Alex Harker and Jari Kleimola", title: "iPlug2: Desktop Plug-in Framework Meets Web Audio Modules" },
+          { authors: "Jari Kleimola and Owen Campbell", title: "Native Web Audio API Plugins" },
+          { authors: "Walker Henderson", title: "Latency and Synchronization in Web Audio" },
+          { authors: "Naomi Aro", title: "Orchestrate Your Web!" },
+          { authors: "Christoph Guttandin", title: "The Timing Object - A Pacemaker for the Web" }
+        ]
       },
       {
         startTime: Date.UTC(2018, 8, 19, 10, 30),
@@ -187,7 +217,14 @@ const schedule = {
       {
         startTime: Date.UTC(2018, 8, 19, 12, 0),
         endTime: Date.UTC(2018, 8, 19, 14, 0),
-        title: 'Presentations'
+        title: 'Presentations: Libraries & Tools',
+        presentations: [
+          { authors: "Vladimir Smirnov", title: "KiteAudio: Building a Web Audio Module and UI Library" },
+          { authors: "Jakub Fiala", title: "r-audio: Declarative, reactive and flexible Web Audio graphs in React" },
+          { authors: "Thomas Dodds", title: "dspNode: Real-time remote audio rendering" },
+          { authors: "Oliver Major", title: "DSP2JS - A C++ framework for the development of in-browser DSPs" },
+          { authors: "Tim Pulver and Thomas Kombüchen", title: "cables—a web based visual programming language for WebGL and Web Audio" }
+        ]
       },
       {
         startTime: Date.UTC(2018, 8, 19, 14, 0),
