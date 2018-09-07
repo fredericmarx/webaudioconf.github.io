@@ -1,5 +1,5 @@
 .sponsors__list {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .sponsors__ableton {
@@ -10,8 +10,16 @@
   width: 200px;
 }
 
-@media (max-width : 480px) {
+.sponsors__novation {
+  width: 400px;
+}
+
+@media (max-width: 480px) {
   .sponsors {
     text-align: center;
+  }
+
+  .sponsors__novation {
+    width: 100%;
   }
 }
