@@ -50,13 +50,13 @@ const program = {
   talks: [
     { authors: "Lisa Passing", title: "Generative music, playful visualizations and where to find them" },
     { authors: "Mathieu Henri", title: "AMBIENT HTML5: Music for tiny airports in 256 bytes" },
-    { authors: "Nicholas Violi", title: "Auralization: Ambient aural display of real-time data" },
+    { authors: "Nicholas Violi", title: "WebSonify: Ambient aural display of real-time data" },
     { authors: "Vladimir Smirnov", title: "KiteAudio: Building a Web Audio Module and UI Library" },
     { authors: "Hilke Ros", title: "From artist to software developer and back. A celloist’s perspective on Web Audio" },
     { authors: "Tim Pulver and Thomas Kombüchen", title: "cables—a web based visual programming language for WebGL and Web Audio" },
     { authors: "Naomi Aro", title: "Orchestrate Your Web!" },
     { authors: "Tero Parviainen", title: "Musical Deep Neural Networks in the Browser" },
-    { authors: "Walker Henderson", title: "Timing Is Everything: Latency and Performance" },
+    { authors: "Walker Henderson", title: "Latency and Synchronization in Web Audio" },
     { authors: "Christoph Guttandin", title: "The Timing Object - A Pacemaker for the Web" }
   ],
   demos: [
