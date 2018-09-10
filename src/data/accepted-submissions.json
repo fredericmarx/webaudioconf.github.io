@@ -85,61 +85,73 @@
   ],
   "papers": [
     {
+      "abstract": "The author has been experimenting with various implementations of real-time cloud based audio rendering, keeping the client side application as an extremely light weight remote controller, receiving the fully rendered audio stream from a cloud based audio rendering engine.\n\nThe general benefits, drawbacks and conclusions will be discussed with a plausible and functional example application given for the reader’s own performance evaluation.",
       "authors": "Thomas Dodds",
       "slug": "dspnode-real-time-remote-audio-rendering",
       "title": "dspNode: Real-time remote audio rendering"
     },
     {
+      "abstract": "This paper introduces iPlug 2: a desktop C++ audio plug-in framework that has been extended and reworked in order to support Web Audio Modules, a new format for browser-based audio effects and instruments, using WebAssembly. iPlug 2 provides a complete solution and workflow for the development of cross-platform audio plug-ins and apps. It allows the same concise C++ code to be used to create desktop and web-based versions of a software musical instrument or audio effect, including audio signal processing and user interface elements. This new version of the framework has been updated to increase its flexibility so that alternative drawing APIs, plug-in APIs and platform APIs can be supported easily. We have added support for the distributed models used in recent audio plug-in formats, as well as new graphics capabilities. The codebase has also been substantially modernised. In this paper, we introduce the problems that iPlug 2 aims to address and discuss trends in modern plug-in APIs and existing solutions. We then present iPlug 2 and the work required to refactor a desktop plug-in framework to support the web platform. Several approaches to implementing graphical user interfaces are discussed as well as creating remote editors using web technologies. A real-world example of a WAM compiled with iPlug 2 is hosted at https://virtualcz.io, a new web-based version of a commercially available synthesizer plug-in.",
       "authors": "Oliver Larkin, Alex Harker and Jari Kleimola",
       "slug": "iplug2-desktop-plug-in-framework-meets-web-audio-modules",
       "title": "iPlug2: Desktop Plug-in Framework Meets Web Audio Modules"
     },
     {
+      "abstract": "Several native audio plug-in formats are popular today including Steinberg’s VST, Apple’s Audio Units, Avid’s AAX and the Linux audio community’s LV2. Although the APIs are different, all exist to achieve more or less the same thing - represent an instrument or audio effect and allow it to be loaded by a host application. In the Web Audio API such a high-level audio plug-in entity does not exist. With the emergence of web-based audio software such as digital audio workstations (DAWs), it is desirable to have a standard in order to make Web Audio instruments and effects interoperable. Since there are many ways of developing for Web Audio, such a standard should be flexible enough to support different approaches, including using a variety of programming languages. New functionality that is enabled by the web platform should be available to plug-ins written in different ways. To this end, several groups of developers came together to make their work compatible, and this paper presents the work achieved so far. This includes the development of a draft API specification, a small preliminary SDK, online plug-in validators and a set of examples written in JavaScript. These simple, proof of concept examples show how to discover plug-ins from repositories, how to instantiate a plug-in and how to connect plug-ins together. A more ambitious host has also been developed to validate the WAP standard: a virtual guitar “pedal board” that discovers plug-ins from multiple remote repositories, and allows the musician to chain pedals and control them via MIDI.",
       "authors": "Michel Buffa, Jerome Lebrun, Jari Kleimola, Oliver Larkin, Stéphane Letz and Guillaume Pellerin",
       "slug": "wap-ideas-for-a-web-audio-plug-in-standard",
       "title": "WAP: Ideas for a Web Audio Plug-in Standard"
     },
     {
+      "abstract": "This paper describes WebAssembly AudioWorklet (WAAW) Csound, one of the implementations of Web Audio Csound. We begin by introducing the background to this current implementation, stemming from the two first ports of Csound to the web platform using Native Clients and asm.js. The technology of WebAssembly is then introduced and dis- cussed in its more relevant aspects. The AudioWorklet interface of Web Audio API is explored, together with its use in WAAW Csound. We complement this discussion by considering the overarching question of support for multiple plat- forms, which implement different versions of Web Audio. Some initial examples of the system are presented to illustrate various potential applications. Finally, we complement the paper by discussing current issues that are fundamental for this project and others that rely on the development of a robust support for WASM-based audio computing.",
       "authors": "Steven Yi, Victor Lazzarini and Edward Costello",
       "slug": "webassembly-audioworklet-csound",
       "title": "WebAssembly AudioWorklet Csound"
     },
     {
+      "abstract": "Web Audio is by design an object-oriented, imperative API offering low-level control over audio graphs. There have been a number of efforts to provide a more intuitive wrapper API. Designing such wrapper libraries poses challenges in addressing graph configuration, dynamic mutation and data flow. Syntax of creating directed graphs in imperative code is not representative of the complex graph shapes, making the code difficult to understand without external visualisation tools.\n\nIn this paper we describe r-audio, a Web Audio wrapper library which attempts to solve the issues of imperative graph representations by leveraging the component system of React. We compare approaches of existing wrapper libraries and discuss solutions to specific issues of declarative and reactive representations of Web Audio graphs. We evaluate r-audio in terms of the ability to create arbitrary directed graphs and mutate them in real time.",
       "authors": "Jakub Fiala",
       "slug": "r-audio-declarative-reactive-and-flexible-web-audio-graphs-in-react",
       "title": "r-audio: Declarative, reactive and flexible Web Audio graphs in React"
     },
     {
+      "abstract": "Playsound.space is a web-based tool to search for and play Creative Commons licensed-sounds which can be applied to free improvisation, experimental music production and soundscape composition. It provides fast access to about 400k non-musical and musical sounds provided by Freesound and allows users to play/loop single or multiple sounds retrieved through text based search. Sound discovery is facilitated by use of semantic searches and sound visual representations (spectrograms). After a first version released and user tests conducted, we developed more features for audio processing and to enhance participation trough a chat system that allows users to share sound sessions and exchange messages while playing.",
       "authors": "Ariane Stolfi, Alessia Milo, Miguel Ceriani and Mathieu Barthet",
       "slug": "participatory-musical-improvisations-with-playsound-space",
       "title": "Participatory musical improvisations with Playsound.space"
     },
     {
+      "abstract": "This paper describes the motivation, design, and implementation of new features in EarSketch that enable the collaborative creation of algorithmic music. EarSketch is a web-based Digital Audio Workstation (DAW), designed primarily for educational contexts, in which users author Python or JavaScript code to programmatically create music within a multi-track paradigm. In this paper, we describe these new collaborative features in EarSketch and discuss their potential for use in both educational and music performance contexts.",
       "authors": "Avneesh Sarwate, Takahiko Tsuchiya and Jason Freeman",
       "slug": "collaborative-coding-with-music-two-case-studies-with-earsketch",
       "title": "Collaborative Coding with Music: Two Case Studies with EarSketch"
     },
     {
+      "abstract": "The introduction of AudioWorklets to the Web Audio API greatly expands the capabilities of audio in the browser. However, managing state between the various threads AudioWorklets occupy entails a fair amount of complexity, particularly when designing dynamic music programming environments where exact digital signal processing requirements cannot be known ahead of time. Such environments are commonly used for live coding performance, interactive composition, and coding playgrounds for musical experimentation.\n\nOur research explores metaprogramming strategies to create AudioWorklet implementations for two JavaScript libraries, Genish.js and Gibberish.js. These strategies help hide the complexities of inter-thread communication from end-users of the libraries and enable of variety of music and audio programming techniques that would otherwise be difficult to achieve.",
       "authors": "Charles Roberts",
       "slug": "metaprogramming-strategies-for-audioworklets",
       "title": "Metaprogramming Strategies for AudioWorklets"
     },
     {
+      "abstract": "We present DSP2JS, a new framework for the development of audio signal processors for web platforms using Emscripten and the WebAudio API. In particular, the goal is to abstract common functionality in a configurable layer that manages the communication between a JavaScript application and DSP code written in C or C++. The framework includes functionality for the creation, connection and management of processing units, runtime profiling, buffer management, buffer conversion and a configurable build system.\n\nThe proposed three-step development of a signal processor with DSP2JS allows for external libraries to be included, making it possible to port existing code to the framework. The generated artifacts can then be used in a web page and invoked via an interface similar to native WebAudioNodes. The optional omission of WebAudio bindings via a bare-build mode potentially opens up the core framework to further DSP applications, even outside of the audio domain.\n\nWe examine the multilayered architecture of the core framework and the build system, also discussing design and implemetation decisions.",
       "authors": "Oliver Major",
       "slug": "dsp2js-a-cplusplus-framework-for-the-development-of-in-browser-dsps",
       "title": "DSP2JS - A C++ framework for the development of in-browser DSPs"
     },
     {
+      "abstract": "Recent research in audio analysis has provided a large number of ways to describe audio recordings, which can be used for enhancing their visual representation in web applications. In this paper we present fad.js, a Javascript library for flexible visualization of audio descriptors. We describe the proposed design and demonstrate its potential for web audio applications through several visualization examples.",
       "authors": "Gerard Roma, Anna Xambó, Owen Green and Pierre Alexandre Tremblay",
       "slug": "a-javascript-library-for-flexible-visualization-of-audio-descriptors",
       "title": "A Javascript Library for Flexible Visualization of Audio Descriptors"
     },
     {
+      "abstract": "This work enables native audio plugin development using the Web Audio API and other web technologies. Hybrid forms where DSP algorithms are implemented in both JavaScript and native C++, and distributed forms where web technologies are used only for the user interface, are also supported. Various implementation options are explored, and the most promising option is implemented and evaluated. We found that the solution is able to operate at 128 sample buffer sizes, and that the performance of the Web Audio API audio graph is not compromised. The proof of-concept solution also maintains compatibility with existing Web Audio API implementations. The average MIDI latency was 24 ms, which is high when comparing with fully native plugin solutions. Backwards compatibility also reduces usability when working with multiple plugin instances. We conclude that the second iteration needs to break backwards compatibility in order to overcome the MIDI latency and multi-plugin support issues.",
       "authors": "Jari Kleimola and Owen Campbell",
       "slug": "native-web-audio-api-plugins",
       "title": "Native Web Audio API Plugins"
     },
     {
+      "abstract": "A common problem in music education is finding varied and engaging material that is suitable for practising a specific musical concept or technique. At the same time, a number of large music collections are available under a Creative Commons (CC) licence (e.g. Jamendo, ccMixter), but their potential is largely untapped because of the relative obscurity of their content. In this paper, we present *Jam with Jamendo*, a web application that allows novice and expert learners of musical instruments to query songs by chord content from a large music collection, and practise the chords present in the retrieved songs by playing along. Its goal is twofold: the learners get a larger variety of practice material, while the artists receive increased exposure. We experimented with two visualisation modes. The first is a linear visualisation based on a moving time axis, the second is a circular visualisation inspired by the chromatic circle. We conducted a small-scale thinking-aloud user study with seven participants based on a hands-on practice with the web app. Through this pilot study, we obtained a qualitative understanding of the potentials and challenges of each visualisation, which will be used to inform the next design iteration of the web app.",
       "authors": "Johan Pauwels, Anna Xambó, Gerard Roma, Mathieu Barthet and György Fazekas",
       "slug": "exploring-real-time-visualisations-to-support-chord-learning-with-a-large-music-collection",
       "title": "Exploring Real-time Visualisations to Support Chord Learning with a Large Music Collection"
@@ -241,51 +253,61 @@
   ],
   "talks": [
     {
+      "abstract": "Generative music is magical: it writes itself! But it gets even better: With the WebAudio API we can work this magic in the browser, where we also have the possibilities to visualize and interact with it.\nLet me take you on a tour of techniques that will enchant your audiences!",
       "authors": "Lisa Passing",
       "slug": "generative-music-playful-visualizations-and-where-to-find-them",
       "title": "Generative music, playful visualizations and where to find them"
     },
     {
+      "abstract": "Forty years ago, Brian Eno released \"Ambient 1: Music for Airport\". Creating eternally changing music using a simple system. We will see how to use the Web Audio API to pay homage to this milestone release and create hours and hours of music in just 256 bytes.",
       "authors": "Mathieu Henri",
       "slug": "ambient-html5-music-for-tiny-airports-in-256-bytes",
       "title": "AMBIENT HTML5: Music for tiny airports in 256 bytes"
     },
     {
+      "abstract": "Data visualization as a field has made tremendous progress in exploring ways to investigate, interrogate, and comprehend abstract data by visual means. For all its benefits, data visualization has some drawbacks when it comes to live, streaming data.\n\nSome tools have attempted to solve this problem using sonification -- translating live data to sound or noise -- but these devices traditionally have not attempted to produce sound that is interesting, varying, or aesthetically pleasing.\n\nNick will present a tool he created in which he connected a website's live user data to the Web Audio API to create a procedurally-generated and (theoretically) infinite \"song\" representing the site's traffic patterns. He will reflect on the potential for using sound and music as a medium for developing an intuitive understanding of streaming data.",
       "authors": "Nicholas Violi",
       "slug": "websonify-ambient-aural-display-of-real-time-data",
       "title": "WebSonify: Ambient aural display of real-time data"
     },
     {
+      "abstract": "KiteAudio is a JavaScript UI and audio module library and framework built on top of the Web Audio API with the goal of facilitating prototyping and development of Web Audio applications. The development of the project has been a useful vehicle for identifying and assessing some of the problems and considerations that arise when creating such a library, and this talk is aimed at addressing these issues. Over the course of development, a few questions presented themselves: how to provide a useful API syntax to the end user that is familiar to both developers and musicians; how to design the codebase to facilitate efficient long-term development, predictable behavior, and efficient bug fixes; how to guard against breaking changes in the underlying technologies. The question of the API syntax was addressed by aiming for a clear syntax that mirrors the syntax of the underlying Web Audio API and provides useful defaults for fast prototyping, while allowing deep access for extensive customization. The question of class and codebase design was addressed by structuring the classes in an opinionated way, having a small number of base classes provide the core functionality, initialization, and life-cycle, using mixins to provide shared additional functionality, and using single-source-of-truth approach to state management. Guarding against breaking changes in underlying technologies was addressed by using a feature-detection and polyfill mechanism. The long-term outlook and goals for the project is to continue to expand its features while keeping it up-to date with changes in the Web Audio API specification.",
       "authors": "Vladimir Smirnov",
       "slug": "kiteaudio-building-a-web-audio-module-and-ui-library",
       "title": "KiteAudio: Building a Web Audio Module and UI Library"
     },
     {
+      "abstract": "During this talk I will elaborate on the interaction between my work as both a musician and a software coder and how my experiences in both areas come together in the production of my first web audio album. \n\nHaving a background as a classically trained musician and after touring internationally with an indie pop band, I deal with 3 main issues during the process of creating music in the new web audio format. \n\n1. As a coding artist, I try to mould the Web Audio API into actionable music tools. Therefore, I started to translate the Tone.js Framework into a Ruby gem. \n\n2. I try to find a balance between the coding part and my ‘normal’ music workflow, i.e. sketching ideas with the intuitive user interface of professional DAW software, in my case: Ableton Live. Therefore I need to find an easy way to transfer musical content between the Ableton and the Web Audio environments. \n\n3. How can I create music with a 'story' and emotional compact in the context of generative and interactive composing techniques?",
       "authors": "Hilke Ros",
       "slug": "from-artist-to-software-developer-and-back-a-celloist-s-perspective-on-web-audio",
       "title": "From artist to software developer and back. A celloist’s perspective on Web Audio"
     },
     {
+      "abstract": "With cables, a new web-based visual programming environment, creating WebGL and Web Audio applications can be done using a visual editor, without writing any code. It allows to create audio-visual experiments in a playful way.",
       "authors": "Tim Pulver and Thomas Kombüchen",
       "slug": "cables—a-web-based-visual-programming-language-for-webgl-and-web-audio",
       "title": "cables—a web based visual programming language for WebGL and Web Audio"
     },
     {
+      "abstract": "This talk will give an overview about the current state of timing on the web and the problems this presents when trying to sync multiple sources of multimedia. Examples demonstrated will include setTimeout, webaudio ‘currentTime’, DOMHighResTimeStamp, and html5 media timing. The concept of the TimingObject will introduce the initiative for a unifying time model for varying sources of multimedia presented on a single device, as well as multi device web support.",
       "authors": "Naomi Aro",
       "slug": "orchestrate-your-web",
       "title": "Orchestrate Your Web!"
     },
     {
+      "abstract": "2018 is the year deep neural networks have arrived in the web browser. This development has many exciting prospects. One of them is that all the work AI researchers have put into musical applications of neural nets is suddenly available to use in web apps. We can now use generative musical deep learning models and build interactive web-based experiences on top of them, with the help of Web Audio and the rest of the web platform.\n\nIn this talk I will present some recent experiments I’ve made using deep neural nets and Web Audio in the browser. They’re mostly based on Google’s Magenta.js library and neural net models trained by the Magenta team. We’ll see how recurrent neural networks can be used to build melodic “autocompletion” tools and arpeggiators, as well as generative drum patterns. We’ll also see how to use variational autoencoder models to explore latent musical spaces: Interpolating between melodies, and exploring musical generative space with vector arithmetic.",
       "authors": "Tero Parviainen",
       "slug": "musical-deep-neural-networks-in-the-browser",
       "title": "Musical Deep Neural Networks in the Browser"
     },
     {
+      "abstract": "The recording and playback of audio on a computer is always subject to latency and Web Audio applications are no different. Latency makes it difficult to write software that properly synchronizes computer audio with “real world” audio and interactions. In many situations, Web Audio apps have to deal with huge amounts of latency.\nHumans have issues with timing too: it’s often hard for us to perform actions perfectly on rhythm or in synchrony with our computer’s understanding of time.\nIn this talk, I’ll detail the techniques I used to develop a live-looping app using Web Audio, including methods for measuring and handling various types of latency and structuring code to avoid spreading latency-handling logic throughout the application.\nI’ll also discuss features that help humans more easily express timing in music, like allowing a loop to start before the “record” button was pressed and implementing button press “fudging” that starts, stops, and records loops at the time the performer meant to press the button, not the time they actually pressed the button.",
       "authors": "Walker Henderson",
       "slug": "latency-and-synchronization-in-web-audio",
       "title": "Latency and Synchronization in Web Audio"
     },
     {
+      "abstract": "The web knows many different timing mechanisms which all have their unique use case. Unfortunately there is no easy way to align any of those timers. They often have their own timeline, unit and level of accuracy. How would you for example synchronize a slide show on a beamer with the audio recording of the speaker played back on a different device?\n\nThe Timing Object is aiming to solve that problem. It is a W3C Draft which introduces yet another timing mechanism. But it is completely unopinionated about what it controls. It is specifically designed to control multiple timed sources in snyc.\n\nSadly the Timing Object hasn't gained much traction so far. No browser vendor has implemented it yet or is currently planning to do so. The specification process itself seems to be slowing down as well. But that doesn't have to be the end of the story. The Timing Object can mostly be implemented in user land and some parts of the spec are purposefully incomplete to allow different implementations by third party vendors. I want to show what is already possible and how everybody can start using the Timing Object right now in their applications. As many of the presentations and demos at previous WACs have shown, many people have built their own custom solution to realize distributed synchronization. I hope to raise interest in the Timing Object Draft and motivate more people to contribute their experience to the standardization process.\n\nOne of the things which is meant to be implemented by third party vendors is the TimingProvider. The TimingProvider is responsible for synchronizing Timing Objects across different devices. I want to demonstrate the usage of a TimingProvider which uses WebRTC internally to setup the communication between participating devices.\n\nThere are of course also some parts of the specification which have to be build by browser vendors. But I'm sure that if the Timing Object gets used in the wild the browser vendors will eventually start to implement it natively.",
       "authors": "Christoph Guttandin",
       "slug": "the-timing-object-a-pacemaker-for-the-web",
       "title": "The Timing Object - A Pacemaker for the Web"
