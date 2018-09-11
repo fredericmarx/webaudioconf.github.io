@@ -1,17 +1,22 @@
 import { withPrefix } from 'gatsby-link';
 import React from 'react';
+import Link from './link';
 
 export default function Presentation({ pathContext }) {
-  const authorLinksAsEntries = (pathContext.authorLinks === undefined) ? [ ] : Object.entries(pathContext.authorLinks);
-  const authorsWithLinks = authorLinksAsEntries
-    .reduce((authorsWithLinks, [ name, link ]) => {
-      return authorsWithLinks.replace(name, `<a href="${ link }" rel="noopener" target="_blank">${ name }</a>`);
-    }, pathContext.authors);
+  const authors = pathContext.authors
+    .map(({ link, name }) => link ? <Link href={link} key={name}>{name}</Link> : name)
+    .reduce((accumulator, author, index, array) => {
+      if (index === 0) {
+        return author;
+      }
+
+      return [ ...accumulator, ...((index === array.length - 1) ? [ ' and ', author ] : [ ', ', author ]) ];
+    }, '');
 
   return (
     <div>
       <h1>{ pathContext.title }</h1>
-      <h2 dangerouslySetInnerHTML={{ __html: authorsWithLinks }}></h2>
+      <h2>{ authors }</h2>
       <p>{ pathContext.abstract }</p>
       { pathContext.type === 'paper' && (
         <a download={`${ pathContext.slug }.pdf`} href={withPrefix(`papers/${ pathContext.slug }.pdf`)}>Paper as PDF</a>

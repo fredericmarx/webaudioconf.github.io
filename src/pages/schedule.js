@@ -56,9 +56,19 @@ export default class Schedule extends React.Component {
                     {entry.title}
                     {entry.presentations && (
                       <ul className="schedule__entryPresentationsList">
-                        {entry.presentations.map((presentation) =>
-                          <li key={`presentation-${presentation.slug}`}><InternalLink to={`/presentations/${ presentation.slug }`}>{presentation.authors}: {presentation.title}</InternalLink></li>
-                        )}
+                        {entry.presentations.map((presentation) => {
+                          const authors = presentation.authors
+                            .map(({ name }) => name)
+                            .reduce((accumulator, author, index, array) => {
+                              if (index === 0) {
+                                return author;
+                              }
+
+                              return accumulator + ((index === array.length - 1) ? ' and ' + author : ', ' + author);
+                            }, '');
+
+                          return <li key={`presentation-${presentation.slug}`}><InternalLink to={`/presentations/${ presentation.slug }`}>{authors}: {presentation.title}</InternalLink></li>;
+                        })}
                       </ul>
                     )}
                     {entry.location && (
