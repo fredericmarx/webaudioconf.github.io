@@ -113,7 +113,7 @@ const schedule = {
         startTime: Date.UTC(2018, 8, 19, 7, 0),
         endTime: Date.UTC(2018, 8, 19, 8, 0),
         title: 'Keynote',
-        description: 'The opening keynote for WAC 2018'
+        description: <InternalLink to="/keynotes#ruth-john">The opening keynote for WAC 2018 by Ruth John</InternalLink>
       },
       {
         startTime: Date.UTC(2018, 8, 19, 8, 0),
@@ -191,7 +191,7 @@ const schedule = {
         startTime: Date.UTC(2018, 8, 19, 7, 0),
         endTime: Date.UTC(2018, 8, 19, 8, 0),
         title: 'Keynote',
-        description: 'The second keynote of WAC 2018'
+        description: <InternalLink to="/keynotes#chris-rogers">The second keynote of WAC 2018 by Chris Rogers</InternalLink>
       },
       {
         startTime: Date.UTC(2018, 8, 19, 8, 0),
@@ -268,7 +268,7 @@ const schedule = {
         startTime: Date.UTC(2018, 8, 21, 7, 0),
         endTime: Date.UTC(2018, 8, 21, 8, 30),
         title: 'Keynote',
-        description: 'Paul Adenot will talk about the latest development of the Web Audio API'
+        description: <InternalLink to="/keynotes#paul-adenot">Paul Adenot will talk about the latest development of the Web Audio API</InternalLink>
       },
       {
         startTime: Date.UTC(2018, 8, 21, 8, 30),
