@@ -43,6 +43,18 @@ export default class Schedule extends React.Component {
               ${zeroPad(entryEnd.hours())}:${zeroPad(entryEnd.minutes())}
               `;
 
+            const joinAuthors = (authors) => {
+              return authors
+                .map(({ name }) => name)
+                .reduce((accumulator, author, index, array) => {
+                  if (index === 0) {
+                    return author;
+                  }
+
+                  return accumulator + ((index === array.length - 1) ? ' and ' + author : ', ' + author);
+                }, '');
+            };
+
             return (
               <div
                 key={`${day.title}${time}`}
@@ -67,32 +79,25 @@ export default class Schedule extends React.Component {
                   {entry.demosAndPosters && (
                     <ul className="schedule__entryDemosAndPostersList">
                       {entry.demosAndPosters.map((demoOrPoster) => {
-                        const authors = demoOrPoster.authors
-                          .map(({ name }) => name)
-                          .reduce((accumulator, author, index, array) => {
-                            if (index === 0) {
-                              return author;
-                            }
-
-                            return accumulator + ((index === array.length - 1) ? ' and ' + author : ', ' + author);
-                          }, '');
+                        const authors = joinAuthors(demoOrPoster.authors);
 
                         return <li key={`demo-or-poster-${demoOrPoster.slug}`}><InternalLink to={`/demos-and-posters/${ demoOrPoster.slug }`}>{authors}: {demoOrPoster.title}</InternalLink></li>;
+                      })}
+                    </ul>
+                  )}
+                  {entry.performances && (
+                    <ul className="schedule__entryPerformancesList">
+                      {entry.performances.map((performance) => {
+                        const authors = joinAuthors(performance.authors);
+
+                        return <li key={`performance-${performance.slug}`}><InternalLink to={`/performances/${ performance.slug }`}>{authors}: {performance.title}</InternalLink></li>;
                       })}
                     </ul>
                   )}
                   {entry.presentations && (
                     <ul className="schedule__entryPresentationsList">
                       {entry.presentations.map((presentation) => {
-                        const authors = presentation.authors
-                          .map(({ name }) => name)
-                          .reduce((accumulator, author, index, array) => {
-                            if (index === 0) {
-                              return author;
-                            }
-
-                            return accumulator + ((index === array.length - 1) ? ' and ' + author : ', ' + author);
-                          }, '');
+                        const authors = joinAuthors(presentation.authors);
 
                         return <li key={`presentation-${presentation.slug}`}><InternalLink to={`/presentations/${ presentation.slug }`}>{authors}: {presentation.title}</InternalLink></li>;
                       })}
@@ -212,7 +217,8 @@ const schedule = {
         description: <div>
           <div>Doors open: 19:30</div>
           <div>Show starts: 20:00 (last admission)</div>
-        </div>
+        </div>,
+        performances: acceptedSubmissions.performances
       }
     ]
   },

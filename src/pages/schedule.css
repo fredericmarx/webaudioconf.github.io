@@ -54,6 +54,7 @@
 }
 
 .schedule__entryDemosAndPostersList,
+.schedule__entryPerformancesList,
 .schedule__entryPresentationsList {
   line-height: 1.5;
   list-style: none;

@@ -24,6 +24,14 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         path: `/presentations/${ paper.slug }`
       });
     });
+  acceptedSubmissions.performances
+    .forEach((performance) => {
+      boundActionCreators.createPage({
+        component: resolve(`./src/components/performance.js`),
+        context: { ...performance, type: 'performance' },
+        path: `/performances/${ performance.slug }`
+      });
+    });
   acceptedSubmissions.posters
     .forEach((poster) => {
       boundActionCreators.createPage({
