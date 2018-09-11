@@ -29,7 +29,7 @@ const IndexPage = () => (
     </div>
 
     <Announcement>
-      🎼🌐🎁 We published the first version of the <Link to="/schedule">schedule</Link> and the <Link to="/program">program</Link>! 🎁🌐🎼
+      🎼🌐🎁 We published the final version of the <Link to="/schedule">schedule</Link>! 🎁🌐🎼
     </Announcement>
 
     <div className="index__moreInfo">

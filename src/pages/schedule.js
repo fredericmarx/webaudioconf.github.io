@@ -117,9 +117,6 @@ export default class Schedule extends React.Component {
     return (
       <div className="schedule">
         <h1>Schedule</h1>
-        <Announcement>
-          We are still finalizing the schedule but you can check out all accepted submissions <InternalLink to="/program">here</InternalLink>.
-        </Announcement>
         {this.renderDay(schedule.day1)}
         {this.renderDay(schedule.day2)}
         {this.renderDay(schedule.day3)}
