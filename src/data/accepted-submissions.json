@@ -1,16 +1,25 @@
 {
   "demos": [
     {
+      "authorLinks": {
+        "Jason Gwartz": "http://www.jasongwartz.com/"
+      },
       "authors": "Jason Gwartz and Nicolas Gold",
       "slug": "loop-based-graphical-live-coded-music-in-the-browser",
       "title": "Loop-Based Graphical Live-Coded Music in the Browser"
     },
     {
+      "authorLinks": {
+        "Martin Guder": "https://www.martinguder.com/"
+      },
       "authors": "Martin Guder",
       "slug": "the-sound-of-bitcoin-sound-synthesis-with-cryptocurrency-trade-data",
       "title": "The sound of Bitcoin - Sound synthesis with cryptocurrency trade data"
     },
     {
+      "authorLinks": {
+        "Tim Pulver": "http://timpulver.de/"
+      },
       "authors": "Tim Pulver",
       "slug": "fugue-step—a-multi-playhead-sequencer",
       "title": "Fugue Step—a multi playhead sequencer"
@@ -21,21 +30,34 @@
       "title": "SoundSling: A Framework for Using Creative Motion Data to Pan Audio Across a Mobile Device Speaker Array"
     },
     {
+      "authorLinks": {
+        "Boris Smus": "http://smus.com/"
+      },
       "authors": "Boris Smus",
       "slug": "dsp-filter-playground",
       "title": "DSP Filter playground"
     },
     {
+      "authorLinks": {
+        "Boris Smus": "http://www.v2.nl/",
+        "Jacques van de Veerdonk": "http://www.watchthatsound.nl/"
+      },
       "authors": "Jan Misker and Jacques van de Veerdonk",
       "slug": "audio-pipes-connecting-web-audio-between-any-page",
       "title": "Audio Pipes: Connecting Web Audio Between Any Page"
     },
     {
+      "authorLinks": {
+        "Mathieu Barthet": "http://c4dm.eecs.qmul.ac.uk/"
+      },
       "authors": "Ariane Stolfi, Alessia Milo, Miguel Ceriani and Mathieu Barthet",
       "slug": "playsound-space-demo",
       "title": "Playsound.space Demo"
     },
     {
+      "authorLinks": {
+        "Tony Wallace": "https://irritantcreative.ca/"
+      },
       "authors": "Tony Wallace",
       "slug": "live-coding-drum-machine",
       "title": "Live Coding Drum Machine"
@@ -46,16 +68,31 @@
       "title": "Guitarists will be happy: guitar tube amp simulators and FX pedal in a virtual pedal board, and more!"
     },
     {
+      "authorLinks": {
+        "Oscar Mayor": "https://voctrolabs.com/",
+        "Jordi Janer": "https://voctrolabs.com/",
+        "Hector Parra": "https://voctrolabs.com/",
+        "Álvaro Sarasúa": "https://voctrolabs.com/"
+      },
       "authors": "Oscar Mayor, Jordi Janer, Hector Parra and Álvaro Sarasúa",
       "slug": "voiceful-voice-analysis-transformation-and-synthesis-on-the-web",
       "title": "VOICEFUL: Voice Analysis, Transformation and Synthesis on the Web"
     },
     {
+      "authorLinks": {
+        "Jesse Allison": "http://emdm.lsu.edu/",
+        "Tate Carson": "http://www.tatecarson.com/"
+      },
       "authors": "Jesse Allison and Tate Carson",
       "slug": "utilizing-nexushub-and-docker-for-distributed-performance",
       "title": "Utilizing NexusHUB and Docker for Distributed Performance"
     },
     {
+      "authorLinks": {
+        "Joe Todd": "http://chirp.io/",
+        "Adib Mehrabi": "http://chirp.io/",
+        "Daniel Jones": "http://chirp.io/"
+      },
       "authors": "Joe Todd, Adib Mehrabi and Daniel Jones",
       "slug": "transmitting-data-over-the-air-using-the-web-audio-api",
       "title": "Transmitting Data Over The Air Using the Web Audio API"
@@ -68,16 +105,28 @@
   ],
   "installations": [
     {
+      "authorLinks": {
+        "Patrick Schmid": "http://www.neeerds.com/",
+        "Kathrin Fuhrer": "http://www.kathrinfuhrer.de/",
+        "Johannes Schiel": "http://www.johannes-schiel.de/",
+        "Lukas Scheuerle": "http://www.plagiatus.net/"
+      },
       "authors": "Patrick Schmid, Kathrin Fuhrer, Johannes Schiel, Lukas Scheuerle, Sandra Kleß and Norbert Schnell",
       "slug": "kom-bp-o",
       "title": "Kom[bp]o"
     },
     {
+      "authorLinks": {
+        "Tate Carson": "http://www.tatecarson.com/"
+      },
       "authors": "Tate Carson",
       "slug": "a-more-perfect-union",
       "title": "A more perfect union"
     },
     {
+      "authorLinks": {
+        "Max Horwich": "http://maxhorwich.com/"
+      },
       "authors": "Max Horwich",
       "slug": "33-null-2018-and-automatic-writing-2018",
       "title": "33 Null (2018) & Automatic Writing (2018)"
@@ -86,12 +135,18 @@
   "papers": [
     {
       "abstract": "The author has been experimenting with various implementations of real-time cloud based audio rendering, keeping the client side application as an extremely light weight remote controller, receiving the fully rendered audio stream from a cloud based audio rendering engine.\n\nThe general benefits, drawbacks and conclusions will be discussed with a plausible and functional example application given for the reader’s own performance evaluation.",
+      "authorLinks": {
+        "Thomas Dodds": "http://www.blackblocs.uk/endeavours"
+      },
       "authors": "Thomas Dodds",
       "slug": "dspnode-real-time-remote-audio-rendering",
       "title": "dspNode: Real-time remote audio rendering"
     },
     {
       "abstract": "This paper introduces iPlug 2: a desktop C++ audio plug-in framework that has been extended and reworked in order to support Web Audio Modules, a new format for browser-based audio effects and instruments, using WebAssembly. iPlug 2 provides a complete solution and workflow for the development of cross-platform audio plug-ins and apps. It allows the same concise C++ code to be used to create desktop and web-based versions of a software musical instrument or audio effect, including audio signal processing and user interface elements. This new version of the framework has been updated to increase its flexibility so that alternative drawing APIs, plug-in APIs and platform APIs can be supported easily. We have added support for the distributed models used in recent audio plug-in formats, as well as new graphics capabilities. The codebase has also been substantially modernised. In this paper, we introduce the problems that iPlug 2 aims to address and discuss trends in modern plug-in APIs and existing solutions. We then present iPlug 2 and the work required to refactor a desktop plug-in framework to support the web platform. Several approaches to implementing graphical user interfaces are discussed as well as creating remote editors using web technologies. A real-world example of a WAM compiled with iPlug 2 is hosted at https://virtualcz.io, a new web-based version of a commercially available synthesizer plug-in.",
+      "authorLinks": {
+        "Oliver Larkin": "http://www.olilarkin.co.uk/"
+      },
       "authors": "Oliver Larkin, Alex Harker and Jari Kleimola",
       "slug": "iplug2-desktop-plug-in-framework-meets-web-audio-modules",
       "title": "iPlug2: Desktop Plug-in Framework Meets Web Audio Modules"
@@ -104,18 +159,27 @@
     },
     {
       "abstract": "This paper describes WebAssembly AudioWorklet (WAAW) Csound, one of the implementations of Web Audio Csound. We begin by introducing the background to this current implementation, stemming from the two first ports of Csound to the web platform using Native Clients and asm.js. The technology of WebAssembly is then introduced and dis- cussed in its more relevant aspects. The AudioWorklet interface of Web Audio API is explored, together with its use in WAAW Csound. We complement this discussion by considering the overarching question of support for multiple plat- forms, which implement different versions of Web Audio. Some initial examples of the system are presented to illustrate various potential applications. Finally, we complement the paper by discussing current issues that are fundamental for this project and others that rely on the development of a robust support for WASM-based audio computing.",
+      "authorLinks": {
+        "Steven Yi": "http://www.kunstmusik.com/"
+      },
       "authors": "Steven Yi, Victor Lazzarini and Edward Costello",
       "slug": "webassembly-audioworklet-csound",
       "title": "WebAssembly AudioWorklet Csound"
     },
     {
       "abstract": "Web Audio is by design an object-oriented, imperative API offering low-level control over audio graphs. There have been a number of efforts to provide a more intuitive wrapper API. Designing such wrapper libraries poses challenges in addressing graph configuration, dynamic mutation and data flow. Syntax of creating directed graphs in imperative code is not representative of the complex graph shapes, making the code difficult to understand without external visualisation tools.\n\nIn this paper we describe r-audio, a Web Audio wrapper library which attempts to solve the issues of imperative graph representations by leveraging the component system of React. We compare approaches of existing wrapper libraries and discuss solutions to specific issues of declarative and reactive representations of Web Audio graphs. We evaluate r-audio in terms of the ability to create arbitrary directed graphs and mutate them in real time.",
+      "authorLinks": {
+        "Jakub Fiala": "http://fiala.space/"
+      },
       "authors": "Jakub Fiala",
       "slug": "r-audio-declarative-reactive-and-flexible-web-audio-graphs-in-react",
       "title": "r-audio: Declarative, reactive and flexible Web Audio graphs in React"
     },
     {
       "abstract": "Playsound.space is a web-based tool to search for and play Creative Commons licensed-sounds which can be applied to free improvisation, experimental music production and soundscape composition. It provides fast access to about 400k non-musical and musical sounds provided by Freesound and allows users to play/loop single or multiple sounds retrieved through text based search. Sound discovery is facilitated by use of semantic searches and sound visual representations (spectrograms). After a first version released and user tests conducted, we developed more features for audio processing and to enhance participation trough a chat system that allows users to share sound sessions and exchange messages while playing.",
+      "authorLinks": {
+        "Mathieu Barthet": "http://c4dm.eecs.qmul.ac.uk/"
+      },
       "authors": "Ariane Stolfi, Alessia Milo, Miguel Ceriani and Mathieu Barthet",
       "slug": "participatory-musical-improvisations-with-playsound-space",
       "title": "Participatory musical improvisations with Playsound.space"
@@ -128,6 +192,9 @@
     },
     {
       "abstract": "The introduction of AudioWorklets to the Web Audio API greatly expands the capabilities of audio in the browser. However, managing state between the various threads AudioWorklets occupy entails a fair amount of complexity, particularly when designing dynamic music programming environments where exact digital signal processing requirements cannot be known ahead of time. Such environments are commonly used for live coding performance, interactive composition, and coding playgrounds for musical experimentation.\n\nOur research explores metaprogramming strategies to create AudioWorklet implementations for two JavaScript libraries, Genish.js and Gibberish.js. These strategies help hide the complexities of inter-thread communication from end-users of the libraries and enable of variety of music and audio programming techniques that would otherwise be difficult to achieve.",
+      "authorLinks": {
+        "Charles Roberts": "http://www.charlie-roberts.com/"
+      },
       "authors": "Charles Roberts",
       "slug": "metaprogramming-strategies-for-audioworklets",
       "title": "Metaprogramming Strategies for AudioWorklets"
@@ -159,21 +226,33 @@
   ],
   "performances": [
     {
+      "authorLinks": {
+        "Jasmine Guffond": "http://jasmineguffond.com/"
+      },
       "authors": "Jasmine Guffond",
       "slug": "listening-back-the-web-never-forgets",
       "title": "Listening Back - The Web Never Forgets"
     },
     {
+      "authorLinks": {
+        "Andrey Bundin": "http://bundin.info/"
+      },
       "authors": "Andrey Bundin",
       "slug": "concert-for-smartphones-and-orchestra",
       "title": "Concert for Smartphones and Orchestra"
     },
     {
+      "authorLinks": {
+        "Mathieu Barthet": "http://c4dm.eecs.qmul.ac.uk/"
+      },
       "authors": "Ariane Stolfi, Alessia Milo and Mathieu Barthet",
       "slug": "tender-buttons-sound-space",
       "title": "Tender Buttons | Sound | Space"
     },
     {
+      "authorLinks": {
+        "Anna Xambó": "http://annaxambo.me/"
+      },
       "authors": "Anna Xambó",
       "slug": "imaginary-berlin",
       "title": "Imaginary Berlin"
@@ -191,16 +270,26 @@
   ],
   "posters": [
     {
+      "authorLinks": {
+        "Chase Mitchusson": "http://chasemitchusson.wordpress.com/"
+      },
       "authors": "Chase Mitchusson",
       "slug": "lost-in-space",
       "title": "Lost In Space"
     },
     {
+      "authorLinks": {
+        "Tate Carson": "http://www.tatecarson.com/"
+      },
       "authors": "Tate Carson",
       "slug": "a-more-perfect-union-composition-with-audience-controlled-smartphone-speaker-array-and-evolutionary-computer-music",
       "title": "A more perfect union: Composition with audience-controlled smartphone speaker array and evolutionary computer music"
     },
     {
+      "authorLinks": {
+        "Óscar Rodrigues": "http://www.oscar-rodrigues.com/",
+        "José Alberto Gomes": "http://jasg.net/"
+      },
       "authors": "Nuno Hespanhol, Óscar Rodrigues and José Alberto Gomes",
       "slug": "0plus1equalssom-bringing-computing-closer-to-children-through-music",
       "title": "0+1=SOM: Bringing Computing Closer to Children Through Music"
@@ -226,6 +315,9 @@
       "title": "pywebaudioplayer: Bridging the gap between audio processing code in Python and attractive visualisations based on web technology"
     },
     {
+      "authorLinks": {
+        "Ben Houge": "http://www.audiogustatory.com/"
+      },
       "authors": "Ben Houge",
       "slug": "cena-concertante-alla-maniera-di-vivaldi-considering-the-testaurant-as-a-musical-interface",
       "title": "Cena concertante alla maniera di Vivaldi: Considering the Restaurant as a Musical Interface"
@@ -254,18 +346,27 @@
   "talks": [
     {
       "abstract": "Generative music is magical: it writes itself! But it gets even better: With the WebAudio API we can work this magic in the browser, where we also have the possibilities to visualize and interact with it.\nLet me take you on a tour of techniques that will enchant your audiences!",
+      "authorLinks": {
+        "Lisa Passing": "https://lislis.de/"
+      },
       "authors": "Lisa Passing",
       "slug": "generative-music-playful-visualizations-and-where-to-find-them",
       "title": "Generative music, playful visualizations and where to find them"
     },
     {
       "abstract": "Forty years ago, Brian Eno released \"Ambient 1: Music for Airport\". Creating eternally changing music using a simple system. We will see how to use the Web Audio API to pay homage to this milestone release and create hours and hours of music in just 256 bytes.",
+      "authorLinks": {
+        "Mathieu Henri": "http://www.p01.org/"
+      },
       "authors": "Mathieu Henri",
       "slug": "ambient-html5-music-for-tiny-airports-in-256-bytes",
       "title": "AMBIENT HTML5: Music for tiny airports in 256 bytes"
     },
     {
       "abstract": "Data visualization as a field has made tremendous progress in exploring ways to investigate, interrogate, and comprehend abstract data by visual means. For all its benefits, data visualization has some drawbacks when it comes to live, streaming data.\n\nSome tools have attempted to solve this problem using sonification -- translating live data to sound or noise -- but these devices traditionally have not attempted to produce sound that is interesting, varying, or aesthetically pleasing.\n\nNick will present a tool he created in which he connected a website's live user data to the Web Audio API to create a procedurally-generated and (theoretically) infinite \"song\" representing the site's traffic patterns. He will reflect on the potential for using sound and music as a medium for developing an intuitive understanding of streaming data.",
+      "authorLinks": {
+        "Nicholas Violi": "https://web-sonify.glitch.me/"
+      },
       "authors": "Nicholas Violi",
       "slug": "websonify-ambient-aural-display-of-real-time-data",
       "title": "WebSonify: Ambient aural display of real-time data"
@@ -278,36 +379,54 @@
     },
     {
       "abstract": "During this talk I will elaborate on the interaction between my work as both a musician and a software coder and how my experiences in both areas come together in the production of my first web audio album. \n\nHaving a background as a classically trained musician and after touring internationally with an indie pop band, I deal with 3 main issues during the process of creating music in the new web audio format. \n\n1. As a coding artist, I try to mould the Web Audio API into actionable music tools. Therefore, I started to translate the Tone.js Framework into a Ruby gem. \n\n2. I try to find a balance between the coding part and my ‘normal’ music workflow, i.e. sketching ideas with the intuitive user interface of professional DAW software, in my case: Ableton Live. Therefore I need to find an easy way to transfer musical content between the Ableton and the Web Audio environments. \n\n3. How can I create music with a 'story' and emotional compact in the context of generative and interactive composing techniques?",
+      "authorLinks": {
+        "Hilke Ros": "http://hroski.com/"
+      },
       "authors": "Hilke Ros",
       "slug": "from-artist-to-software-developer-and-back-a-celloist-s-perspective-on-web-audio",
       "title": "From artist to software developer and back. A celloist’s perspective on Web Audio"
     },
     {
       "abstract": "With cables, a new web-based visual programming environment, creating WebGL and Web Audio applications can be done using a visual editor, without writing any code. It allows to create audio-visual experiments in a playful way.",
+      "authorLinks": {
+        "Tim Pulver": "http://timpulver.de/"
+      },
       "authors": "Tim Pulver and Thomas Kombüchen",
       "slug": "cables—a-web-based-visual-programming-language-for-webgl-and-web-audio",
       "title": "cables—a web based visual programming language for WebGL and Web Audio"
     },
     {
       "abstract": "This talk will give an overview about the current state of timing on the web and the problems this presents when trying to sync multiple sources of multimedia. Examples demonstrated will include setTimeout, webaudio ‘currentTime’, DOMHighResTimeStamp, and html5 media timing. The concept of the TimingObject will introduce the initiative for a unifying time model for varying sources of multimedia presented on a single device, as well as multi device web support.",
+      "authorLinks": {
+        "Naomi Aro": "http://naomiaro.github.io/"
+      },
       "authors": "Naomi Aro",
       "slug": "orchestrate-your-web",
       "title": "Orchestrate Your Web!"
     },
     {
       "abstract": "2018 is the year deep neural networks have arrived in the web browser. This development has many exciting prospects. One of them is that all the work AI researchers have put into musical applications of neural nets is suddenly available to use in web apps. We can now use generative musical deep learning models and build interactive web-based experiences on top of them, with the help of Web Audio and the rest of the web platform.\n\nIn this talk I will present some recent experiments I’ve made using deep neural nets and Web Audio in the browser. They’re mostly based on Google’s Magenta.js library and neural net models trained by the Magenta team. We’ll see how recurrent neural networks can be used to build melodic “autocompletion” tools and arpeggiators, as well as generative drum patterns. We’ll also see how to use variational autoencoder models to explore latent musical spaces: Interpolating between melodies, and exploring musical generative space with vector arithmetic.",
+      "authorLinks": {
+        "Tero Parviainen": "https://teropa.info/"
+      },
       "authors": "Tero Parviainen",
       "slug": "musical-deep-neural-networks-in-the-browser",
       "title": "Musical Deep Neural Networks in the Browser"
     },
     {
       "abstract": "The recording and playback of audio on a computer is always subject to latency and Web Audio applications are no different. Latency makes it difficult to write software that properly synchronizes computer audio with “real world” audio and interactions. In many situations, Web Audio apps have to deal with huge amounts of latency.\nHumans have issues with timing too: it’s often hard for us to perform actions perfectly on rhythm or in synchrony with our computer’s understanding of time.\nIn this talk, I’ll detail the techniques I used to develop a live-looping app using Web Audio, including methods for measuring and handling various types of latency and structuring code to avoid spreading latency-handling logic throughout the application.\nI’ll also discuss features that help humans more easily express timing in music, like allowing a loop to start before the “record” button was pressed and implementing button press “fudging” that starts, stops, and records loops at the time the performer meant to press the button, not the time they actually pressed the button.",
+      "authorLinks": {
+        "Walker Henderson": "https://www.resonator.app/"
+      },
       "authors": "Walker Henderson",
       "slug": "latency-and-synchronization-in-web-audio",
       "title": "Latency and Synchronization in Web Audio"
     },
     {
       "abstract": "The web knows many different timing mechanisms which all have their unique use case. Unfortunately there is no easy way to align any of those timers. They often have their own timeline, unit and level of accuracy. How would you for example synchronize a slide show on a beamer with the audio recording of the speaker played back on a different device?\n\nThe Timing Object is aiming to solve that problem. It is a W3C Draft which introduces yet another timing mechanism. But it is completely unopinionated about what it controls. It is specifically designed to control multiple timed sources in snyc.\n\nSadly the Timing Object hasn't gained much traction so far. No browser vendor has implemented it yet or is currently planning to do so. The specification process itself seems to be slowing down as well. But that doesn't have to be the end of the story. The Timing Object can mostly be implemented in user land and some parts of the spec are purposefully incomplete to allow different implementations by third party vendors. I want to show what is already possible and how everybody can start using the Timing Object right now in their applications. As many of the presentations and demos at previous WACs have shown, many people have built their own custom solution to realize distributed synchronization. I hope to raise interest in the Timing Object Draft and motivate more people to contribute their experience to the standardization process.\n\nOne of the things which is meant to be implemented by third party vendors is the TimingProvider. The TimingProvider is responsible for synchronizing Timing Objects across different devices. I want to demonstrate the usage of a TimingProvider which uses WebRTC internally to setup the communication between participating devices.\n\nThere are of course also some parts of the specification which have to be build by browser vendors. But I'm sure that if the Timing Object gets used in the wild the browser vendors will eventually start to implement it natively.",
+      "authorLinks": {
+        "Christoph Guttandin": "http://media-codings.com/"
+      },
       "authors": "Christoph Guttandin",
       "slug": "the-timing-object-a-pacemaker-for-the-web",
       "title": "The Timing Object - A Pacemaker for the Web"
