@@ -8,12 +8,28 @@ const { resolve } = require('path');
 const acceptedSubmissions = require('./src/data/accepted-submissions');
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
+  acceptedSubmissions.demos
+    .forEach((demo) => {
+      boundActionCreators.createPage({
+          component: resolve(`./src/components/demo-or-poster.js`),
+        context: { ...demo, type: 'demo' },
+        path: `/demos-and-posters/${ demo.slug }`
+      });
+    });
   acceptedSubmissions.papers
     .forEach((paper) => {
       boundActionCreators.createPage({
         component: resolve(`./src/components/presentation.js`),
         context: { ...paper, type: 'paper' },
         path: `/presentations/${ paper.slug }`
+      });
+    });
+  acceptedSubmissions.posters
+    .forEach((poster) => {
+      boundActionCreators.createPage({
+        component: resolve(`./src/components/demo-or-poster.js`),
+        context: { ...poster, type: 'poster' },
+        path: `/demos-and-posters/${ poster.slug }`
       });
     });
   acceptedSubmissions.talks

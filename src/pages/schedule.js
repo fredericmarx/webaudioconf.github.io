@@ -4,6 +4,7 @@ import Announcement from '../components/announcement';
 import Link from '../components/link';
 import InternalLink from 'gatsby-link';
 import acceptedSubmissions from '../data/accepted-submissions.json';
+import { findDemoOrPosterBySlug } from '../helpers/find-demo-or-poster-by-slug';
 import { findPresentationBySlug } from '../helpers/find-presentation-by-slug';
 
 import './schedule.css';
@@ -54,23 +55,6 @@ export default class Schedule extends React.Component {
                 <div className="schedule__entryInfo">
                   <div className="schedule__entryTitle">
                     {entry.title}
-                    {entry.presentations && (
-                      <ul className="schedule__entryPresentationsList">
-                        {entry.presentations.map((presentation) => {
-                          const authors = presentation.authors
-                            .map(({ name }) => name)
-                            .reduce((accumulator, author, index, array) => {
-                              if (index === 0) {
-                                return author;
-                              }
-
-                              return accumulator + ((index === array.length - 1) ? ' and ' + author : ', ' + author);
-                            }, '');
-
-                          return <li key={`presentation-${presentation.slug}`}><InternalLink to={`/presentations/${ presentation.slug }`}>{authors}: {presentation.title}</InternalLink></li>;
-                        })}
-                      </ul>
-                    )}
                     {entry.location && (
                       <span className="schedule__entryLocation">
                         (<Link href={entry.location.link}>{entry.location.name}</Link>)
@@ -79,6 +63,40 @@ export default class Schedule extends React.Component {
                   </div>
                   {entry.description && (
                     <div className="schedule__entryDescription">{entry.description}</div>
+                  )}
+                  {entry.demosAndPosters && (
+                    <ul className="schedule__entryDemosAndPostersList">
+                      {entry.demosAndPosters.map((demoOrPoster) => {
+                        const authors = demoOrPoster.authors
+                          .map(({ name }) => name)
+                          .reduce((accumulator, author, index, array) => {
+                            if (index === 0) {
+                              return author;
+                            }
+
+                            return accumulator + ((index === array.length - 1) ? ' and ' + author : ', ' + author);
+                          }, '');
+
+                        return <li key={`demo-or-poster-${demoOrPoster.slug}`}><InternalLink to={`/demos-and-posters/${ demoOrPoster.slug }`}>{authors}: {demoOrPoster.title}</InternalLink></li>;
+                      })}
+                    </ul>
+                  )}
+                  {entry.presentations && (
+                    <ul className="schedule__entryPresentationsList">
+                      {entry.presentations.map((presentation) => {
+                        const authors = presentation.authors
+                          .map(({ name }) => name)
+                          .reduce((accumulator, author, index, array) => {
+                            if (index === 0) {
+                              return author;
+                            }
+
+                            return accumulator + ((index === array.length - 1) ? ' and ' + author : ', ' + author);
+                          }, '');
+
+                        return <li key={`presentation-${presentation.slug}`}><InternalLink to={`/presentations/${ presentation.slug }`}>{authors}: {presentation.title}</InternalLink></li>;
+                      })}
+                    </ul>
                   )}
                 </div>
               </div>
@@ -167,7 +185,21 @@ const schedule = {
         description: `
           Check out a variety of demos, posters and installations in various locations on the campus.
           We will be serving refreshments and little snacks.
-        `
+        `,
+        demosAndPosters: [
+          'dsp-filter-playground',
+          'playsound-space-demo',
+          'web-wall-whispers',
+          'the-sound-of-bitcoin-sound-synthesis-with-cryptocurrency-trade-data',
+          'cena-concertante-alla-maniera-di-vivaldi-considering-the-testaurant-as-a-musical-interface',
+          'body-movement-sonification-using-the-web-audio-api',
+          'a-user-adaptive-automated-dj-web-app-with-object-based-audio-and-crowd-sourced-decision-trees',
+          'combining-web-audio-streaming-motion-capture-and-binaural-audio-in-a-telepresence-system',
+          'a-more-perfect-union-composition-with-audience-controlled-smartphone-speaker-array-and-evolutionary-computer-music',
+          'loop-based-graphical-live-coded-music-in-the-browser',
+          'live-coding-drum-machine',
+          '0plus1equalssom-bringing-computing-closer-to-children-through-music'
+        ].map((slug) => findDemoOrPosterBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 17, 30),
@@ -244,7 +276,20 @@ const schedule = {
         description: `
           Check out a variety of demos, posters and installations in various locations on the campus.
           We will be serving refreshments and little snacks.
-        `
+        `,
+        demosAndPosters: [
+          'guitarists-will-be-happy-guitar-tube-amp-simulators-and-fx-pedal-in-a-virtual-pedal-board-and-more',
+          'fugue-step—a-multi-playhead-sequencer',
+          'transmitting-data-over-the-air-using-the-web-audio-api',
+          'audio-pipes-connecting-web-audio-between-any-page',
+          'utilizing-nexushub-and-docker-for-distributed-performance',
+          'voiceful-voice-analysis-transformation-and-synthesis-on-the-web',
+          'soundsling-a-framework-for-using-creative-motion-data-to-pan-audio-across-a-mobile-device-speaker-array',
+          'pywebaudioplayer-bridging-the-gap-between-audio-processing-code-in-python-and-attractive-visualisations-based-on-web-technology',
+          'designing-movement-driven-audio-applications-using-a-web-based-interactive-machine-learning-toolkit',
+          'multi-web-audio-sequencer-collaborative-music-making',
+          'lost-in-space'
+        ].map((slug) => findDemoOrPosterBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 17, 0),
