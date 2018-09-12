@@ -1,5 +1,6 @@
 import { withPrefix } from 'gatsby-link';
 import React from 'react';
+import Abstract from './abstract';
 import Link from './link';
 
 export default function DemoOrPoster({ pathContext }) {
@@ -17,7 +18,7 @@ export default function DemoOrPoster({ pathContext }) {
     <div>
       <h1>{ pathContext.title }</h1>
       <h2>{ authors }</h2>
-      <p>{ pathContext.abstract }</p>
+      <Abstract abstract={pathContext.abstract}></Abstract>
     </div>
   );
 }

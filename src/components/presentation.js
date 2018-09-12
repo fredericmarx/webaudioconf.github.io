@@ -1,5 +1,6 @@
 import { withPrefix } from 'gatsby-link';
 import React from 'react';
+import Abstract from './abstract';
 import Link from './link';
 
 export default function Presentation({ pathContext }) {
@@ -17,7 +18,7 @@ export default function Presentation({ pathContext }) {
     <div>
       <h1>{ pathContext.title }</h1>
       <h2>{ authors }</h2>
-      <p>{ pathContext.abstract }</p>
+      <Abstract abstract={pathContext.abstract}></Abstract>
       { pathContext.type === 'paper' && (
         <a download={`${ pathContext.slug }.pdf`} href={withPrefix(`papers/${ pathContext.slug }.pdf`)}>Paper as PDF</a>
       )}
