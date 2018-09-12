@@ -11,7 +11,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   acceptedSubmissions.demos
     .forEach((demo) => {
       boundActionCreators.createPage({
-          component: resolve(`./src/components/demo-or-poster.js`),
+        component: resolve(`./src/components/accepted-submission.js`),
         context: { ...demo, type: 'demo' },
         path: `/demos-and-posters/${ demo.slug }`
       });
@@ -19,7 +19,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   acceptedSubmissions.installations
     .forEach((installation) => {
       boundActionCreators.createPage({
-        component: resolve(`./src/components/presentation.js`),
+        component: resolve(`./src/components/accepted-submission.js`),
         context: { ...installation, type: 'installation' },
         path: `/installations/${ installation.slug }`
       });
@@ -27,7 +27,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   acceptedSubmissions.papers
     .forEach((paper) => {
       boundActionCreators.createPage({
-        component: resolve(`./src/components/presentation.js`),
+        component: resolve(`./src/components/accepted-submission.js`),
         context: { ...paper, type: 'paper' },
         path: `/presentations/${ paper.slug }`
       });
@@ -35,7 +35,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   acceptedSubmissions.performances
     .forEach((performance) => {
       boundActionCreators.createPage({
-        component: resolve(`./src/components/performance.js`),
+        component: resolve(`./src/components/accepted-submission.js`),
         context: { ...performance, type: 'performance' },
         path: `/performances/${ performance.slug }`
       });
@@ -43,7 +43,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   acceptedSubmissions.posters
     .forEach((poster) => {
       boundActionCreators.createPage({
-        component: resolve(`./src/components/demo-or-poster.js`),
+        component: resolve(`./src/components/accepted-submission.js`),
         context: { ...poster, type: 'poster' },
         path: `/demos-and-posters/${ poster.slug }`
       });
@@ -51,7 +51,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   acceptedSubmissions.talks
     .forEach((talk) => {
       boundActionCreators.createPage({
-        component: resolve(`./src/components/presentation.js`),
+        component: resolve(`./src/components/accepted-submission.js`),
         context: { ...talk, type: 'talk' },
         path: `/presentations/${ talk.slug }`
       });
