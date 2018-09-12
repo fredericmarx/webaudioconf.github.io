@@ -1,5 +1,4 @@
 import React from "react";
-import ExternalLink from "./link";
 
 import "./sponsor.css";
 
