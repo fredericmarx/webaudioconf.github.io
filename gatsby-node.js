@@ -7,7 +7,7 @@
 const { resolve } = require('path');
 const acceptedSubmissions = require('./src/data/accepted-submissions');
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
+exports.createPages = ({ boundActionCreators }) => {
   acceptedSubmissions.demos
     .forEach((demo) => {
       boundActionCreators.createPage({
