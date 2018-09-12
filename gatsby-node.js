@@ -56,4 +56,6 @@ exports.createPages = ({ boundActionCreators }) => {
         path: `/presentations/${ talk.slug }`
       });
     });
+
+  boundActionCreators.createRedirect({ fromPath: '/program', isPermanent: true, toPath: '/schedule', redirectInBrowser: true });
 };
