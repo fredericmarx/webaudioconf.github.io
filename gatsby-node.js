@@ -16,6 +16,14 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         path: `/demos-and-posters/${ demo.slug }`
       });
     });
+  acceptedSubmissions.installations
+    .forEach((installation) => {
+      boundActionCreators.createPage({
+        component: resolve(`./src/components/presentation.js`),
+        context: { ...installation, type: 'installation' },
+        path: `/installations/${ installation.slug }`
+      });
+    });
   acceptedSubmissions.papers
     .forEach((paper) => {
       boundActionCreators.createPage({

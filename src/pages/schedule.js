@@ -5,6 +5,7 @@ import Link from '../components/link';
 import InternalLink from 'gatsby-link';
 import acceptedSubmissions from '../data/accepted-submissions.json';
 import { findDemoOrPosterBySlug } from '../helpers/find-demo-or-poster-by-slug';
+import { findInstallationBySlug } from '../helpers/find-installation-by-slug';
 import { findPresentationBySlug } from '../helpers/find-presentation-by-slug';
 
 import './schedule.css';
@@ -82,6 +83,15 @@ export default class Schedule extends React.Component {
                         const authors = joinAuthors(demoOrPoster.authors);
 
                         return <li key={`demo-or-poster-${demoOrPoster.slug}`}><InternalLink to={`/demos-and-posters/${ demoOrPoster.slug }`}>{authors}: {demoOrPoster.title}</InternalLink></li>;
+                      })}
+                    </ul>
+                  )}
+                  {entry.installations && (
+                    <ul className="schedule__entryInstallationsList">
+                      {entry.installations.map((installation) => {
+                        const authors = joinAuthors(installation.authors);
+
+                        return <li key={`installation-${installation.slug}`}><InternalLink to={`/installations/${ installation.slug }`}>{authors}: {installation.title}</InternalLink></li>;
                       })}
                     </ul>
                   )}
@@ -201,7 +211,11 @@ const schedule = {
           'loop-based-graphical-live-coded-music-in-the-browser',
           'live-coding-drum-machine',
           '0plus1equalssom-bringing-computing-closer-to-children-through-music'
-        ].map((slug) => findDemoOrPosterBySlug(acceptedSubmissions, slug))
+        ].map((slug) => findDemoOrPosterBySlug(acceptedSubmissions, slug)),
+        installations: [
+          'a-more-perfect-union',
+          '33-null-2018-and-automatic-writing-2018'
+        ].map((slug) => findInstallationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 17, 30),
@@ -292,7 +306,10 @@ const schedule = {
           'designing-movement-driven-audio-applications-using-a-web-based-interactive-machine-learning-toolkit',
           'multi-web-audio-sequencer-collaborative-music-making',
           'lost-in-space'
-        ].map((slug) => findDemoOrPosterBySlug(acceptedSubmissions, slug))
+        ].map((slug) => findDemoOrPosterBySlug(acceptedSubmissions, slug)),
+        installations: [
+          'kom-bp-o'
+        ].map((slug) => findInstallationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 17, 0),
