@@ -11,7 +11,6 @@ import './index.css';
 
 const menuItems = [
   { link: '/', text: 'Home', exact: true },
-  { link: 'https://ti.to/web-audio-conference/wac-2018', external: true, text: 'Tickets', extraClassName: 'header__emph' },
   { link: '/schedule', text: 'Schedule' },
   { link: '/keynotes', text: 'Keynotes' },
   { link: '/committee', text: 'Committee' },
