@@ -24,17 +24,6 @@
   margin-bottom: 1.5em;
 }
 
-.index__ticketButtonContainer {
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-.index__ticketButtonContainer .index__ticketButton {
-  padding: 0.5rem 2rem;
-  font-size: 16px;
-  height: auto;
-}
-
 .index__moreInfo {
   margin-bottom: 2em;
 }
