@@ -21,9 +21,10 @@ export default function ({
       <img src={withPrefix(imagePath)} alt={`photo of ${givenName} ${familyName}`} className='img-responsive img-rounded' itemProp="image" />
     </div>
   ) : null;
+  const slug = `${ givenName }-${ familyName }`.toLowerCase().replace(/\s/g, '-');
 
   return (
-    <div className='row person' itemScope itemType="http://schema.org/Person">
+    <div id={slug} className='row person' itemScope itemType="http://schema.org/Person">
       <div className='person__textContent'>
         <h2 style={{ marginBottom: role ? 0 : undefined }}>
           <span itemProp="givenName">{givenName}</span> <span itemProp="familyName">{familyName}</span>

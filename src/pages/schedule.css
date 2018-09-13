@@ -53,6 +53,15 @@
   width: 60%;
 }
 
+.schedule__entryDemosAndPostersList,
+.schedule__entryInstallationsList,
+.schedule__entryPerformancesList,
+.schedule__entryPresentationsList {
+  line-height: 1.5;
+  list-style: none;
+  margin-top: 1rem;
+}
+
 @media (max-width : 480px) {
   .schedule__entry {
     flex-direction: column;

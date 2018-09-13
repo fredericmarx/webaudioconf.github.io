@@ -3,6 +3,10 @@ const moment = require('moment-timezone');
 import Announcement from '../components/announcement';
 import Link from '../components/link';
 import InternalLink from 'gatsby-link';
+import acceptedSubmissions from '../data/accepted-submissions.json';
+import { findDemoOrPosterBySlug } from '../helpers/find-demo-or-poster-by-slug';
+import { findInstallationBySlug } from '../helpers/find-installation-by-slug';
+import { findPresentationBySlug } from '../helpers/find-presentation-by-slug';
 
 import './schedule.css';
 
@@ -40,6 +44,18 @@ export default class Schedule extends React.Component {
               ${zeroPad(entryEnd.hours())}:${zeroPad(entryEnd.minutes())}
               `;
 
+            const joinAuthors = (authors) => {
+              return authors
+                .map(({ name }) => name)
+                .reduce((accumulator, author, index, array) => {
+                  if (index === 0) {
+                    return author;
+                  }
+
+                  return accumulator + ((index === array.length - 1) ? ' and ' + author : ', ' + author);
+                }, '');
+            };
+
             return (
               <div
                 key={`${day.title}${time}`}
@@ -61,6 +77,42 @@ export default class Schedule extends React.Component {
                   {entry.description && (
                     <div className="schedule__entryDescription">{entry.description}</div>
                   )}
+                  {entry.demosAndPosters && (
+                    <ul className="schedule__entryDemosAndPostersList">
+                      {entry.demosAndPosters.map((demoOrPoster) => {
+                        const authors = joinAuthors(demoOrPoster.authors);
+
+                        return <li key={`demo-or-poster-${demoOrPoster.slug}`}><InternalLink to={`/demos-and-posters/${ demoOrPoster.slug }`}>{authors}: {demoOrPoster.title}</InternalLink></li>;
+                      })}
+                    </ul>
+                  )}
+                  {entry.installations && (
+                    <ul className="schedule__entryInstallationsList">
+                      {entry.installations.map((installation) => {
+                        const authors = joinAuthors(installation.authors);
+
+                        return <li key={`installation-${installation.slug}`}><InternalLink to={`/installations/${ installation.slug }`}>{authors}: {installation.title}</InternalLink></li>;
+                      })}
+                    </ul>
+                  )}
+                  {entry.performances && (
+                    <ul className="schedule__entryPerformancesList">
+                      {entry.performances.map((performance) => {
+                        const authors = joinAuthors(performance.authors);
+
+                        return <li key={`performance-${performance.slug}`}><InternalLink to={`/performances/${ performance.slug }`}>{authors}: {performance.title}</InternalLink></li>;
+                      })}
+                    </ul>
+                  )}
+                  {entry.presentations && (
+                    <ul className="schedule__entryPresentationsList">
+                      {entry.presentations.map((presentation) => {
+                        const authors = joinAuthors(presentation.authors);
+
+                        return <li key={`presentation-${presentation.slug}`}><InternalLink to={`/presentations/${ presentation.slug }`}>{authors}: {presentation.title}</InternalLink></li>;
+                      })}
+                    </ul>
+                  )}
                 </div>
               </div>
             )
@@ -75,9 +127,6 @@ export default class Schedule extends React.Component {
     return (
       <div className="schedule">
         <h1>Schedule</h1>
-        <Announcement>
-          We are still finalizing the schedule but you can check out all accepted submissions <InternalLink to="/program">here</InternalLink>.
-        </Announcement>
         {this.renderDay(schedule.day1)}
         {this.renderDay(schedule.day2)}
         {this.renderDay(schedule.day3)}
@@ -104,7 +153,7 @@ const schedule = {
         startTime: Date.UTC(2018, 8, 19, 7, 0),
         endTime: Date.UTC(2018, 8, 19, 8, 0),
         title: 'Keynote',
-        description: 'The opening keynote for WAC 2018'
+        description: <InternalLink to="/keynotes#ruth-john">The opening keynote for WAC 2018 by Ruth John</InternalLink>
       },
       {
         startTime: Date.UTC(2018, 8, 19, 8, 0),
@@ -114,7 +163,15 @@ const schedule = {
       {
         startTime: Date.UTC(2018, 8, 19, 8, 30),
         endTime: Date.UTC(2018, 8, 19, 10, 30),
-        title: 'Presentations'
+        title: 'Presentations: Generation & Visualization',
+        presentations: [
+          'generative-music-playful-visualizations-and-where-to-find-them',
+          'websonify-ambient-aural-display-of-real-time-data',
+          'a-javascript-library-for-flexible-visualization-of-audio-descriptors',
+          'exploring-real-time-visualisations-to-support-chord-learning-with-a-large-music-collection',
+          'musical-deep-neural-networks-in-the-browser',
+          'participatory-musical-improvisations-with-playsound-space'
+        ].map((slug) => findPresentationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 10, 30),
@@ -124,7 +181,14 @@ const schedule = {
       {
         startTime: Date.UTC(2018, 8, 19, 12, 0),
         endTime: Date.UTC(2018, 8, 19, 14, 0),
-        title: 'Presentations'
+        title: 'Presentations: Coding Sound & Music',
+        presentations: [
+          'from-artist-to-software-developer-and-back-a-celloist-s-perspective-on-web-audio',
+          'collaborative-coding-with-music-two-case-studies-with-earsketch',
+          'metaprogramming-strategies-for-audioworklets',
+          'webassembly-audioworklet-csound',
+          'ambient-html5-music-for-tiny-airports-in-256-bytes'
+        ].map((slug) => findPresentationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 14, 0),
@@ -133,7 +197,25 @@ const schedule = {
         description: `
           Check out a variety of demos, posters and installations in various locations on the campus.
           We will be serving refreshments and little snacks.
-        `
+        `,
+        demosAndPosters: [
+          'dsp-filter-playground',
+          'playsound-space-demo',
+          'web-wall-whispers',
+          'the-sound-of-bitcoin-sound-synthesis-with-cryptocurrency-trade-data',
+          'cena-concertante-alla-maniera-di-vivaldi-considering-the-testaurant-as-a-musical-interface',
+          'body-movement-sonification-using-the-web-audio-api',
+          'a-user-adaptive-automated-dj-web-app-with-object-based-audio-and-crowd-sourced-decision-trees',
+          'combining-web-audio-streaming-motion-capture-and-binaural-audio-in-a-telepresence-system',
+          'a-more-perfect-union-composition-with-audience-controlled-smartphone-speaker-array-and-evolutionary-computer-music',
+          'loop-based-graphical-live-coded-music-in-the-browser',
+          'live-coding-drum-machine',
+          '0plus1equalssom-bringing-computing-closer-to-children-through-music'
+        ].map((slug) => findDemoOrPosterBySlug(acceptedSubmissions, slug)),
+        installations: [
+          'a-more-perfect-union',
+          '33-null-2018-and-automatic-writing-2018'
+        ].map((slug) => findInstallationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 17, 30),
@@ -146,7 +228,8 @@ const schedule = {
         description: <div>
           <div>Doors open: 19:30</div>
           <div>Show starts: 20:00 (last admission)</div>
-        </div>
+        </div>,
+        performances: acceptedSubmissions.performances
       }
     ]
   },
@@ -167,7 +250,7 @@ const schedule = {
         startTime: Date.UTC(2018, 8, 19, 7, 0),
         endTime: Date.UTC(2018, 8, 19, 8, 0),
         title: 'Keynote',
-        description: 'The second keynote of WAC 2018'
+        description: <InternalLink to="/keynotes#chris-rogers">The second keynote of WAC 2018 by Chris Rogers</InternalLink>
       },
       {
         startTime: Date.UTC(2018, 8, 19, 8, 0),
@@ -177,7 +260,15 @@ const schedule = {
       {
         startTime: Date.UTC(2018, 8, 19, 8, 30),
         endTime: Date.UTC(2018, 8, 19, 10, 30),
-        title: 'Presentations'
+        title: 'Presentations: Plugins & Timing',
+        presentations: [
+          'wap-ideas-for-a-web-audio-plug-in-standard',
+          'iplug2-desktop-plug-in-framework-meets-web-audio-modules',
+          'native-web-audio-api-plugins',
+          'latency-and-synchronization-in-web-audio',
+          'orchestrate-your-web',
+          'the-timing-object-a-pacemaker-for-the-web'
+        ].map((slug) => findPresentationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 10, 30),
@@ -187,7 +278,13 @@ const schedule = {
       {
         startTime: Date.UTC(2018, 8, 19, 12, 0),
         endTime: Date.UTC(2018, 8, 19, 14, 0),
-        title: 'Presentations'
+        title: 'Presentations: Libraries & Tools',
+        presentations: [
+          'r-audio-declarative-reactive-and-flexible-web-audio-graphs-in-react',
+          'dspnode-real-time-remote-audio-rendering',
+          'dsp2js-a-cplusplus-framework-for-the-development-of-in-browser-dsps',
+          'cables—a-web-based-visual-programming-language-for-webgl-and-web-audio'
+        ].map((slug) => findPresentationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 14, 0),
@@ -196,7 +293,23 @@ const schedule = {
         description: `
           Check out a variety of demos, posters and installations in various locations on the campus.
           We will be serving refreshments and little snacks.
-        `
+        `,
+        demosAndPosters: [
+          'guitarists-will-be-happy-guitar-tube-amp-simulators-and-fx-pedal-in-a-virtual-pedal-board-and-more',
+          'fugue-step—a-multi-playhead-sequencer',
+          'transmitting-data-over-the-air-using-the-web-audio-api',
+          'audio-pipes-connecting-web-audio-between-any-page',
+          'utilizing-nexushub-and-docker-for-distributed-performance',
+          'voiceful-voice-analysis-transformation-and-synthesis-on-the-web',
+          'soundsling-a-framework-for-using-creative-motion-data-to-pan-audio-across-a-mobile-device-speaker-array',
+          'pywebaudioplayer-bridging-the-gap-between-audio-processing-code-in-python-and-attractive-visualisations-based-on-web-technology',
+          'designing-movement-driven-audio-applications-using-a-web-based-interactive-machine-learning-toolkit',
+          'multi-web-audio-sequencer-collaborative-music-making',
+          'lost-in-space'
+        ].map((slug) => findDemoOrPosterBySlug(acceptedSubmissions, slug)),
+        installations: [
+          'kom-bp-o'
+        ].map((slug) => findInstallationBySlug(acceptedSubmissions, slug))
       },
       {
         startTime: Date.UTC(2018, 8, 19, 17, 0),
@@ -230,7 +343,7 @@ const schedule = {
         startTime: Date.UTC(2018, 8, 21, 7, 0),
         endTime: Date.UTC(2018, 8, 21, 8, 30),
         title: 'Keynote',
-        description: 'Paul Adenot will talk about the latest development of the Web Audio API'
+        description: <InternalLink to="/keynotes#paul-adenot">Paul Adenot will talk about the latest development of the Web Audio API</InternalLink>
       },
       {
         startTime: Date.UTC(2018, 8, 21, 8, 30),
