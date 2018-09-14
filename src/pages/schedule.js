@@ -280,10 +280,10 @@ const schedule = {
         endTime: Date.UTC(2018, 8, 19, 14, 0),
         title: 'Presentations: Libraries & Tools',
         presentations: [
+          'cables—a-web-based-visual-programming-language-for-webgl-and-web-audio',
           'r-audio-declarative-reactive-and-flexible-web-audio-graphs-in-react',
           'dspnode-real-time-remote-audio-rendering',
-          'dsp2js-a-cplusplus-framework-for-the-development-of-in-browser-dsps',
-          'cables—a-web-based-visual-programming-language-for-webgl-and-web-audio'
+          'dsp2js-a-cplusplus-framework-for-the-development-of-in-browser-dsps'
         ].map((slug) => findPresentationBySlug(acceptedSubmissions, slug))
       },
       {
