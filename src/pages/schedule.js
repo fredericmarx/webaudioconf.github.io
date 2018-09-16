@@ -1,6 +1,5 @@
 import React from 'react';
 const moment = require('moment-timezone');
-import Announcement from '../components/announcement';
 import Link from '../components/link';
 import InternalLink from 'gatsby-link';
 import acceptedSubmissions from '../data/accepted-submissions.json';
@@ -44,18 +43,6 @@ export default class Schedule extends React.Component {
               ${zeroPad(entryEnd.hours())}:${zeroPad(entryEnd.minutes())}
               `;
 
-            const joinAuthors = (authors) => {
-              return authors
-                .map(({ name }) => name)
-                .reduce((accumulator, author, index, array) => {
-                  if (index === 0) {
-                    return author;
-                  }
-
-                  return accumulator + ((index === array.length - 1) ? ' and ' + author : ', ' + author);
-                }, '');
-            };
-
             return (
               <div
                 key={`${day.title}${time}`}
@@ -78,40 +65,16 @@ export default class Schedule extends React.Component {
                     <div className="schedule__entryDescription">{entry.description}</div>
                   )}
                   {entry.demosAndPosters && (
-                    <ul className="schedule__entryDemosAndPostersList">
-                      {entry.demosAndPosters.map((demoOrPoster) => {
-                        const authors = joinAuthors(demoOrPoster.authors);
-
-                        return <li key={`demo-or-poster-${demoOrPoster.slug}`}><InternalLink to={`/demos-and-posters/${ demoOrPoster.slug }`}>{authors}: {demoOrPoster.title}</InternalLink></li>;
-                      })}
-                    </ul>
+                    renderEntries(entry.demosAndPosters, 'demos-and-posters')
                   )}
                   {entry.installations && (
-                    <ul className="schedule__entryInstallationsList">
-                      {entry.installations.map((installation) => {
-                        const authors = joinAuthors(installation.authors);
-
-                        return <li key={`installation-${installation.slug}`}><InternalLink to={`/installations/${ installation.slug }`}>{authors}: {installation.title}</InternalLink></li>;
-                      })}
-                    </ul>
+                    renderEntries(entry.installations, 'installations')
                   )}
                   {entry.performances && (
-                    <ul className="schedule__entryPerformancesList">
-                      {entry.performances.map((performance) => {
-                        const authors = joinAuthors(performance.authors);
-
-                        return <li key={`performance-${performance.slug}`}><InternalLink to={`/performances/${ performance.slug }`}>{authors}: {performance.title}</InternalLink></li>;
-                      })}
-                    </ul>
+                    renderEntries(entry.performances, 'performances')
                   )}
                   {entry.presentations && (
-                    <ul className="schedule__entryPresentationsList">
-                      {entry.presentations.map((presentation) => {
-                        const authors = joinAuthors(presentation.authors);
-
-                        return <li key={`presentation-${presentation.slug}`}><InternalLink to={`/presentations/${ presentation.slug }`}>{authors}: {presentation.title}</InternalLink></li>;
-                      })}
-                    </ul>
+                    renderEntries(entry.presentations, 'presentations')
                   )}
                 </div>
               </div>
@@ -133,6 +96,33 @@ export default class Schedule extends React.Component {
       </div>
     );
   }
+}
+
+function joinAuthors(authors) {
+  return authors
+    .map(({ name }) => name)
+    .reduce((accumulator, author, index, array) => {
+      if (index === 0) {
+        return author;
+      }
+
+      return accumulator + ((index === array.length - 1) ? ' and ' + author : ', ' + author);
+    }, '');
+};
+
+function renderEntries(entries, baseUrl) {
+  return (
+    <ul className="schedule__entriesList">
+      {entries.map((entry) => (
+        <li key={`entry-${entry.slug}`}>
+          <InternalLink to={`/${baseUrl}/${entry.slug}`}>
+            {entry.title}
+          </InternalLink>
+          <div>{joinAuthors(entry.authors)}</div>
+        </li>
+      ))}
+    </ul>
+  )
 }
 
 const schedule = {

@@ -53,10 +53,7 @@
   width: 60%;
 }
 
-.schedule__entryDemosAndPostersList,
-.schedule__entryInstallationsList,
-.schedule__entryPerformancesList,
-.schedule__entryPresentationsList {
+.schedule__entriesList {
   line-height: 1.5;
   list-style: none;
   margin-top: 1rem;
