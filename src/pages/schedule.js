@@ -214,7 +214,7 @@ const schedule = {
         ].map((slug) => findDemoOrPosterBySlug(acceptedSubmissions, slug)),
         installations: [
           'a-more-perfect-union',
-          '33-null-2018-and-automatic-writing-2018'
+          '33-null-and-automatic-writing'
         ].map((slug) => findInstallationBySlug(acceptedSubmissions, slug))
       },
       {
