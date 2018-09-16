@@ -62,6 +62,9 @@ const infoItems = [
         <p>
           Doors open at 19:30 and the last admission is 20:00.
         </p>
+        <emph>
+          Please also make sure that your phone is fully charged as some of the performances will include particapatory elements.
+        </emph>
         <InfoImage
           src={withPrefix('/info/directions-bernauer.jpg')}
           alt="Directions from U Bernauer Str to the concert"
@@ -81,6 +84,9 @@ const infoItems = [
         </p>
         <emph>
           Please make sure to bring your name tag and dinner voucher that you get at the registration and check that your ticket includes the dinner.
+        </emph>
+        <emph>
+          Please also make sure that your phone is fully charged as the dinner will include a distributed audio performance.
         </emph>
         <InfoImage
           src={withPrefix('/info/directions-gleisdreieck.jpg')}
