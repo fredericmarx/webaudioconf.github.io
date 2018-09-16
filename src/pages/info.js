@@ -86,7 +86,7 @@ const infoItems = [
           Please make sure to bring your name tag and dinner voucher that you get at the registration and check that your ticket includes the dinner.
         </emph>
         <emph>
-          Please also make sure that your phone is fully charged as the dinner will include a distributed audio performance.
+          &nbsp;Please also make sure that your phone is fully charged as the dinner will include a distributed audio performance.
         </emph>
         <InfoImage
           src={withPrefix('/info/directions-gleisdreieck.jpg')}
