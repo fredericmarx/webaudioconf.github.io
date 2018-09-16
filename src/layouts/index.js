@@ -11,6 +11,7 @@ import './index.css';
 
 const menuItems = [
   { link: '/', text: 'Home', exact: true },
+  { link: '/info', text: "Info" },
   { link: '/schedule', text: 'Schedule' },
   { link: '/keynotes', text: 'Keynotes' },
   { link: '/committee', text: 'Committee' },
@@ -56,7 +57,7 @@ class Header extends React.Component {
           >
             {menuItems.map((item) =>
               <li className="header__navigationItem" key={item.link}>
-                { item.external && (
+                {item.external && (
                   <ExternalLink
                     href={item.link}
                     className={`header__navigationLink ${item.extraClassName ? item.extraClassName : ''}`}
@@ -65,7 +66,7 @@ class Header extends React.Component {
                   </ExternalLink>
                 )}
 
-                { !item.external && (
+                {!item.external && (
                   <Link
                     to={item.link}
                     exact={item.exact}
