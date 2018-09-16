@@ -2,6 +2,10 @@ body, html {
   color: #333333;
 }
 
+emph {
+  font-style: italic;
+}
+
 .header {
   display: flex;
   align-items: center;
