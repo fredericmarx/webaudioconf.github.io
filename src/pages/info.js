@@ -99,7 +99,7 @@ const infoItems = [
     title: "Slack",
     content:
       <p>
-        We are using the Web Audio Slack community during the conference for questions after the talks and general discussions about all things Web Audio. Make sure to join the slack here: <ExternalLink href="web-audio-slackin.herokuapp.com">web-audio-slackin.herokuapp.com</ExternalLink> and then join us in <strong>#wac2018</strong>.
+        We are using the Web Audio Slack community during the conference for questions after the talks and general discussions about all things Web Audio. Make sure to join the slack here: <ExternalLink href="https://web-audio-slackin.herokuapp.com">web-audio-slackin.herokuapp.com</ExternalLink> and then join us in <strong>#wac2018</strong>.
       </p>
   },
   {
