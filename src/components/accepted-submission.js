@@ -9,7 +9,7 @@ export default function AcceptedSubmission({ pathContext }) {
       <h1>{ pathContext.title }</h1>
       <Authors authors={pathContext.authors}></Authors>
       <Abstract abstract={pathContext.abstract}></Abstract>
-      { pathContext.type === 'paper' && (
+      { (pathContext.type === 'paper' || pathContext.type === 'poster') && (
         <a download={`${ pathContext.slug }.pdf`} href={withPrefix(`papers/${ pathContext.slug }.pdf`)}>Paper as PDF</a>
       )}
     </div>

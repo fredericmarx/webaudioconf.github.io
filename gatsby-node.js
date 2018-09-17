@@ -5,7 +5,15 @@
  */
 
 const { resolve } = require('path');
+const { existsSync } = require('fs');
 const acceptedSubmissions = require('./src/data/accepted-submissions');
+
+const submissionsWithoutPaper = [ ...acceptedSubmissions.papers, ...acceptedSubmissions.posters ]
+  .filter((submission) => !existsSync(resolve(`./static/papers/${ submission.slug }.pdf`)));
+
+if (submissionsWithoutPaper.length > 0) {
+  throw new Error(`The PDFs of the following submissions are missing: ${ submissionsWithoutPaper.map((submission) => `"${ submission.title }"`).join(', ') }.`);
+}
 
 exports.createPages = ({ boundActionCreators }) => {
   acceptedSubmissions.demos
