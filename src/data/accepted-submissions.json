@@ -1,7 +1,8 @@
 {
   "demos": [
     {
-      "abstract": "Computing and programming education in schools has grown in prevalence, necessitating simple and engaging learning tools to teach coding to primary school students. These should be enjoyable to use, provide instantaneous feedback, and be widely available across different platforms (especially targeting low-cost hardware common in schools).\n\nImmediacy of feedback is an important aspect of an educational learning environment, and in this respect, the practice of live coding is highly relevant. Live coding music is an artistic practice that has developed primarily in the last decade or so (see Magnusson’s 2014 survey [5]). Typically, it involves the production of music from algorithms coded live by a performer, often with the code being projected live for the audience to see; the code thus becomes an important part of the artistic outcome in conjunction with the music [5]. Live coding languages are variously graphical and textual (although visualisation is considered important even for textual languages - see McLean et al. [8]).\n\nSeveral examples exist of textual browser-based music systems such as Gibber [11, 12] and extramuros [9]), despite McKinney’s claim that the direct Web Audio API is itself unwieldy for live coding [7]. The Sonic Pi project has clearly demonstrated the power of textual live coding as a good route to programming education for 10-16 year olds [2], and the success of MIT Scratch [6, 10] suggests that a graphically-driven live-coding environment for education would have potential for this age group and those in earlier years.\n\nTo combine a graphical, live-coding approach to programming education with musical motivation and wide, installation-free deployment requires the use of a platform that can offer a standardised interface to the user, network access to obtain the code, and audio production facilities: all characteristics found in modern browsers and the Web Audio API. In addition, web browsers are an attractive route to delivering live coding systems to educational institutions because of their ubiquity, relatively lightweight operational requirements, and universally understood interfaces. However, such environments pose particular challenges in respect of audio timing and scheduling.\n\nThis demonstration presents ‘Chopsticks’, a web-based, graphical programming environment for live coding music using phrase-level structures. Intended to teach aspects of programming, Chopsticks enables the creation of polyphonic music in real-time. The environment addresses the technical challenges of browser-based audio programming at the phrase-level, using a multi-clock solution to the problem of call-back scheduling to minimise latency.\n\nChopsticks encapsulates a programming language and runtime for use in early programming education, introducing some fundamental concepts such as selection (conditionals) and repetition (looping). In order to make the system usable on hardware typically available in schools, e.g. iPad or Chromebook devices, it is developed for and distributed in the browser as a web app, powered by the Web Audio API. The programming language is edited and manipulated largely using graphical symbols, inspired by MIT Scratch [6, 10]. The system produces musical output and draws on popular music’s inherent parallelism, enabling multiple simultaneous code paths to create polyphonic music.\n\nThe primary challenge in developing a real-time audio application using the Web Audio API is timing control. Chopsticks addresses this using a ‘mixed-time’ and ‘mixed-clock’ approach to scheduling audio events that utilises both the audio hardware and Javascript clocks. This permits musical-time (bars, beats, phrases) events in the interface to be linked to sufficiently-accurate scheduling of audio-time (samples, timestamps, delays) events. The phrase-based musical input, where the user can manipulate the upcoming phrase until the instant before it begins, leads to a requirement for low computational latency. Combined with the Web Audio API’s ‘write-once’ scheduling functionality, this irregular input creates unique audio scheduling problems.\n\nInput is given in musical language, like ‘beats in a bar’, ‘bars in a phrase’, and ‘tempo’, which is translated for scheduling against the Web Audio API. To make these decisions, Chopsticks maintains a relationship between audio time and musical time. Phrases are recalculated once every four musical bars (eight seconds at a rate of 120 bpm). Any computation delay between the end of the outgoing phrase and beginning of the subsequent phrase must occur within a few milliseconds not to distort the rhythm.\n\nThe Chopsticks audio engine considers audio-time to be a first-class singleton entity which monotonically increases from instantiation, a philosophy inherited directly from the Web Audio API and its audio clock. The playback of audio therefore entails scheduling a sound sample for some time in the future, and playing it when that time is reached. The use of a time object in this way has previously been researched for musical or audio processing [3]. Phrase computation happens at a given audio-time, but can schedule and dispatch audio playback for a future time.\n\nThe Chopsticks interface uses a declarative wait-until approach, perhaps in the way that a musician might think: on beat 3 -> play. In Chopsticks’ phrase-oriented time structure, the user does not need to think about the sequence of events in terms of starting, stopping, and waiting; this is computed by Chopsticks’ audio processing. The user is thus free to focus explicitly on when in musical-time a sound will occur.\n\nIn addition to reasoning with two times (audio and musical), Chopsticks also leverages two clocks: the audio clock for playback scheduling, and the Javascript clock for temporal recursion. This use of temporal recursion is similar to implementations in ChucK [13] and Overtone [1]. In this browser implementation, the engine parses input and schedules audio playback for an audio-time in the future. This function also sets up a future callback against the JavaScript clock to retrigger future input parsing and audio scheduling.\n\nThe limitations of the JavaScript clock and its interaction with the audio clock via the Web Audio API make it difficult to guarantee temporal regularity. Wilson [14] illustrated the core issues facing audio scheduling in Web Audio API applications where two clocks exist, identifying that due to garbage collection and asynchronous tasks like HTTP requests, actions scheduled against the JavaScript clock can vary by tens of milliseconds.\n\nDuring runtime, Chopsticks must periodically, once per musical phrase, recalculate the user input and schedule audio events. This recalculation is scheduling using temporal recursion, where the function that performs the audio dispatch schedules a callback of the same function for some time in the future (just before the next musical phrase). There are two potential problems at this phrase recalculation point: it could start either too late or too early. There are similarly two factors, related to Wilson’s [14] observations, that can cause an audible delay or jump at the turnover point of a musical phrase: the processing time to execute any necessary code for the following phrase could be too long; or the callback of the ‘setTimeout’ dispatch could occur at the wrong time.\n\nChopsticks solves this issue by setting a long callback time (on the order of seconds or tens of seconds instead of milliseconds), giving the JavaScript runtime extra opportunity to perform background tasks that would otherwise impact audio performance. This lessens the chance that any background tasks will need to occur at the expected callback time, and increases the likelihood that the musical scheduling callback can occur when desired. Delays are not likely to cause a callback to occur early, eliminating the problem of ‘jumps’; if the callback occurs less than 30ms late, it is unlikely to be musically perceived [4].\n\nAdditionally, with the Web Audio API, interference issues can occur in sample playback when two samples overlap - specifically when an instance of an OscillatorNode or AudioBufferSourceNode begins playing while another instance of the same source, either an oscillation pitch or a decoded audio file, is still playing. This interference can manifest as either a distortion of the specific duplicated audio, distortion of all playing audio, or an overwhelming interference noise. Chopsticks avoids this audio distortion resulting from such an overlap by inspecting the future state of the audio source at the time when it would be scheduled to start; this state is calculated based on the sum of the most recent previously scheduled playback time and the duration of the sound.\n\nReferences\n\n[1] S. Aaron and A. F. Blackwell. From sonic pi to overtone: Creative musical experiences with domain-specific and functional languages. In Proceedings of the First ACM SIGPLAN Workshop on Functional Art, Music, Modeling & Design, FARM ’13, pages 35–46, New York, NY, USA, 2013. ACM.\n\n[2] P. Burnard, N. Brown, F. Florack, L. Major, Z. Lavicza, and A. Blackwell. Sonic Pi: Live & coding research report. http://www.sonicpiliveandcoding.com/s/research/_report/_dc/_02.pdf, November 2014. Accessed 30 January 2017.\n\n[3] P. Donat-Bouillud, J.-L. Giavitto, A. Cont, N. Schmidt, and Y. Orlarey. Embedding native audio-processing in a score following system with quasi sample accuracy. In ICMC 2016 - 42th International Computer Music Conference, Utrecht, Netherlands, Sept. 2016.\n\n[4] N. P. Lago and F. Kon. The quest for low latency. In Proceedings of the International Computer Music Conference, Miami, USA, pages 33–36, 2004.\n\n[5] T. Magnusson. Herding cats: Observing live coding in the wild. Computer Music Journal, 38(1):8–16, 2014.\n\n[6] D. J. Malan and H. H. Leitner. Scratch for budding computer scientists. In Proceedings of the 38th SIGCSE Technical Symposium on Computer Science Education, SIGCSE ’07, pages 223–227, New York, NY, USA, 2007. ACM.\n\n[7] C. McKinney. Quick live coding collaboration in the web browser. In Proceedings of the International Conference on New Interfaces for Musical Expression, London, UK, 2014.\n\n[8] A. McLean, D. Griffiths, N. Collins, and G. Wiggins. Visualisation of Live Code. In Proceedings of Electronic Visualisation and the Arts London 2010, pages 26–30, 2010.\n\n[9] D. Ogborn, E. Tsabary, I. Jarvis, A. Cardenas, and A. McLean. Extramuros: making music in a browser-based, language-neutral collaborative live coding environment. In Proceedings of the 1st International Conference on Live Coding, Leeds, UK, 2015.\n\n[10] M. Resnick, J. Maloney, A. Monroy-Hernández, N. Rusk, E. Eastmond, K. Brennan, A. Millner, E. Rosenbaum, J. Silver, B. Silverman, and Y. Kafai. Scratch: Programming for all. Commun. ACM, 52(11):60–67, Nov. 2009.\n\n[11] C. Roberts and J. Kuchera-Morin. Gibber: Live coding audio in the browser. In Proceedings of the International Computer Music Conference, Ljubljana, Slovenia, 2012.\n\n[12] C. Roberts, M. Wright, and J. Kuchera-Morin. Music programming in Gibber. In Proceedings of the International Computer Music Conference, Denton, TX, USA, 2015.\n\n[13] G. Wang, P. R. Cook, et al. Chuck: A concurrent, on-the-fly audio programming language. In Proceedings of International Computer Music Conference, Singapore, pages 219–226, 2003.\n\n[14] C. Wilson. A tale of two clocks - scheduling web audio with precision. http://www.html5rocks.com/en/tutorials/audio/scheduling/. Accessed 26 January 2017.",
+      "abstract":
+        "Computing and programming education in schools has grown in prevalence, necessitating simple and engaging learning tools to teach coding to primary school students. These should be enjoyable to use, provide instantaneous feedback, and be widely available across different platforms (especially targeting low-cost hardware common in schools).\n\nImmediacy of feedback is an important aspect of an educational learning environment, and in this respect, the practice of live coding is highly relevant. Live coding music is an artistic practice that has developed primarily in the last decade or so (see Magnusson’s 2014 survey [5]). Typically, it involves the production of music from algorithms coded live by a performer, often with the code being projected live for the audience to see; the code thus becomes an important part of the artistic outcome in conjunction with the music [5]. Live coding languages are variously graphical and textual (although visualisation is considered important even for textual languages - see McLean et al. [8]).\n\nSeveral examples exist of textual browser-based music systems such as Gibber [11, 12] and extramuros [9]), despite McKinney’s claim that the direct Web Audio API is itself unwieldy for live coding [7]. The Sonic Pi project has clearly demonstrated the power of textual live coding as a good route to programming education for 10-16 year olds [2], and the success of MIT Scratch [6, 10] suggests that a graphically-driven live-coding environment for education would have potential for this age group and those in earlier years.\n\nTo combine a graphical, live-coding approach to programming education with musical motivation and wide, installation-free deployment requires the use of a platform that can offer a standardised interface to the user, network access to obtain the code, and audio production facilities: all characteristics found in modern browsers and the Web Audio API. In addition, web browsers are an attractive route to delivering live coding systems to educational institutions because of their ubiquity, relatively lightweight operational requirements, and universally understood interfaces. However, such environments pose particular challenges in respect of audio timing and scheduling.\n\nThis demonstration presents ‘Chopsticks’, a web-based, graphical programming environment for live coding music using phrase-level structures. Intended to teach aspects of programming, Chopsticks enables the creation of polyphonic music in real-time. The environment addresses the technical challenges of browser-based audio programming at the phrase-level, using a multi-clock solution to the problem of call-back scheduling to minimise latency.\n\nChopsticks encapsulates a programming language and runtime for use in early programming education, introducing some fundamental concepts such as selection (conditionals) and repetition (looping). In order to make the system usable on hardware typically available in schools, e.g. iPad or Chromebook devices, it is developed for and distributed in the browser as a web app, powered by the Web Audio API. The programming language is edited and manipulated largely using graphical symbols, inspired by MIT Scratch [6, 10]. The system produces musical output and draws on popular music’s inherent parallelism, enabling multiple simultaneous code paths to create polyphonic music.\n\nThe primary challenge in developing a real-time audio application using the Web Audio API is timing control. Chopsticks addresses this using a ‘mixed-time’ and ‘mixed-clock’ approach to scheduling audio events that utilises both the audio hardware and Javascript clocks. This permits musical-time (bars, beats, phrases) events in the interface to be linked to sufficiently-accurate scheduling of audio-time (samples, timestamps, delays) events. The phrase-based musical input, where the user can manipulate the upcoming phrase until the instant before it begins, leads to a requirement for low computational latency. Combined with the Web Audio API’s ‘write-once’ scheduling functionality, this irregular input creates unique audio scheduling problems.\n\nInput is given in musical language, like ‘beats in a bar’, ‘bars in a phrase’, and ‘tempo’, which is translated for scheduling against the Web Audio API. To make these decisions, Chopsticks maintains a relationship between audio time and musical time. Phrases are recalculated once every four musical bars (eight seconds at a rate of 120 bpm). Any computation delay between the end of the outgoing phrase and beginning of the subsequent phrase must occur within a few milliseconds not to distort the rhythm.\n\nThe Chopsticks audio engine considers audio-time to be a first-class singleton entity which monotonically increases from instantiation, a philosophy inherited directly from the Web Audio API and its audio clock. The playback of audio therefore entails scheduling a sound sample for some time in the future, and playing it when that time is reached. The use of a time object in this way has previously been researched for musical or audio processing [3]. Phrase computation happens at a given audio-time, but can schedule and dispatch audio playback for a future time.\n\nThe Chopsticks interface uses a declarative wait-until approach, perhaps in the way that a musician might think: on beat 3 -> play. In Chopsticks’ phrase-oriented time structure, the user does not need to think about the sequence of events in terms of starting, stopping, and waiting; this is computed by Chopsticks’ audio processing. The user is thus free to focus explicitly on when in musical-time a sound will occur.\n\nIn addition to reasoning with two times (audio and musical), Chopsticks also leverages two clocks: the audio clock for playback scheduling, and the Javascript clock for temporal recursion. This use of temporal recursion is similar to implementations in ChucK [13] and Overtone [1]. In this browser implementation, the engine parses input and schedules audio playback for an audio-time in the future. This function also sets up a future callback against the JavaScript clock to retrigger future input parsing and audio scheduling.\n\nThe limitations of the JavaScript clock and its interaction with the audio clock via the Web Audio API make it difficult to guarantee temporal regularity. Wilson [14] illustrated the core issues facing audio scheduling in Web Audio API applications where two clocks exist, identifying that due to garbage collection and asynchronous tasks like HTTP requests, actions scheduled against the JavaScript clock can vary by tens of milliseconds.\n\nDuring runtime, Chopsticks must periodically, once per musical phrase, recalculate the user input and schedule audio events. This recalculation is scheduling using temporal recursion, where the function that performs the audio dispatch schedules a callback of the same function for some time in the future (just before the next musical phrase). There are two potential problems at this phrase recalculation point: it could start either too late or too early. There are similarly two factors, related to Wilson’s [14] observations, that can cause an audible delay or jump at the turnover point of a musical phrase: the processing time to execute any necessary code for the following phrase could be too long; or the callback of the ‘setTimeout’ dispatch could occur at the wrong time.\n\nChopsticks solves this issue by setting a long callback time (on the order of seconds or tens of seconds instead of milliseconds), giving the JavaScript runtime extra opportunity to perform background tasks that would otherwise impact audio performance. This lessens the chance that any background tasks will need to occur at the expected callback time, and increases the likelihood that the musical scheduling callback can occur when desired. Delays are not likely to cause a callback to occur early, eliminating the problem of ‘jumps’; if the callback occurs less than 30ms late, it is unlikely to be musically perceived [4].\n\nAdditionally, with the Web Audio API, interference issues can occur in sample playback when two samples overlap - specifically when an instance of an OscillatorNode or AudioBufferSourceNode begins playing while another instance of the same source, either an oscillation pitch or a decoded audio file, is still playing. This interference can manifest as either a distortion of the specific duplicated audio, distortion of all playing audio, or an overwhelming interference noise. Chopsticks avoids this audio distortion resulting from such an overlap by inspecting the future state of the audio source at the time when it would be scheduled to start; this state is calculated based on the sum of the most recent previously scheduled playback time and the duration of the sound.\n\nReferences\n\n[1] S. Aaron and A. F. Blackwell. From sonic pi to overtone: Creative musical experiences with domain-specific and functional languages. In Proceedings of the First ACM SIGPLAN Workshop on Functional Art, Music, Modeling & Design, FARM ’13, pages 35–46, New York, NY, USA, 2013. ACM.\n\n[2] P. Burnard, N. Brown, F. Florack, L. Major, Z. Lavicza, and A. Blackwell. Sonic Pi: Live & coding research report. http://www.sonicpiliveandcoding.com/s/research/_report/_dc/_02.pdf, November 2014. Accessed 30 January 2017.\n\n[3] P. Donat-Bouillud, J.-L. Giavitto, A. Cont, N. Schmidt, and Y. Orlarey. Embedding native audio-processing in a score following system with quasi sample accuracy. In ICMC 2016 - 42th International Computer Music Conference, Utrecht, Netherlands, Sept. 2016.\n\n[4] N. P. Lago and F. Kon. The quest for low latency. In Proceedings of the International Computer Music Conference, Miami, USA, pages 33–36, 2004.\n\n[5] T. Magnusson. Herding cats: Observing live coding in the wild. Computer Music Journal, 38(1):8–16, 2014.\n\n[6] D. J. Malan and H. H. Leitner. Scratch for budding computer scientists. In Proceedings of the 38th SIGCSE Technical Symposium on Computer Science Education, SIGCSE ’07, pages 223–227, New York, NY, USA, 2007. ACM.\n\n[7] C. McKinney. Quick live coding collaboration in the web browser. In Proceedings of the International Conference on New Interfaces for Musical Expression, London, UK, 2014.\n\n[8] A. McLean, D. Griffiths, N. Collins, and G. Wiggins. Visualisation of Live Code. In Proceedings of Electronic Visualisation and the Arts London 2010, pages 26–30, 2010.\n\n[9] D. Ogborn, E. Tsabary, I. Jarvis, A. Cardenas, and A. McLean. Extramuros: making music in a browser-based, language-neutral collaborative live coding environment. In Proceedings of the 1st International Conference on Live Coding, Leeds, UK, 2015.\n\n[10] M. Resnick, J. Maloney, A. Monroy-Hernández, N. Rusk, E. Eastmond, K. Brennan, A. Millner, E. Rosenbaum, J. Silver, B. Silverman, and Y. Kafai. Scratch: Programming for all. Commun. ACM, 52(11):60–67, Nov. 2009.\n\n[11] C. Roberts and J. Kuchera-Morin. Gibber: Live coding audio in the browser. In Proceedings of the International Computer Music Conference, Ljubljana, Slovenia, 2012.\n\n[12] C. Roberts, M. Wright, and J. Kuchera-Morin. Music programming in Gibber. In Proceedings of the International Computer Music Conference, Denton, TX, USA, 2015.\n\n[13] G. Wang, P. R. Cook, et al. Chuck: A concurrent, on-the-fly audio programming language. In Proceedings of International Computer Music Conference, Singapore, pages 219–226, 2003.\n\n[14] C. Wilson. A tale of two clocks - scheduling web audio with precision. http://www.html5rocks.com/en/tutorials/audio/scheduling/. Accessed 26 January 2017.",
       "authors": [
         {
           "link": "http://www.jasongwartz.com/",
@@ -15,18 +16,22 @@
       "title": "Loop-Based Graphical Live-Coded Music in the Browser"
     },
     {
-      "abstract": "Blockchain is a widely and also wildly discussed topic now-a-days. After researching about blockchain and cryptocurrencies, I soon realized, that the graphs of trading data, due to it‘s high trade volume and volatility, look very similar to wavetables/waveforms of audio signals.\n\nWhat is the talk about: fetch the trade data, map it to an area of -1 and 1 and save it to a sample buffer. Et voilà, we can literally generate sounds with Bitcoin and other crypto currencies. The talk will be a diary from idea up until the realization of it. Ranging from how to break it down and fetching the trade data, as well as how to take this data and convert it into sound and represent it in an appropriate visualization and deliver an open API to the Web Audio community to utilize those sample buffers easy.\n\nI work as an UX Designer, Prototyper, Generative Coder and university lecturor. Therefore my scope is usability of software paired with my passion for technology, music and how to bring this topics together.",
+      "abstract":
+        "Blockchain is a widely and also wildly discussed topic now-a-days. After researching about blockchain and cryptocurrencies, I soon realized, that the graphs of trading data, due to it‘s high trade volume and volatility, look very similar to wavetables/waveforms of audio signals.\n\nWhat is the talk about: fetch the trade data, map it to an area of -1 and 1 and save it to a sample buffer. Et voilà, we can literally generate sounds with Bitcoin and other crypto currencies. The talk will be a diary from idea up until the realization of it. Ranging from how to break it down and fetching the trade data, as well as how to take this data and convert it into sound and represent it in an appropriate visualization and deliver an open API to the Web Audio community to utilize those sample buffers easy.\n\nI work as an UX Designer, Prototyper, Generative Coder and university lecturor. Therefore my scope is usability of software paired with my passion for technology, music and how to bring this topics together.",
       "authors": [
         {
           "link": "https://www.martinguder.com/",
           "name": "Martin Guder"
         }
       ],
-      "slug": "the-sound-of-bitcoin-sound-synthesis-with-cryptocurrency-trade-data",
-      "title": "The sound of Bitcoin - Sound synthesis with cryptocurrency trade data"
+      "slug":
+        "the-sound-of-bitcoin-sound-synthesis-with-cryptocurrency-trade-data",
+      "title":
+        "The sound of Bitcoin - Sound synthesis with cryptocurrency trade data"
     },
     {
-      "abstract": "Fugue Step [1] is a web based music making tool, which makes use of the technique behind fugue music—a contrapuntal compositional technique.\nUsing Web Audio it can be used to create interesting melodies in a playful way while also acting as an interface to other music equipment via Web MIDI.\n\n[1] http://fugue-step.timpulver.de",
+      "abstract":
+        "Fugue Step [1] is a web based music making tool, which makes use of the technique behind fugue music—a contrapuntal compositional technique.\nUsing Web Audio it can be used to create interesting melodies in a playful way while also acting as an interface to other music equipment via Web MIDI.\n\n[1] http://fugue-step.timpulver.de",
       "authors": [
         {
           "link": "http://timpulver.de/",
@@ -37,7 +42,8 @@
       "title": "Fugue Step—a multi playhead sequencer"
     },
     {
-      "abstract": "SoundSling is a framework used to translate motion-based data into audio diffusion trajectories across a crowd of networked mobile devices. The intent is to allow a performer to distribute audio across audience mobile devices in creative ways with motion data that mimics various patterns of movement found in the natural world. As a sound is \"slung\" around the room, the software intuitively adjusts each audience member's gain as it moves past their location. SoundSling adapts dynamically to the total number of devices as users connect to or disconnect from the network. This helps to ensure that the performer's chosen diffusion patterns and motion trajectories can be scaled properly to the array of currently-participating devices. Existing as a collection of MaxMSP abstractions and easily-editable web page templates, a focus has been kept on making the tool as adaptable to a performer's current musical set-up as possible.",
+      "abstract":
+        "SoundSling is a framework used to translate motion-based data into audio diffusion trajectories across a crowd of networked mobile devices. The intent is to allow a performer to distribute audio across audience mobile devices in creative ways with motion data that mimics various patterns of movement found in the natural world. As a sound is \"slung\" around the room, the software intuitively adjusts each audience member's gain as it moves past their location. SoundSling adapts dynamically to the total number of devices as users connect to or disconnect from the network. This helps to ensure that the performer's chosen diffusion patterns and motion trajectories can be scaled properly to the array of currently-participating devices. Existing as a collection of MaxMSP abstractions and easily-editable web page templates, a focus has been kept on making the tool as adaptable to a performer's current musical set-up as possible.",
       "authors": [
         {
           "name": "Anthony T. Marasco"
@@ -46,11 +52,14 @@
           "name": "Jesse Allison"
         }
       ],
-      "slug": "soundsling-a-framework-for-using-creative-motion-data-to-pan-audio-across-a-mobile-device-speaker-array",
-      "title": "SoundSling: A Framework for Using Creative Motion Data to Pan Audio Across a Mobile Device Speaker Array"
+      "slug":
+        "soundsling-a-framework-for-using-creative-motion-data-to-pan-audio-across-a-mobile-device-speaker-array",
+      "title":
+        "SoundSling: A Framework for Using Creative Motion Data to Pan Audio Across a Mobile Device Speaker Array"
     },
     {
-      "abstract": "The world is full of examples of cyclical phenomena. Large cycles include planetary motion, seasons, tides, and ocean waves. Societies are governed by cycles: empires rise and fall, economies boom and bust, and fashion keeps repeating itself. On an individual scale, the human lifecycle, eating and sleeping, heartbeats and breathing, and locomotion are all periodic. And so are sound and light, the very nature of the world we percieve.\n\nWouldn't it be nice to understand and manipulate cyclical phenomena? A couple hundred years ago, Fourier showed that any repeating periodic signal, regardless of its complexity, can be represented as a sum of sine functions, paving the way for much deeper signal understanding. More recently, Shannon showed that you can take analog signals and represent them as numbers, which brings us to digital signal processing. For modifying digital signals, we need to look to digital filters.\n\nInspired by Dick Lyon's book (https://www.amazon.com/Human-Machine-Hearing-Extracting-Meaning/dp/1107007534), I made an explorable explanation that lets you play with digital filters visually. I'd like to present it as a demo or talk at WAC 2018.\n\nHere's a blog post about it: http://smus.com/filter-playground/\n\nHere's the demo itself: https://borismus.github.io/filter-playground/?equation=%28z%29%2F%28z-0.7585034463554621%29\n\nAnd here's a video: https://www.youtube.com/watch?v=6OIOTpQYsts",
+      "abstract":
+        "The world is full of examples of cyclical phenomena. Large cycles include planetary motion, seasons, tides, and ocean waves. Societies are governed by cycles: empires rise and fall, economies boom and bust, and fashion keeps repeating itself. On an individual scale, the human lifecycle, eating and sleeping, heartbeats and breathing, and locomotion are all periodic. And so are sound and light, the very nature of the world we percieve.\n\nWouldn't it be nice to understand and manipulate cyclical phenomena? A couple hundred years ago, Fourier showed that any repeating periodic signal, regardless of its complexity, can be represented as a sum of sine functions, paving the way for much deeper signal understanding. More recently, Shannon showed that you can take analog signals and represent them as numbers, which brings us to digital signal processing. For modifying digital signals, we need to look to digital filters.\n\nInspired by Dick Lyon's book (https://www.amazon.com/Human-Machine-Hearing-Extracting-Meaning/dp/1107007534), I made an explorable explanation that lets you play with digital filters visually. I'd like to present it as a demo or talk at WAC 2018.\n\nHere's a blog post about it: http://smus.com/filter-playground/\n\nHere's the demo itself: https://borismus.github.io/filter-playground/?equation=%28z%29%2F%28z-0.7585034463554621%29\n\nAnd here's a video: https://www.youtube.com/watch?v=6OIOTpQYsts",
       "authors": [
         {
           "link": "http://smus.com/",
@@ -61,7 +70,8 @@
       "title": "DSP Filter playground"
     },
     {
-      "abstract": "In this paper, we describe Audio Pipes; a chrome extension we developed that makes it possible to stream audio between any webpage that utilizes web audio. A script is injected on a webpage that checks whether audio is produced or consumed on the page. The user can then select which pages to connect, after which a WebRTC connection is made between those pages. We will present a use case in which the Watch That Sound webapp is connected as a consumer of various webpages that produce audio.",
+      "abstract":
+        "In this paper, we describe Audio Pipes; a chrome extension we developed that makes it possible to stream audio between any webpage that utilizes web audio. A script is injected on a webpage that checks whether audio is produced or consumed on the page. The user can then select which pages to connect, after which a WebRTC connection is made between those pages. We will present a use case in which the Watch That Sound webapp is connected as a consumer of various webpages that produce audio.",
       "authors": [
         {
           "link": "http://smus.com/",
@@ -76,7 +86,8 @@
       "title": "Audio Pipes: Connecting Web Audio Between Any Page"
     },
     {
-      "abstract": "Playsound.space is a web-based tool to search for and play Creative Commons licensed-sounds which can be applied to free improvisation, experimental music production and soundscape composition. It provides a fast access to about 400k non-musical and musical sounds provided by Freesound, and allows users to play/loop single or multiple sounds retrieved through text based search. Sound discovery is facilitated by use of semantic searches and sound visual representations (spectrograms). For this demo we will present the current functionalities together with a work-in-progress chat system, allowing users to exchange messages while playing.",
+      "abstract":
+        "Playsound.space is a web-based tool to search for and play Creative Commons licensed-sounds which can be applied to free improvisation, experimental music production and soundscape composition. It provides a fast access to about 400k non-musical and musical sounds provided by Freesound, and allows users to play/loop single or multiple sounds retrieved through text based search. Sound discovery is facilitated by use of semantic searches and sound visual representations (spectrograms). For this demo we will present the current functionalities together with a work-in-progress chat system, allowing users to exchange messages while playing.",
       "authors": [
         {
           "name": "Ariane Stolfi"
@@ -96,7 +107,8 @@
       "title": "Playsound.space Demo"
     },
     {
-      "abstract": "Live Coding Drum Machine (lcdm) is a live coding environment optimized for drum sequencing, built using the Web Audio API and Electron.\n\nlcdm is a successor to WebX0X (Web Audio Conference 2016, Atlanta) and WebX0X Version 2 (Web Audio Conference 2017, London), both of which were drum sequencer/synthesizers that were designed with traditional drum machine user interfaces. It was conceived in response to several issues raised during the development of WebX0X Version 2:\n\n1. User interface features represented the majority of the development effort.\n2. User interface design and development was a significant barrier to the introduction of new features.\n3. Rendering times associated with large DOM hierarchies created non-trivial performance problems that were difficult and time consuming to resolve.\n\nThe recent rise of live coding as a means of performing and recording electronic music suggested that these issues could be resolved by replacing traditional user interfaces with code.\n\nlcdm uses a custom syntax to describe rhythmic patterns, and provides an integrated sampler and drum sample library.",
+      "abstract":
+        "Live Coding Drum Machine (lcdm) is a live coding environment optimized for drum sequencing, built using the Web Audio API and Electron.\n\nlcdm is a successor to WebX0X (Web Audio Conference 2016, Atlanta) and WebX0X Version 2 (Web Audio Conference 2017, London), both of which were drum sequencer/synthesizers that were designed with traditional drum machine user interfaces. It was conceived in response to several issues raised during the development of WebX0X Version 2:\n\n1. User interface features represented the majority of the development effort.\n2. User interface design and development was a significant barrier to the introduction of new features.\n3. Rendering times associated with large DOM hierarchies created non-trivial performance problems that were difficult and time consuming to resolve.\n\nThe recent rise of live coding as a means of performing and recording electronic music suggested that these issues could be resolved by replacing traditional user interfaces with code.\n\nlcdm uses a custom syntax to describe rhythmic patterns, and provides an integrated sampler and drum sample library.",
       "authors": [
         {
           "link": "https://irritantcreative.ca/",
@@ -107,7 +119,8 @@
       "title": "Live Coding Drum Machine"
     },
     {
-      "abstract": "We've been developing a virtual guitar tube amp designer able to emulate each stage of a tube guitar amp, allowing multiple configurations inspired by existing hardware amps. We also created or adapted a large set of FX pedals. Finally, we wrote a pedal board host application that mimic a real guitarist pedal board, that can assemble in a graph the amp simulators, the FX pedals but can also accept virtual instruments.\nThese applications use a new open plugin standard we proposed with other researchers: the pedal board is a host and the amps, as well as FX pedals and instruments are plugins. These plugins are identified by their unique URI and located on local or remote repositories. The host application, the pedal board, scans these repositories and gets the plugin metadata. Through the pedal board GUI, it is now possible to create plugin instances by drag and dropping thumbnails to the main pedal board area. When this occurs, the Plugin's code and assets are then loaded dynamically and a plugin instance is returned as a JavaScript objet. Then, this object can be used to get the \"audio processor part of the plugin\" and connect it to the WebAudio graph, or to get its the plugin GUI as a unique HTML container element.\n\nPlugins are from multiple origins: (1) written in pure JavaScript / WebAudio -we made a dozen of such plugins, including the guitar tube amp simulators, and ported some others created by other developers (such as a general midi synth, etc), (2) WebAudioModules (VST/JUCE native plugins etc. ported to WebAssembly/AudioWorklet) or (3) written in FAUST, a popular DSL for writing DSP code, here again in WebAssembly/AudioWorklet. Other sources / importers are planned (MAX DSP/Pure Data etc.). Most plugins are controllable using midi controllers.\n\nWe did blind tests with professional guitarists. We made them play on our WebAudio simulations and also on native simulations of similar amplifiers. The results show that we are up to native simulations in terms of sound quality, timbre, dynamics, and more generally of playing comfort. For example, our simulations have been much better evaluated than those of GarageBand. The latency on Mac OS is comparable to the best native apps, and not felt by the testers.\n\nHere are some screenshots: guitar tube amp designer : https://imgur.com/a/HsT7G58, pedalboard webapp: https://imgur.com/a/5iZzvI7, online plugin tester: https://imgur.com/a/N08H7YT, online repository tester: https://imgur.com/a/eqr2o1d\n\nVideos: guitar amp simulators: See it https://youtu.be/-NdMdJQx2Bw or https://www.youtube.com/watch?v=PiOD7n3g-Qs, pedalboard: https://www.youtube.com/watch?v=elbjh6tBK6U&t=71s",
+      "abstract":
+        "We've been developing a virtual guitar tube amp designer able to emulate each stage of a tube guitar amp, allowing multiple configurations inspired by existing hardware amps. We also created or adapted a large set of FX pedals. Finally, we wrote a pedal board host application that mimic a real guitarist pedal board, that can assemble in a graph the amp simulators, the FX pedals but can also accept virtual instruments.\nThese applications use a new open plugin standard we proposed with other researchers: the pedal board is a host and the amps, as well as FX pedals and instruments are plugins. These plugins are identified by their unique URI and located on local or remote repositories. The host application, the pedal board, scans these repositories and gets the plugin metadata. Through the pedal board GUI, it is now possible to create plugin instances by drag and dropping thumbnails to the main pedal board area. When this occurs, the Plugin's code and assets are then loaded dynamically and a plugin instance is returned as a JavaScript objet. Then, this object can be used to get the \"audio processor part of the plugin\" and connect it to the WebAudio graph, or to get its the plugin GUI as a unique HTML container element.\n\nPlugins are from multiple origins: (1) written in pure JavaScript / WebAudio -we made a dozen of such plugins, including the guitar tube amp simulators, and ported some others created by other developers (such as a general midi synth, etc), (2) WebAudioModules (VST/JUCE native plugins etc. ported to WebAssembly/AudioWorklet) or (3) written in FAUST, a popular DSL for writing DSP code, here again in WebAssembly/AudioWorklet. Other sources / importers are planned (MAX DSP/Pure Data etc.). Most plugins are controllable using midi controllers.\n\nWe did blind tests with professional guitarists. We made them play on our WebAudio simulations and also on native simulations of similar amplifiers. The results show that we are up to native simulations in terms of sound quality, timbre, dynamics, and more generally of playing comfort. For example, our simulations have been much better evaluated than those of GarageBand. The latency on Mac OS is comparable to the best native apps, and not felt by the testers.\n\nHere are some screenshots: guitar tube amp designer : https://imgur.com/a/HsT7G58, pedalboard webapp: https://imgur.com/a/5iZzvI7, online plugin tester: https://imgur.com/a/N08H7YT, online repository tester: https://imgur.com/a/eqr2o1d\n\nVideos: guitar amp simulators: See it https://youtu.be/-NdMdJQx2Bw or https://www.youtube.com/watch?v=PiOD7n3g-Qs, pedalboard: https://www.youtube.com/watch?v=elbjh6tBK6U&t=71s",
       "authors": [
         {
           "name": "Michel Buffa"
@@ -116,11 +129,14 @@
           "name": "Jerome Lebrun"
         }
       ],
-      "slug": "guitarists-will-be-happy-guitar-tube-amp-simulators-and-fx-pedal-in-a-virtual-pedal-board-and-more",
-      "title": "Guitarists will be happy: guitar tube amp simulators and FX pedal in a virtual pedal board, and more!"
+      "slug":
+        "guitarists-will-be-happy-guitar-tube-amp-simulators-and-fx-pedal-in-a-virtual-pedal-board-and-more",
+      "title":
+        "Guitarists will be happy: guitar tube amp simulators and FX pedal in a virtual pedal board, and more!"
     },
     {
-      "abstract": "Voiceful is a toolkit of advanced voice and audio processing tools for creative applications on the web. Integration can be achieved through a RESTful API for a SaaS access, and a SDK with native libraries for integration in web browsers, standalone mobile, desktop or server applications.",
+      "abstract":
+        "Voiceful is a toolkit of advanced voice and audio processing tools for creative applications on the web. Integration can be achieved through a RESTful API for a SaaS access, and a SDK with native libraries for integration in web browsers, standalone mobile, desktop or server applications.",
       "authors": [
         {
           "link": "https://voctrolabs.com/",
@@ -140,10 +156,12 @@
         }
       ],
       "slug": "voiceful-voice-analysis-transformation-and-synthesis-on-the-web",
-      "title": "VOICEFUL: Voice Analysis, Transformation and Synthesis on the Web"
+      "title":
+        "VOICEFUL: Voice Analysis, Transformation and Synthesis on the Web"
     },
     {
-      "abstract": "To bring in the largest number of people, immediately, on the fly, at any location, give them control, interconnection, agency, and a different facet for engaging an art work – the only viable solution is via the internet through server and web browser.\n\nThe NexusHUB path to audience participation, sonic art, and network performance via web browser. We will create a basic, yet complete, setup for interaction, visualization, and sonification across cell phones, server, and computer with Max. We will also use Docker to create a dead simple way of deploying and maintaining the server.",
+      "abstract":
+        "To bring in the largest number of people, immediately, on the fly, at any location, give them control, interconnection, agency, and a different facet for engaging an art work – the only viable solution is via the internet through server and web browser.\n\nThe NexusHUB path to audience participation, sonic art, and network performance via web browser. We will create a basic, yet complete, setup for interaction, visualization, and sonification across cell phones, server, and computer with Max. We will also use Docker to create a dead simple way of deploying and maintaining the server.",
       "authors": [
         {
           "link": "http://emdm.lsu.edu/",
@@ -158,7 +176,8 @@
       "title": "Utilizing NexusHUB and Docker for Distributed Performance"
     },
     {
-      "abstract": "This project implements a browser-based solution for transferring digital information via audio signals. It allows web applications to send and receive data using the system’s audio peripherals, enabling the browser to communicate with other devices within hearing range.\n\nThe Web Audio/Media Stream API is used to capture incoming audio data from the microphone and to send output data to the speakers. The audio data is processed by high-performance C code, compiled into a WebAssembly binary.\n\nThis paper describes the context of the work, summarises its system architecture and performance metrics, and suggests a few ways that it can be used in practical scenarios.",
+      "abstract":
+        "This project implements a browser-based solution for transferring digital information via audio signals. It allows web applications to send and receive data using the system’s audio peripherals, enabling the browser to communicate with other devices within hearing range.\n\nThe Web Audio/Media Stream API is used to capture incoming audio data from the microphone and to send output data to the speakers. The audio data is processed by high-performance C code, compiled into a WebAssembly binary.\n\nThis paper describes the context of the work, summarises its system architecture and performance metrics, and suggests a few ways that it can be used in practical scenarios.",
       "authors": [
         {
           "link": "http://chirp.io/",
@@ -179,7 +198,8 @@
   ],
   "installations": [
     {
-      "abstract": "Kom[bp]o is an interactive sound installation in which up to twelve participants create a musical environment in constant change. The installation consists of twelve mobile devices with headphones and a large projection screen with speakers. Participants can use a mobile device to select sounds and create musical loop sequences through a simple graphical editor. Initially, the participants hear the loop on headphones only and can arbitrarily change and renew it before publishing it in the room with a throwing gesture. The overall mix of published loop sequences is heard through the speakers in the room and displayed visually on the wall projection. Shortly after being added to the overall mix, each loop begins to dissolve slowly – acoustically and visually – until vanishing to make room for new contributions. The loops in the individual headphones and on the loudspeakers are synchronized so that the participants can anticipate the resulting mix before publishing their contribution. The installation is a collaborative game that invites you to join in making music together and at the same time gives the participants their own space for individual experimentation.",
+      "abstract":
+        "Kom[bp]o is an interactive sound installation in which up to twelve participants create a musical environment in constant change. The installation consists of twelve mobile devices with headphones and a large projection screen with speakers. Participants can use a mobile device to select sounds and create musical loop sequences through a simple graphical editor. Initially, the participants hear the loop on headphones only and can arbitrarily change and renew it before publishing it in the room with a throwing gesture. The overall mix of published loop sequences is heard through the speakers in the room and displayed visually on the wall projection. Shortly after being added to the overall mix, each loop begins to dissolve slowly – acoustically and visually – until vanishing to make room for new contributions. The loops in the individual headphones and on the loudspeakers are synchronized so that the participants can anticipate the resulting mix before publishing their contribution. The installation is a collaborative game that invites you to join in making music together and at the same time gives the participants their own space for individual experimentation.",
       "authors": [
         {
           "link": "http://www.neeerds.com/",
@@ -208,7 +228,8 @@
       "title": "Kom[bp]o"
     },
     {
-      "abstract": "A more perfect union incorporates an audience-controlled smartphone speaker array with evolutionary computer music. A genetic algorithm drives the work and the performance practice that the participant follows. Thus far, the work has been performed four times; twice in traditional performance halls and twice in art gallery settings.",
+      "abstract":
+        "A more perfect union incorporates an audience-controlled smartphone speaker array with evolutionary computer music. A genetic algorithm drives the work and the performance practice that the participant follows. Thus far, the work has been performed four times; twice in traditional performance halls and twice in art gallery settings.",
       "authors": [
         {
           "link": "http://www.tatecarson.com/",
@@ -219,7 +240,8 @@
       "title": "A more perfect union"
     },
     {
-      "abstract": "33 Null and Automatic Writing are two Javascript-based interactive music pieces by Max Horwich. Developed with a combination of Tone.js and p5.js at New York University’s Interactive Telecommunications Program (where Horwich is currently pursuing his Masters degree), these two pieces reconsider the computer keyboard as a musical interface with the potential to radically democratize musical expression.",
+      "abstract":
+        "33 Null and Automatic Writing are two Javascript-based interactive music pieces by Max Horwich. Developed with a combination of Tone.js and p5.js at New York University’s Interactive Telecommunications Program (where Horwich is currently pursuing his Masters degree), these two pieces reconsider the computer keyboard as a musical interface with the potential to radically democratize musical expression.",
       "authors": [
         {
           "link": "http://maxhorwich.com/",
@@ -232,7 +254,8 @@
   ],
   "papers": [
     {
-      "abstract": "The author has been experimenting with various implementations of real-time cloud based audio rendering, keeping the client side application as an extremely light weight remote controller, receiving the fully rendered audio stream from a cloud based audio rendering engine.\n\nThe general benefits, drawbacks and conclusions will be discussed with a plausible and functional example application given for the reader’s own performance evaluation.",
+      "abstract":
+        "The author has been experimenting with various implementations of real-time cloud based audio rendering, keeping the client side application as an extremely light weight remote controller, receiving the fully rendered audio stream from a cloud based audio rendering engine.\n\nThe general benefits, drawbacks and conclusions will be discussed with a plausible and functional example application given for the reader’s own performance evaluation.",
       "authors": [
         {
           "link": "http://www.blackblocs.uk/endeavours",
@@ -243,7 +266,8 @@
       "title": "dspNode: Real-time remote audio rendering"
     },
     {
-      "abstract": "This paper introduces iPlug 2: a desktop C++ audio plug-in framework that has been extended and reworked in order to support Web Audio Modules, a new format for browser-based audio effects and instruments, using WebAssembly. iPlug 2 provides a complete solution and workflow for the development of cross-platform audio plug-ins and apps. It allows the same concise C++ code to be used to create desktop and web-based versions of a software musical instrument or audio effect, including audio signal processing and user interface elements. This new version of the framework has been updated to increase its flexibility so that alternative drawing APIs, plug-in APIs and platform APIs can be supported easily. We have added support for the distributed models used in recent audio plug-in formats, as well as new graphics capabilities. The codebase has also been substantially modernised. In this paper, we introduce the problems that iPlug 2 aims to address and discuss trends in modern plug-in APIs and existing solutions. We then present iPlug 2 and the work required to refactor a desktop plug-in framework to support the web platform. Several approaches to implementing graphical user interfaces are discussed as well as creating remote editors using web technologies. A real-world example of a WAM compiled with iPlug 2 is hosted at https://virtualcz.io, a new web-based version of a commercially available synthesizer plug-in.",
+      "abstract":
+        "This paper introduces iPlug 2: a desktop C++ audio plug-in framework that has been extended and reworked in order to support Web Audio Modules, a new format for browser-based audio effects and instruments, using WebAssembly. iPlug 2 provides a complete solution and workflow for the development of cross-platform audio plug-ins and apps. It allows the same concise C++ code to be used to create desktop and web-based versions of a software musical instrument or audio effect, including audio signal processing and user interface elements. This new version of the framework has been updated to increase its flexibility so that alternative drawing APIs, plug-in APIs and platform APIs can be supported easily. We have added support for the distributed models used in recent audio plug-in formats, as well as new graphics capabilities. The codebase has also been substantially modernised. In this paper, we introduce the problems that iPlug 2 aims to address and discuss trends in modern plug-in APIs and existing solutions. We then present iPlug 2 and the work required to refactor a desktop plug-in framework to support the web platform. Several approaches to implementing graphical user interfaces are discussed as well as creating remote editors using web technologies. A real-world example of a WAM compiled with iPlug 2 is hosted at https://virtualcz.io, a new web-based version of a commercially available synthesizer plug-in.",
       "authors": [
         {
           "link": "http://www.olilarkin.co.uk/",
@@ -260,7 +284,8 @@
       "title": "iPlug2: Desktop Plug-in Framework Meets Web Audio Modules"
     },
     {
-      "abstract": "Several native audio plug-in formats are popular today including Steinberg’s VST, Apple’s Audio Units, Avid’s AAX and the Linux audio community’s LV2. Although the APIs are different, all exist to achieve more or less the same thing - represent an instrument or audio effect and allow it to be loaded by a host application. In the Web Audio API such a high-level audio plug-in entity does not exist. With the emergence of web-based audio software such as digital audio workstations (DAWs), it is desirable to have a standard in order to make Web Audio instruments and effects interoperable. Since there are many ways of developing for Web Audio, such a standard should be flexible enough to support different approaches, including using a variety of programming languages. New functionality that is enabled by the web platform should be available to plug-ins written in different ways. To this end, several groups of developers came together to make their work compatible, and this paper presents the work achieved so far. This includes the development of a draft API specification, a small preliminary SDK, online plug-in validators and a set of examples written in JavaScript. These simple, proof of concept examples show how to discover plug-ins from repositories, how to instantiate a plug-in and how to connect plug-ins together. A more ambitious host has also been developed to validate the WAP standard: a virtual guitar “pedal board” that discovers plug-ins from multiple remote repositories, and allows the musician to chain pedals and control them via MIDI.",
+      "abstract":
+        "Several native audio plug-in formats are popular today including Steinberg’s VST, Apple’s Audio Units, Avid’s AAX and the Linux audio community’s LV2. Although the APIs are different, all exist to achieve more or less the same thing - represent an instrument or audio effect and allow it to be loaded by a host application. In the Web Audio API such a high-level audio plug-in entity does not exist. With the emergence of web-based audio software such as digital audio workstations (DAWs), it is desirable to have a standard in order to make Web Audio instruments and effects interoperable. Since there are many ways of developing for Web Audio, such a standard should be flexible enough to support different approaches, including using a variety of programming languages. New functionality that is enabled by the web platform should be available to plug-ins written in different ways. To this end, several groups of developers came together to make their work compatible, and this paper presents the work achieved so far. This includes the development of a draft API specification, a small preliminary SDK, online plug-in validators and a set of examples written in JavaScript. These simple, proof of concept examples show how to discover plug-ins from repositories, how to instantiate a plug-in and how to connect plug-ins together. A more ambitious host has also been developed to validate the WAP standard: a virtual guitar “pedal board” that discovers plug-ins from multiple remote repositories, and allows the musician to chain pedals and control them via MIDI.",
       "authors": [
         {
           "name": "Michel Buffa"
@@ -285,7 +310,8 @@
       "title": "WAP: Ideas for a Web Audio Plug-in Standard"
     },
     {
-      "abstract": "This paper describes WebAssembly AudioWorklet (WAAW) Csound, one of the implementations of Web Audio Csound. We begin by introducing the background to this current implementation, stemming from the two first ports of Csound to the web platform using Native Clients and asm.js. The technology of WebAssembly is then introduced and dis- cussed in its more relevant aspects. The AudioWorklet interface of Web Audio API is explored, together with its use in WAAW Csound. We complement this discussion by considering the overarching question of support for multiple plat- forms, which implement different versions of Web Audio. Some initial examples of the system are presented to illustrate various potential applications. Finally, we complement the paper by discussing current issues that are fundamental for this project and others that rely on the development of a robust support for WASM-based audio computing.",
+      "abstract":
+        "This paper describes WebAssembly AudioWorklet (WAAW) Csound, one of the implementations of Web Audio Csound. We begin by introducing the background to this current implementation, stemming from the two first ports of Csound to the web platform using Native Clients and asm.js. The technology of WebAssembly is then introduced and dis- cussed in its more relevant aspects. The AudioWorklet interface of Web Audio API is explored, together with its use in WAAW Csound. We complement this discussion by considering the overarching question of support for multiple plat- forms, which implement different versions of Web Audio. Some initial examples of the system are presented to illustrate various potential applications. Finally, we complement the paper by discussing current issues that are fundamental for this project and others that rely on the development of a robust support for WASM-based audio computing.",
       "authors": [
         {
           "link": "http://www.kunstmusik.com/",
@@ -302,18 +328,22 @@
       "title": "WebAssembly AudioWorklet Csound"
     },
     {
-      "abstract": "Web Audio is by design an object-oriented, imperative API offering low-level control over audio graphs. There have been a number of efforts to provide a more intuitive wrapper API. Designing such wrapper libraries poses challenges in addressing graph configuration, dynamic mutation and data flow. Syntax of creating directed graphs in imperative code is not representative of the complex graph shapes, making the code difficult to understand without external visualisation tools.\n\nIn this paper we describe r-audio, a Web Audio wrapper library which attempts to solve the issues of imperative graph representations by leveraging the component system of React. We compare approaches of existing wrapper libraries and discuss solutions to specific issues of declarative and reactive representations of Web Audio graphs. We evaluate r-audio in terms of the ability to create arbitrary directed graphs and mutate them in real time.",
+      "abstract":
+        "Web Audio is by design an object-oriented, imperative API offering low-level control over audio graphs. There have been a number of efforts to provide a more intuitive wrapper API. Designing such wrapper libraries poses challenges in addressing graph configuration, dynamic mutation and data flow. Syntax of creating directed graphs in imperative code is not representative of the complex graph shapes, making the code difficult to understand without external visualisation tools.\n\nIn this paper we describe r-audio, a Web Audio wrapper library which attempts to solve the issues of imperative graph representations by leveraging the component system of React. We compare approaches of existing wrapper libraries and discuss solutions to specific issues of declarative and reactive representations of Web Audio graphs. We evaluate r-audio in terms of the ability to create arbitrary directed graphs and mutate them in real time.",
       "authors": [
         {
           "link": "http://fiala.space/",
           "name": "Jakub Fiala"
         }
       ],
-      "slug": "r-audio-declarative-reactive-and-flexible-web-audio-graphs-in-react",
-      "title": "r-audio: Declarative, reactive and flexible Web Audio graphs in React"
+      "slug":
+        "r-audio-declarative-reactive-and-flexible-web-audio-graphs-in-react",
+      "title":
+        "r-audio: Declarative, reactive and flexible Web Audio graphs in React"
     },
     {
-      "abstract": "Playsound.space is a web-based tool to search for and play Creative Commons licensed-sounds which can be applied to free improvisation, experimental music production and soundscape composition. It provides fast access to about 400k non-musical and musical sounds provided by Freesound and allows users to play/loop single or multiple sounds retrieved through text based search. Sound discovery is facilitated by use of semantic searches and sound visual representations (spectrograms). After a first version released and user tests conducted, we developed more features for audio processing and to enhance participation trough a chat system that allows users to share sound sessions and exchange messages while playing.",
+      "abstract":
+        "Playsound.space is a web-based tool to search for and play Creative Commons licensed-sounds which can be applied to free improvisation, experimental music production and soundscape composition. It provides fast access to about 400k non-musical and musical sounds provided by Freesound and allows users to play/loop single or multiple sounds retrieved through text based search. Sound discovery is facilitated by use of semantic searches and sound visual representations (spectrograms). After a first version released and user tests conducted, we developed more features for audio processing and to enhance participation trough a chat system that allows users to share sound sessions and exchange messages while playing.",
       "authors": [
         {
           "name": "Ariane Stolfi"
@@ -333,7 +363,8 @@
       "title": "Participatory musical improvisations with Playsound.space"
     },
     {
-      "abstract": "This paper describes the motivation, design, and implementation of new features in EarSketch that enable the collaborative creation of algorithmic music. EarSketch is a web-based Digital Audio Workstation (DAW), designed primarily for educational contexts, in which users author Python or JavaScript code to programmatically create music within a multi-track paradigm. In this paper, we describe these new collaborative features in EarSketch and discuss their potential for use in both educational and music performance contexts.",
+      "abstract":
+        "This paper describes the motivation, design, and implementation of new features in EarSketch that enable the collaborative creation of algorithmic music. EarSketch is a web-based Digital Audio Workstation (DAW), designed primarily for educational contexts, in which users author Python or JavaScript code to programmatically create music within a multi-track paradigm. In this paper, we describe these new collaborative features in EarSketch and discuss their potential for use in both educational and music performance contexts.",
       "authors": [
         {
           "name": "Avneesh Sarwate"
@@ -346,10 +377,12 @@
         }
       ],
       "slug": "collaborative-coding-with-music-two-case-studies-with-earsketch",
-      "title": "Collaborative Coding with Music: Two Case Studies with EarSketch"
+      "title":
+        "Collaborative Coding with Music: Two Case Studies with EarSketch"
     },
     {
-      "abstract": "The introduction of AudioWorklets to the Web Audio API greatly expands the capabilities of audio in the browser. However, managing state between the various threads AudioWorklets occupy entails a fair amount of complexity, particularly when designing dynamic music programming environments where exact digital signal processing requirements cannot be known ahead of time. Such environments are commonly used for live coding performance, interactive composition, and coding playgrounds for musical experimentation.\n\nOur research explores metaprogramming strategies to create AudioWorklet implementations for two JavaScript libraries, Genish.js and Gibberish.js. These strategies help hide the complexities of inter-thread communication from end-users of the libraries and enable of variety of music and audio programming techniques that would otherwise be difficult to achieve.",
+      "abstract":
+        "The introduction of AudioWorklets to the Web Audio API greatly expands the capabilities of audio in the browser. However, managing state between the various threads AudioWorklets occupy entails a fair amount of complexity, particularly when designing dynamic music programming environments where exact digital signal processing requirements cannot be known ahead of time. Such environments are commonly used for live coding performance, interactive composition, and coding playgrounds for musical experimentation.\n\nOur research explores metaprogramming strategies to create AudioWorklet implementations for two JavaScript libraries, Genish.js and Gibberish.js. These strategies help hide the complexities of inter-thread communication from end-users of the libraries and enable of variety of music and audio programming techniques that would otherwise be difficult to achieve.",
       "authors": [
         {
           "link": "http://www.charlie-roberts.com/",
@@ -360,17 +393,20 @@
       "title": "Metaprogramming Strategies for AudioWorklets"
     },
     {
-      "abstract": "We present DSP2JS, a new framework for the development of audio signal processors for web platforms using Emscripten and the WebAudio API. In particular, the goal is to abstract common functionality in a configurable layer that manages the communication between a JavaScript application and DSP code written in C or C++. The framework includes functionality for the creation, connection and management of processing units, runtime profiling, buffer management, buffer conversion and a configurable build system.\n\nThe proposed three-step development of a signal processor with DSP2JS allows for external libraries to be included, making it possible to port existing code to the framework. The generated artifacts can then be used in a web page and invoked via an interface similar to native WebAudioNodes. The optional omission of WebAudio bindings via a bare-build mode potentially opens up the core framework to further DSP applications, even outside of the audio domain.\n\nWe examine the multilayered architecture of the core framework and the build system, also discussing design and implemetation decisions.",
+      "abstract":
+        "We present DSP2JS, a new framework for the development of audio signal processors for web platforms using Emscripten and the WebAudio API. In particular, the goal is to abstract common functionality in a configurable layer that manages the communication between a JavaScript application and DSP code written in C or C++. The framework includes functionality for the creation, connection and management of processing units, runtime profiling, buffer management, buffer conversion and a configurable build system.\n\nThe proposed three-step development of a signal processor with DSP2JS allows for external libraries to be included, making it possible to port existing code to the framework. The generated artifacts can then be used in a web page and invoked via an interface similar to native WebAudioNodes. The optional omission of WebAudio bindings via a bare-build mode potentially opens up the core framework to further DSP applications, even outside of the audio domain.\n\nWe examine the multilayered architecture of the core framework and the build system, also discussing design and implemetation decisions.",
       "authors": [
         {
           "name": "Oliver Major"
         }
       ],
-      "slug": "dsp2js-a-cplusplus-framework-for-the-development-of-in-browser-dsps",
+      "slug":
+        "dsp2js-a-cplusplus-framework-for-the-development-of-in-browser-dsps",
       "title": "DSP2JS - A C++ framework for the development of in-browser DSPs"
     },
     {
-      "abstract": "Recent research in audio analysis has provided a large number of ways to describe audio recordings, which can be used for enhancing their visual representation in web applications. In this paper we present fad.js, a Javascript library for flexible visualization of audio descriptors. We describe the proposed design and demonstrate its potential for web audio applications through several visualization examples.",
+      "abstract":
+        "Recent research in audio analysis has provided a large number of ways to describe audio recordings, which can be used for enhancing their visual representation in web applications. In this paper we present fad.js, a Javascript library for flexible visualization of audio descriptors. We describe the proposed design and demonstrate its potential for web audio applications through several visualization examples.",
       "authors": [
         {
           "name": "Gerard Roma"
@@ -385,11 +421,14 @@
           "name": "Pierre Alexandre Tremblay"
         }
       ],
-      "slug": "a-javascript-library-for-flexible-visualization-of-audio-descriptors",
-      "title": "A Javascript Library for Flexible Visualization of Audio Descriptors"
+      "slug":
+        "a-javascript-library-for-flexible-visualization-of-audio-descriptors",
+      "title":
+        "A Javascript Library for Flexible Visualization of Audio Descriptors"
     },
     {
-      "abstract": "This work enables native audio plugin development using the Web Audio API and other web technologies. Hybrid forms where DSP algorithms are implemented in both JavaScript and native C++, and distributed forms where web technologies are used only for the user interface, are also supported. Various implementation options are explored, and the most promising option is implemented and evaluated. We found that the solution is able to operate at 128 sample buffer sizes, and that the performance of the Web Audio API audio graph is not compromised. The proof of-concept solution also maintains compatibility with existing Web Audio API implementations. The average MIDI latency was 24 ms, which is high when comparing with fully native plugin solutions. Backwards compatibility also reduces usability when working with multiple plugin instances. We conclude that the second iteration needs to break backwards compatibility in order to overcome the MIDI latency and multi-plugin support issues.",
+      "abstract":
+        "This work enables native audio plugin development using the Web Audio API and other web technologies. Hybrid forms where DSP algorithms are implemented in both JavaScript and native C++, and distributed forms where web technologies are used only for the user interface, are also supported. Various implementation options are explored, and the most promising option is implemented and evaluated. We found that the solution is able to operate at 128 sample buffer sizes, and that the performance of the Web Audio API audio graph is not compromised. The proof of-concept solution also maintains compatibility with existing Web Audio API implementations. The average MIDI latency was 24 ms, which is high when comparing with fully native plugin solutions. Backwards compatibility also reduces usability when working with multiple plugin instances. We conclude that the second iteration needs to break backwards compatibility in order to overcome the MIDI latency and multi-plugin support issues.",
       "authors": [
         {
           "name": "Jari Kleimola"
@@ -402,7 +441,8 @@
       "title": "Native Web Audio API Plugins"
     },
     {
-      "abstract": "A common problem in music education is finding varied and engaging material that is suitable for practising a specific musical concept or technique. At the same time, a number of large music collections are available under a Creative Commons (CC) licence (e.g. Jamendo, ccMixter), but their potential is largely untapped because of the relative obscurity of their content. In this paper, we present *Jam with Jamendo*, a web application that allows novice and expert learners of musical instruments to query songs by chord content from a large music collection, and practise the chords present in the retrieved songs by playing along. Its goal is twofold: the learners get a larger variety of practice material, while the artists receive increased exposure. We experimented with two visualisation modes. The first is a linear visualisation based on a moving time axis, the second is a circular visualisation inspired by the chromatic circle. We conducted a small-scale thinking-aloud user study with seven participants based on a hands-on practice with the web app. Through this pilot study, we obtained a qualitative understanding of the potentials and challenges of each visualisation, which will be used to inform the next design iteration of the web app.",
+      "abstract":
+        "A common problem in music education is finding varied and engaging material that is suitable for practising a specific musical concept or technique. At the same time, a number of large music collections are available under a Creative Commons (CC) licence (e.g. Jamendo, ccMixter), but their potential is largely untapped because of the relative obscurity of their content. In this paper, we present *Jam with Jamendo*, a web application that allows novice and expert learners of musical instruments to query songs by chord content from a large music collection, and practise the chords present in the retrieved songs by playing along. Its goal is twofold: the learners get a larger variety of practice material, while the artists receive increased exposure. We experimented with two visualisation modes. The first is a linear visualisation based on a moving time axis, the second is a circular visualisation inspired by the chromatic circle. We conducted a small-scale thinking-aloud user study with seven participants based on a hands-on practice with the web app. Through this pilot study, we obtained a qualitative understanding of the potentials and challenges of each visualisation, which will be used to inform the next design iteration of the web app.",
       "authors": [
         {
           "name": "Johan Pauwels"
@@ -420,35 +460,16 @@
           "name": "György Fazekas"
         }
       ],
-      "slug": "exploring-real-time-visualisations-to-support-chord-learning-with-a-large-music-collection",
-      "title": "Exploring Real-time Visualisations to Support Chord Learning with a Large Music Collection"
+      "slug":
+        "exploring-real-time-visualisations-to-support-chord-learning-with-a-large-music-collection",
+      "title":
+        "Exploring Real-time Visualisations to Support Chord Learning with a Large Music Collection"
     }
   ],
   "performances": [
     {
-      "abstract": "‘Listening Back’ is a plug-in for the Chrome Browser that sonifies internet cookies in real time as one browses online. Utilising digital waveform synthesis, ‘Listening Back’ translates internet cookies into sound thereby creating an audible presence for hidden infrastructures that collect personal and identifying data by storing a file on one’s computer. Through the direct intervention of the World Wide Web as a technological, social and political platform, web audio is employed to expose the proliferation of ubiquitous online surveillance. Our access to the Web is visually mediated through screen devices and this project explores how sound can help us engage with complex phenomena beyond the graphical interface of the world wide web.\n\nA live performance by the Browser Duo (Jasmine Guffond & Jacob Eriksen), will explore the potential of the ‘Listening Back’ browser plug-in as a musical instrument.",
-      "authors": [
-        {
-          "link": "http://jasmineguffond.com/",
-          "name": "Jasmine Guffond"
-        }
-      ],
-      "slug": "listening-back-the-web-never-forgets",
-      "title": "Listening Back - The Web Never Forgets"
-    },
-    {
-      "abstract": "This audience devices participative performance combines symphonic orchestra with the choir of smartphones. Author tried different approaches to synchronisation of acoustic instruments and audience devices: tonal synchronisation with fine tuning of all samples and synthesis engine, latency compensation depending on device type and network latency, tempo calculation e.t.c.. This performance significantly depends on Web Audio API and Web MIDI API.",
-      "authors": [
-        {
-          "link": "http://bundin.info/",
-          "name": "Andrey Bundin"
-        }
-      ],
-      "slug": "concert-for-smartphones-and-orchestra",
-      "title": "Concert for Smartphones and Orchestra"
-    },
-    {
-      "abstract": "In this performance, we propose an interpretation of Gertrude Steins' poem Tender Buttons, using Playsound.space participatory player to create a soundscape generated live from the text contents. Two performers will dialogue through the chat interface with excerpts of the text while a reading of the poem runs on the background. While the text is render, searches on the system will be made, to access Freesound.org Creative Commons content to create a music improvisation based on the piece.",
+      "abstract":
+        "In this performance, we propose an interpretation of Gertrude Steins' poem Tender Buttons, using Playsound.space participatory player to create a soundscape generated live from the text contents. Two performers will dialogue through the chat interface with excerpts of the text while a reading of the poem runs on the background. While the text is render, searches on the system will be made, to access Freesound.org Creative Commons content to create a music improvisation based on the piece.",
       "authors": [
         {
           "name": "Ariane Stolfi"
@@ -465,7 +486,8 @@
       "title": "Tender Buttons | Sound | Space"
     },
     {
-      "abstract": "This piece invites the audience to create a collaborative soundscape based on audio streams from the area of Berlin and by using their mobile devices. Influenced by the collaborative music piece Imaginary Landscape No. 4 (1951) by John Cage, 12 audio streams from Berlin-inspired radio stations will be emitted from a central laptop connected to a PA system. The audience will be able to pick one audio stream at any time by moving horizontally their mobile phones, and control the volume of the selected audio stream by moving vertically their mobile phones. The original Cage's piece was designed for 12 pairs of performers, here the emphasis remains in the group participation and creation of a larger musical network by the potential generation of delays and localized sounds within the same space.",
+      "abstract":
+        "This piece invites the audience to create a collaborative soundscape based on audio streams from the area of Berlin and by using their mobile devices. Influenced by the collaborative music piece Imaginary Landscape No. 4 (1951) by John Cage, 12 audio streams from Berlin-inspired radio stations will be emitted from a central laptop connected to a PA system. The audience will be able to pick one audio stream at any time by moving horizontally their mobile phones, and control the volume of the selected audio stream by moving vertically their mobile phones. The original Cage's piece was designed for 12 pairs of performers, here the emphasis remains in the group participation and creation of a larger musical network by the potential generation of delays and localized sounds within the same space.",
       "authors": [
         {
           "link": "http://annaxambo.me/",
@@ -476,7 +498,8 @@
       "title": "Imaginary Berlin"
     },
     {
-      "abstract": "This performance will be the first to use a completely rewritten version of Gibber, taking advantage of music programming techniques found in the live-coding environment gibberwocky, and upgraded versions of multiple audio libraries designed to take advantage of AudioWorklets.",
+      "abstract":
+        "This performance will be the first to use a completely rewritten version of Gibber, taking advantage of music programming techniques found in the live-coding environment gibberwocky, and upgraded versions of multiple audio libraries designed to take advantage of AudioWorklets.",
       "authors": [
         {
           "name": "Charles Roberts"
@@ -486,7 +509,20 @@
       "title": "Improvisation"
     },
     {
-      "abstract": "No merge conflicts is a participatory performance based on web audio technologies. Participants use their smartphones to access a synthesizer that produces audiovisual signals following touch and accelerometer gestures. An artificial agent character selects and evolves the audience patterns into an audiovisual algorithmic composition played through the sound system and projector.",
+      "abstract":
+        "‘Listening Back’ is a plug-in for the Chrome Browser that sonifies internet cookies in real time as one browses online. Utilising digital waveform synthesis, ‘Listening Back’ translates internet cookies into sound thereby creating an audible presence for hidden infrastructures that collect personal and identifying data by storing a file on one’s computer. Through the direct intervention of the World Wide Web as a technological, social and political platform, web audio is employed to expose the proliferation of ubiquitous online surveillance. Our access to the Web is visually mediated through screen devices and this project explores how sound can help us engage with complex phenomena beyond the graphical interface of the world wide web.\n\nA live performance by the Browser Duo (Jasmine Guffond & Jacob Eriksen), will explore the potential of the ‘Listening Back’ browser plug-in as a musical instrument.",
+      "authors": [
+        {
+          "link": "http://jasmineguffond.com/",
+          "name": "Jasmine Guffond"
+        }
+      ],
+      "slug": "listening-back-the-web-never-forgets",
+      "title": "Listening Back - The Web Never Forgets"
+    },
+    {
+      "abstract":
+        "No merge conflicts is a participatory performance based on web audio technologies. Participants use their smartphones to access a synthesizer that produces audiovisual signals following touch and accelerometer gestures. An artificial agent character selects and evolves the audience patterns into an audiovisual algorithmic composition played through the sound system and projector.",
       "authors": [
         {
           "name": "Gerard Roma"
@@ -494,11 +530,24 @@
       ],
       "slug": "no-merge-conflicts",
       "title": "No merge conflicts"
+    },
+    {
+      "abstract":
+        "This audience devices participative performance combines symphonic orchestra with the choir of smartphones. Author tried different approaches to synchronisation of acoustic instruments and audience devices: tonal synchronisation with fine tuning of all samples and synthesis engine, latency compensation depending on device type and network latency, tempo calculation e.t.c.. This performance significantly depends on Web Audio API and Web MIDI API.",
+      "authors": [
+        {
+          "link": "http://bundin.info/",
+          "name": "Andrey Bundin"
+        }
+      ],
+      "slug": "concert-for-smartphones-and-orchestra",
+      "title": "Concert for Smartphones and Orchestra"
     }
   ],
   "posters": [
     {
-      "abstract": "Lost In Space is a project utilizing Bluetooth Low Energy beacons in tandem with mobile devices and 3D panning on the web to overlay virtual sound arrangements onto a physical location in which users can listen through their phones and tablets. The virtual environments are distributed through a website and are populated with virtual sounds and speaker locations. Users activate the Bluetooth on their mobile devices to scan for beacons. User location navigates the corresponding location in virtual environment. Moving around the virtual environment probes the soundscape. The project also touches on issues of unreliability of Bluetooth tracking indoors, the state of BLE-based project development, and the need for Web Bluetooth development to enable these types of projects.",
+      "abstract":
+        "Lost In Space is a project utilizing Bluetooth Low Energy beacons in tandem with mobile devices and 3D panning on the web to overlay virtual sound arrangements onto a physical location in which users can listen through their phones and tablets. The virtual environments are distributed through a website and are populated with virtual sounds and speaker locations. Users activate the Bluetooth on their mobile devices to scan for beacons. User location navigates the corresponding location in virtual environment. Moving around the virtual environment probes the soundscape. The project also touches on issues of unreliability of Bluetooth tracking indoors, the state of BLE-based project development, and the need for Web Bluetooth development to enable these types of projects.",
       "authors": [
         {
           "link": "http://chasemitchusson.wordpress.com/",
@@ -509,18 +558,22 @@
       "title": "Lost In Space"
     },
     {
-      "abstract": "A more perfect union incorporates an audience-controlled smartphone speaker array with evolutionary computer music. A genetic algorithm drives the work and the performance practice that the audience follows.",
+      "abstract":
+        "A more perfect union incorporates an audience-controlled smartphone speaker array with evolutionary computer music. A genetic algorithm drives the work and the performance practice that the audience follows.",
       "authors": [
         {
           "link": "http://www.tatecarson.com/",
           "name": "Tate Carson"
         }
       ],
-      "slug": "a-more-perfect-union-composition-with-audience-controlled-smartphone-speaker-array-and-evolutionary-computer-music",
-      "title": "A more perfect union: Composition with audience-controlled smartphone speaker array and evolutionary computer music"
+      "slug":
+        "a-more-perfect-union-composition-with-audience-controlled-smartphone-speaker-array-and-evolutionary-computer-music",
+      "title":
+        "A more perfect union: Composition with audience-controlled smartphone speaker array and evolutionary computer music"
     },
     {
-      "abstract": "0 + 1 = SOM is a project developed by Digitópia - Casa da Música in cooperation with Braga Media Arts. In this project we developed a series of online tools that use technology and basic mathematical and logical concepts, such as counting and understanding a loop or an if condition, to create music. These tools were later used in a series of four workshops with elementary school children as a creative activity that complements the classroom. This paper describes the process and reasoning behind the creation of the tools (explaining our choices when creating the contents), the role Web Audio played in it (particularly in the ability to schedule precise audio events), the results we have achieved so far, and the feedback we have had from students and teachers. We also discuss further applications and plans for the future.",
+      "abstract":
+        "0 + 1 = SOM is a project developed by Digitópia - Casa da Música in cooperation with Braga Media Arts. In this project we developed a series of online tools that use technology and basic mathematical and logical concepts, such as counting and understanding a loop or an if condition, to create music. These tools were later used in a series of four workshops with elementary school children as a creative activity that complements the classroom. This paper describes the process and reasoning behind the creation of the tools (explaining our choices when creating the contents), the role Web Audio played in it (particularly in the ability to schedule precise audio events), the results we have achieved so far, and the feedback we have had from students and teachers. We also discuss further applications and plans for the future.",
       "authors": [
         {
           "name": "Nuno Hespanhol"
@@ -534,11 +587,13 @@
           "name": "José Alberto Gomes"
         }
       ],
-      "slug": "0plus1equalssom-bringing-computing-closer-to-children-through-music",
+      "slug":
+        "0plus1equalssom-bringing-computing-closer-to-children-through-music",
       "title": "0+1=SOM: Bringing Computing Closer to Children Through Music"
     },
     {
-      "abstract": "SoundSling is a framework used to translate motion-based data into audio diffusion trajectories across a crowd of networked mobile devices. The intent is to allow a performer to distribute audio across audience mobile devices in creative ways with motion data that mimics various patterns of movement found in the natural world. As a sound is \"slung\" around the room, the software intuitively adjusts each audience member's gain as it moves past their location. SoundSling adapts dynamically to the total number of devices as users connect to or disconnect from the network. This helps to ensure that the performer's chosen diffusion patterns and motion trajectories can be scaled properly to the array of currently-participating devices. Existing as a collection of MaxMSP abstractions and easily-editable web page templates, a focus has been kept on making the tool as adaptable to a performer's current musical set-up as possible.",
+      "abstract":
+        "SoundSling is a framework used to translate motion-based data into audio diffusion trajectories across a crowd of networked mobile devices. The intent is to allow a performer to distribute audio across audience mobile devices in creative ways with motion data that mimics various patterns of movement found in the natural world. As a sound is \"slung\" around the room, the software intuitively adjusts each audience member's gain as it moves past their location. SoundSling adapts dynamically to the total number of devices as users connect to or disconnect from the network. This helps to ensure that the performer's chosen diffusion patterns and motion trajectories can be scaled properly to the array of currently-participating devices. Existing as a collection of MaxMSP abstractions and easily-editable web page templates, a focus has been kept on making the tool as adaptable to a performer's current musical set-up as possible.",
       "authors": [
         {
           "name": "Anthony T. Marasco"
@@ -547,11 +602,14 @@
           "name": "Jesse Allison"
         }
       ],
-      "slug": "soundsling-a-framework-for-using-creative-motion-data-to-pan-audio-across-a-mobile-device-speaker-array",
-      "title": "SoundSling: A Framework for Using Creative Motion Data to Pan Audio Across a Mobile Device Speaker Array"
+      "slug":
+        "soundsling-a-framework-for-using-creative-motion-data-to-pan-audio-across-a-mobile-device-speaker-array",
+      "title":
+        "SoundSling: A Framework for Using Creative Motion Data to Pan Audio Across a Mobile Device Speaker Array"
     },
     {
-      "abstract": "This paper experiments how WebAudio can be used to design differents types of gears for guitarists: real-time tube guitars amplifiers simulations, pedal FX, and their integration in a virtual pedal board. We studied different real guitar tube amps and created an interactive Web application for experimenting, validating and building different amp designs that can be run in a browser. Blind tests have been conducted with professional guitar players who compared positively the real-time, low-latency, realistic tube guitar amps simulations we created with state-of-the-art native equivalents. We also created a set of “virtual audio fx pedals” that implement popular audio effects such as flanger, chorus, overdrive, pitch shifter etc.\nThese amps simulations and FX pedals have been finally packaged as “WebAudio plugins” that can be stored in plugin repositories (REST endpoints or local folders). We also developed a “host” application -a virtual pedal board- that allows us to scan repositories for plugins and chain/assemble them. All these developments are open source and can be tried online.",
+      "abstract":
+        "This paper experiments how WebAudio can be used to design differents types of gears for guitarists: real-time tube guitars amplifiers simulations, pedal FX, and their integration in a virtual pedal board. We studied different real guitar tube amps and created an interactive Web application for experimenting, validating and building different amp designs that can be run in a browser. Blind tests have been conducted with professional guitar players who compared positively the real-time, low-latency, realistic tube guitar amps simulations we created with state-of-the-art native equivalents. We also created a set of “virtual audio fx pedals” that implement popular audio effects such as flanger, chorus, overdrive, pitch shifter etc.\nThese amps simulations and FX pedals have been finally packaged as “WebAudio plugins” that can be stored in plugin repositories (REST endpoints or local folders). We also developed a “host” application -a virtual pedal board- that allows us to scan repositories for plugins and chain/assemble them. All these developments are open source and can be tried online.",
       "authors": [
         {
           "name": "Michel Buffa"
@@ -564,7 +622,8 @@
       "title": "WebAudio Virtual Tube Guitar Amps and Pedal Board Design"
     },
     {
-      "abstract": "This paper describes the use of web audio streaming, motion capture cameras, and binaural audio in a telepresence system. The telepresence system is part of a larger project for facilitating research collaboration. The goal of the project is to create hardware and software infrastructure that enables researchers to collaborate on visualizing large data sets or other complex collaboration tasks. Telepresence is a significant part of that infrastructure, including both audio and video streaming. Binaural audio, with the ability to spatialize sound sources for listeners, shows promise for use in telepresence applications. When combined with a motion capture system, the location of collaborators in physical spaces can be sent to remote locations, putting the collaborator into remote audio spaces. The audio spaces can be configured in a variety of ways from single shared audio spaces to adjacent, contained, or split audio spaces, facilitating explorations in the possibilities of binaural telepresence.",
+      "abstract":
+        "This paper describes the use of web audio streaming, motion capture cameras, and binaural audio in a telepresence system. The telepresence system is part of a larger project for facilitating research collaboration. The goal of the project is to create hardware and software infrastructure that enables researchers to collaborate on visualizing large data sets or other complex collaboration tasks. Telepresence is a significant part of that infrastructure, including both audio and video streaming. Binaural audio, with the ability to spatialize sound sources for listeners, shows promise for use in telepresence applications. When combined with a motion capture system, the location of collaborators in physical spaces can be sent to remote locations, putting the collaborator into remote audio spaces. The audio spaces can be configured in a variety of ways from single shared audio spaces to adjacent, contained, or split audio spaces, facilitating explorations in the possibilities of binaural telepresence.",
       "authors": [
         {
           "name": "Lawrence Fyfe"
@@ -579,11 +638,14 @@
           "name": "Michel Beaudouin-Lafon"
         }
       ],
-      "slug": "combining-web-audio-streaming-motion-capture-and-binaural-audio-in-a-telepresence-system",
-      "title": "Combining Web Audio Streaming, Motion Capture, and Binaural Audio in a Telepresence System"
+      "slug":
+        "combining-web-audio-streaming-motion-capture-and-binaural-audio-in-a-telepresence-system",
+      "title":
+        "Combining Web Audio Streaming, Motion Capture, and Binaural Audio in a Telepresence System"
     },
     {
-      "abstract": "Lately, a number of audio players based on web technology have made it possible for researchers to present their audio-related work in an attractive manner. Tools such as *wavesurfer.js*, *waveform-playlist* and *trackswitch.js* provide highly-configurable players, allowing a more interactive exploration of scientific results that goes beyond simple linear playback.\n\nHowever, the audio output to be presented is in many cases not generated by the same web technologies. The process of preparing audio data for display therefore requires manual intervention, in order to bridge the resulting gap between programming languages. While this is acceptable for one-time events, such as the preparation of final results, it prevents the usage of such players during the iterative development cycle. Having access to rich audio players already during development would allow researchers to get more instantaneous feedback. The current workflow consists of repeatedly importing audio into a digital audio workstation in order to achieve similar capabilities, a repetitive and time-consuming process.\n\nIn order to address these needs, we present *pywebaudioplayer*, a Python package that automates the generation of code snippets for the each of the three aforementioned web audio players. It is aimed at use-cases where audio development in Python is combined with web visualisation. Notable examples are *Jupyter Notebook* and WSGI-compatible web frameworks such as *Flask* or *Django*.",
+      "abstract":
+        "Lately, a number of audio players based on web technology have made it possible for researchers to present their audio-related work in an attractive manner. Tools such as *wavesurfer.js*, *waveform-playlist* and *trackswitch.js* provide highly-configurable players, allowing a more interactive exploration of scientific results that goes beyond simple linear playback.\n\nHowever, the audio output to be presented is in many cases not generated by the same web technologies. The process of preparing audio data for display therefore requires manual intervention, in order to bridge the resulting gap between programming languages. While this is acceptable for one-time events, such as the preparation of final results, it prevents the usage of such players during the iterative development cycle. Having access to rich audio players already during development would allow researchers to get more instantaneous feedback. The current workflow consists of repeatedly importing audio into a digital audio workstation in order to achieve similar capabilities, a repetitive and time-consuming process.\n\nIn order to address these needs, we present *pywebaudioplayer*, a Python package that automates the generation of code snippets for the each of the three aforementioned web audio players. It is aimed at use-cases where audio development in Python is combined with web visualisation. Notable examples are *Jupyter Notebook* and WSGI-compatible web frameworks such as *Flask* or *Django*.",
       "authors": [
         {
           "name": "Johan Pauwels"
@@ -592,22 +654,28 @@
           "name": "Mark Sandler"
         }
       ],
-      "slug": "pywebaudioplayer-bridging-the-gap-between-audio-processing-code-in-python-and-attractive-visualisations-based-on-web-technology",
-      "title": "pywebaudioplayer: Bridging the gap between audio processing code in Python and attractive visualisations based on web technology"
+      "slug":
+        "pywebaudioplayer-bridging-the-gap-between-audio-processing-code-in-python-and-attractive-visualisations-based-on-web-technology",
+      "title":
+        "pywebaudioplayer: Bridging the gap between audio processing code in Python and attractive visualisations based on web technology"
     },
     {
-      "abstract": "In recent years, I have been conducting research into the links between music and gastronomy by collaborating with chefs to develop multisensory dining experiences that I call “food operas.” These events incorporate real-time music techniques adapted from the world of video game development to respond to the unpredictable events and timings of the dining room.\nThis paper details an event I developed in collaboration with the Boston Symphony Orchestra, chef David Verdo, and designer Jutta Friedrichs that took place on January 5 and 7, 2017. Cena concertante alla maniera di Vivaldi was a four-course meal with real-time musical accompaniment deployed from a seventy-channel speaker array comprised of sixty-four iPads and six near field studio monitors, all coordinated via the same network. The iPads were positioned in custom-built acoustic resonators placed at each seat in the restaurant, presenting a unique audio channel to each diner, synchronized to the rhythms of each diner’s meal and sited as close as possible to the food. The music was based on Vivaldi’s Piccolo Concerto in C Major, RV 443, drawing from archival BSO performances, with the objective of enhancing diners’ appreciation of a live performance of the work on a concert following the meal. The menu was based on the music, drawing on research in the field of crossmodal psychology that identifies links between the senses of taste and hearing.\nThis paper discusses the background of the project, its musical organization, the infrastructure and control techniques required to execute it, and relevant research in the field of crossmodal psychology, concluding with a discussion of areas for future work.",
+      "abstract":
+        "In recent years, I have been conducting research into the links between music and gastronomy by collaborating with chefs to develop multisensory dining experiences that I call “food operas.” These events incorporate real-time music techniques adapted from the world of video game development to respond to the unpredictable events and timings of the dining room.\nThis paper details an event I developed in collaboration with the Boston Symphony Orchestra, chef David Verdo, and designer Jutta Friedrichs that took place on January 5 and 7, 2017. Cena concertante alla maniera di Vivaldi was a four-course meal with real-time musical accompaniment deployed from a seventy-channel speaker array comprised of sixty-four iPads and six near field studio monitors, all coordinated via the same network. The iPads were positioned in custom-built acoustic resonators placed at each seat in the restaurant, presenting a unique audio channel to each diner, synchronized to the rhythms of each diner’s meal and sited as close as possible to the food. The music was based on Vivaldi’s Piccolo Concerto in C Major, RV 443, drawing from archival BSO performances, with the objective of enhancing diners’ appreciation of a live performance of the work on a concert following the meal. The menu was based on the music, drawing on research in the field of crossmodal psychology that identifies links between the senses of taste and hearing.\nThis paper discusses the background of the project, its musical organization, the infrastructure and control techniques required to execute it, and relevant research in the field of crossmodal psychology, concluding with a discussion of areas for future work.",
       "authors": [
         {
           "link": "http://www.audiogustatory.com/",
           "name": "Ben Houge"
         }
       ],
-      "slug": "cena-concertante-alla-maniera-di-vivaldi-considering-the-testaurant-as-a-musical-interface",
-      "title": "Cena concertante alla maniera di Vivaldi: Considering the Restaurant as a Musical Interface"
+      "slug":
+        "cena-concertante-alla-maniera-di-vivaldi-considering-the-testaurant-as-a-musical-interface",
+      "title":
+        "Cena concertante alla maniera di Vivaldi: Considering the Restaurant as a Musical Interface"
     },
     {
-      "abstract": "Recent advancements in web-based audio systems have enabled sufficiently accurate timing control and real-time sound processing capabilities. Numerous specialized music tools, as well as digital audio workstations, are now accessible from browsers. Features such as the large accessibility of data and real-time communication between clients make the web attractive for collaborative data manipulation. However, this innovative field has yet to produce effective tools for multiple-user coordination on specialized music creation tasks. The Multi Web Audio Sequencer is a prototype of an application for segment-based sequencing of Freesound sound clips, with an emphasis on seamless remote collaboration. In this work we consider a fixed-grid step sequencer as a probe for understanding the necessary features of crowd-shared music creation sessions. This manuscript describes the sequencer and the functionalities and types of interactions required for effective and attractive collaboration of remote people during creative music creation activities.",
+      "abstract":
+        "Recent advancements in web-based audio systems have enabled sufficiently accurate timing control and real-time sound processing capabilities. Numerous specialized music tools, as well as digital audio workstations, are now accessible from browsers. Features such as the large accessibility of data and real-time communication between clients make the web attractive for collaborative data manipulation. However, this innovative field has yet to produce effective tools for multiple-user coordination on specialized music creation tasks. The Multi Web Audio Sequencer is a prototype of an application for segment-based sequencing of Freesound sound clips, with an emphasis on seamless remote collaboration. In this work we consider a fixed-grid step sequencer as a probe for understanding the necessary features of crowd-shared music creation sessions. This manuscript describes the sequencer and the functionalities and types of interactions required for effective and attractive collaboration of remote people during creative music creation activities.",
       "authors": [
         {
           "name": "Xavier Favory"
@@ -620,7 +688,8 @@
       "title": "Multi Web Audio Sequencer: Collaborative Music Making"
     },
     {
-      "abstract": "This paper presents a web based toolkit for implementing Interactive Machine Learning (IML) dedicated to creative audio applications. The toolkit, composed of a main library and a template application, facilitates the creation of experiences on collective musical interactions with a strong emphasis on real-time movement processing and recognition.\nAt its lower level, the mano-js library proposes a user-friendly API built on top of existing libraries. The library is designed to assist developers and creative coders in the appropriation and usage of the Interactive Machine Learning concepts and workflow, as well as to simplify development of new applications. The library is open-source, based on web standards and released under the BSD- 3-Clause Licence.\nAt its higher level, the toolkit proposes Elements, a template application designed towards non-developer users. The application specifically aims at providing a mean for researchers and designers to prototype new movement-based distributed Interactive Machine Learning scenarios. The application allows to create a new scenario by simply providing a JSON configuration file that defines the role and the abilities of each client. The application has been iteratively tested and developed in the context of several workshops.",
+      "abstract":
+        "This paper presents a web based toolkit for implementing Interactive Machine Learning (IML) dedicated to creative audio applications. The toolkit, composed of a main library and a template application, facilitates the creation of experiences on collective musical interactions with a strong emphasis on real-time movement processing and recognition.\nAt its lower level, the mano-js library proposes a user-friendly API built on top of existing libraries. The library is designed to assist developers and creative coders in the appropriation and usage of the Interactive Machine Learning concepts and workflow, as well as to simplify development of new applications. The library is open-source, based on web standards and released under the BSD- 3-Clause Licence.\nAt its higher level, the toolkit proposes Elements, a template application designed towards non-developer users. The application specifically aims at providing a mean for researchers and designers to prototype new movement-based distributed Interactive Machine Learning scenarios. The application allows to create a new scenario by simply providing a JSON configuration file that defines the role and the abilities of each client. The application has been iteratively tested and developed in the context of several workshops.",
       "authors": [
         {
           "name": "Benjamin Matuszewski"
@@ -632,11 +701,14 @@
           "name": "Frederic Bevilacqua"
         }
       ],
-      "slug": "designing-movement-driven-audio-applications-using-a-web-based-interactive-machine-learning-toolkit",
-      "title": "Designing Movement Driven Audio Applications Using a Web-Based Interactive Machine Learning Toolkit"
+      "slug":
+        "designing-movement-driven-audio-applications-using-a-web-based-interactive-machine-learning-toolkit",
+      "title":
+        "Designing Movement Driven Audio Applications Using a Web-Based Interactive Machine Learning Toolkit"
     },
     {
-      "abstract": "In this paper we describe the ongoing research on the development of a body movement sonification system. High precision, high resolution wireless sensors are used to track the body movement and record muscle excitation. We are currently using 6 sensors. In the final version of the system full body tracking can be achieved. The recording system provides a web server including a simple REST API, which streams the recorded data in JSON format. An intermediate proxy server pre-processes the data and transmits it to the final sonification system. The sonification system is implemented using the web audio api. We are experimenting with a set of different sonification strategies and algorithms. Currently we are testing the system as part of an interactive, guided therapy, establishing additional acoustic feedback channels for the patient. In a second stage of the research we are going to use the system in a more musical and artistic way. More specifically we plan to use the system in cooperation with a violist, where the acoustic feedback channel will be integrated into the performance.",
+      "abstract":
+        "In this paper we describe the ongoing research on the development of a body movement sonification system. High precision, high resolution wireless sensors are used to track the body movement and record muscle excitation. We are currently using 6 sensors. In the final version of the system full body tracking can be achieved. The recording system provides a web server including a simple REST API, which streams the recorded data in JSON format. An intermediate proxy server pre-processes the data and transmits it to the final sonification system. The sonification system is implemented using the web audio api. We are experimenting with a set of different sonification strategies and algorithms. Currently we are testing the system as part of an interactive, guided therapy, establishing additional acoustic feedback channels for the patient. In a second stage of the research we are going to use the system in a more musical and artistic way. More specifically we plan to use the system in cooperation with a violist, where the acoustic feedback channel will be integrated into the performance.",
       "authors": [
         {
           "name": "Christian Baumann"
@@ -652,7 +724,8 @@
       "title": "Body Movement Sonification using the Web Audio API"
     },
     {
-      "abstract": "We describe the concepts behind a web-based minimal-UI DJ system that adapts to the user's preference via simple interactive decisions and feedback on taste. Starting from a preset decision tree modeled on common DJ practice, the system can gradually learn a more customised and user-specific tree. At the core of the system are structural representations of the musical content based on semantic audio technologies and inferred from features extracted from the audio directly in the browser. These representations are gradually combined into a representation of the mix which could then be saved and shared with other users. We show how different types of transitions can be modeled using simple musical constraints. Potential applications of the system include crowd-sourced data collection, both on temporally aligned playlisting and musical preference.",
+      "abstract":
+        "We describe the concepts behind a web-based minimal-UI DJ system that adapts to the user's preference via simple interactive decisions and feedback on taste. Starting from a preset decision tree modeled on common DJ practice, the system can gradually learn a more customised and user-specific tree. At the core of the system are structural representations of the musical content based on semantic audio technologies and inferred from features extracted from the audio directly in the browser. These representations are gradually combined into a representation of the mix which could then be saved and shared with other users. We show how different types of transitions can be modeled using simple musical constraints. Potential applications of the system include crowd-sourced data collection, both on temporally aligned playlisting and musical preference.",
       "authors": [
         {
           "name": "Florian Thalmann"
@@ -664,11 +737,14 @@
           "name": "Mark B. Sandler"
         }
       ],
-      "slug": "a-user-adaptive-automated-dj-web-app-with-object-based-audio-and-crowd-sourced-decision-trees",
-      "title": "A User-Adaptive Automated DJ Web App with Object-Based Audio and Crowd-Sourced Decision Trees"
+      "slug":
+        "a-user-adaptive-automated-dj-web-app-with-object-based-audio-and-crowd-sourced-decision-trees",
+      "title":
+        "A User-Adaptive Automated DJ Web App with Object-Based Audio and Crowd-Sourced Decision Trees"
     },
     {
-      "abstract": "Web Wall Whispers (www) is an interactive sound work that heavily relies on the web audio technology to enable a virtual high-quality multimodal exploration of a monumental mural. The user's navigation through the artwork generates a unique interactive musical composition at every access, in a challenging paradigm of open form based on a virtual dialogue between the visitors and the composer.\nThe project is conceived as a part of the Segni per la Speranza (spls, Signs for Hope) multimodal artwork, a project aimed at the reappraisal of urban outlying areas. All the constituent materials are freely distributed under the open source GNU General Public Licence, thus allowing the build-up of extensions or new versions of this multimodal artwork paradigm.",
+      "abstract":
+        "Web Wall Whispers (www) is an interactive sound work that heavily relies on the web audio technology to enable a virtual high-quality multimodal exploration of a monumental mural. The user's navigation through the artwork generates a unique interactive musical composition at every access, in a challenging paradigm of open form based on a virtual dialogue between the visitors and the composer.\nThe project is conceived as a part of the Segni per la Speranza (spls, Signs for Hope) multimodal artwork, a project aimed at the reappraisal of urban outlying areas. All the constituent materials are freely distributed under the open source GNU General Public Licence, thus allowing the build-up of extensions or new versions of this multimodal artwork paradigm.",
       "authors": [
         {
           "name": "Francesco Cretti"
@@ -695,7 +771,8 @@
   ],
   "talks": [
     {
-      "abstract": "Generative music is magical: it writes itself! But it gets even better: With the WebAudio API we can work this magic in the browser, where we also have the possibilities to visualize and interact with it.\nLet me take you on a tour of techniques that will enchant your audiences!",
+      "abstract":
+        "Generative music is magical: it writes itself! But it gets even better: With the WebAudio API we can work this magic in the browser, where we also have the possibilities to visualize and interact with it.\nLet me take you on a tour of techniques that will enchant your audiences!",
       "authors": [
         {
           "link": "https://lislis.de/",
@@ -706,7 +783,8 @@
       "title": "Generative music, playful visualizations and where to find them"
     },
     {
-      "abstract": "Forty years ago, Brian Eno released \"Ambient 1: Music for Airport\". Creating eternally changing music using a simple system. We will see how to use the Web Audio API to pay homage to this milestone release and create hours and hours of music in just 256 bytes.",
+      "abstract":
+        "Forty years ago, Brian Eno released \"Ambient 1: Music for Airport\". Creating eternally changing music using a simple system. We will see how to use the Web Audio API to pay homage to this milestone release and create hours and hours of music in just 256 bytes.",
       "authors": [
         {
           "link": "http://www.p01.org/",
@@ -717,7 +795,8 @@
       "title": "AMBIENT HTML5: Music for tiny airports in 256 bytes"
     },
     {
-      "abstract": "Data visualization as a field has made tremendous progress in exploring ways to investigate, interrogate, and comprehend abstract data by visual means. For all its benefits, data visualization has some drawbacks when it comes to live, streaming data.\n\nSome tools have attempted to solve this problem using sonification -- translating live data to sound or noise -- but these devices traditionally have not attempted to produce sound that is interesting, varying, or aesthetically pleasing.\n\nNick will present a tool he created in which he connected a website's live user data to the Web Audio API to create a procedurally-generated and (theoretically) infinite \"song\" representing the site's traffic patterns. He will reflect on the potential for using sound and music as a medium for developing an intuitive understanding of streaming data.",
+      "abstract":
+        "Data visualization as a field has made tremendous progress in exploring ways to investigate, interrogate, and comprehend abstract data by visual means. For all its benefits, data visualization has some drawbacks when it comes to live, streaming data.\n\nSome tools have attempted to solve this problem using sonification -- translating live data to sound or noise -- but these devices traditionally have not attempted to produce sound that is interesting, varying, or aesthetically pleasing.\n\nNick will present a tool he created in which he connected a website's live user data to the Web Audio API to create a procedurally-generated and (theoretically) infinite \"song\" representing the site's traffic patterns. He will reflect on the potential for using sound and music as a medium for developing an intuitive understanding of streaming data.",
       "authors": [
         {
           "link": "https://web-sonify.glitch.me/",
@@ -728,18 +807,22 @@
       "title": "WebSonify: Ambient aural display of real-time data"
     },
     {
-      "abstract": "During this talk I will elaborate on the interaction between my work as both a musician and a software coder and how my experiences in both areas come together in the production of my first web audio album. \n\nHaving a background as a classically trained musician and after touring internationally with an indie pop band, I deal with 3 main issues during the process of creating music in the new web audio format. \n\n1. As a coding artist, I try to mould the Web Audio API into actionable music tools. Therefore, I started to translate the Tone.js Framework into a Ruby gem. \n\n2. I try to find a balance between the coding part and my ‘normal’ music workflow, i.e. sketching ideas with the intuitive user interface of professional DAW software, in my case: Ableton Live. Therefore I need to find an easy way to transfer musical content between the Ableton and the Web Audio environments. \n\n3. How can I create music with a 'story' and emotional compact in the context of generative and interactive composing techniques?",
+      "abstract":
+        "During this talk I will elaborate on the interaction between my work as both a musician and a software coder and how my experiences in both areas come together in the production of my first web audio album. \n\nHaving a background as a classically trained musician and after touring internationally with an indie pop band, I deal with 3 main issues during the process of creating music in the new web audio format. \n\n1. As a coding artist, I try to mould the Web Audio API into actionable music tools. Therefore, I started to translate the Tone.js Framework into a Ruby gem. \n\n2. I try to find a balance between the coding part and my ‘normal’ music workflow, i.e. sketching ideas with the intuitive user interface of professional DAW software, in my case: Ableton Live. Therefore I need to find an easy way to transfer musical content between the Ableton and the Web Audio environments. \n\n3. How can I create music with a 'story' and emotional compact in the context of generative and interactive composing techniques?",
       "authors": [
         {
           "link": "http://hroski.com/",
           "name": "Hilke Ros"
         }
       ],
-      "slug": "from-artist-to-software-developer-and-back-a-celloist-s-perspective-on-web-audio",
-      "title": "From artist to software developer and back. A celloist’s perspective on Web Audio"
+      "slug":
+        "from-artist-to-software-developer-and-back-a-celloist-s-perspective-on-web-audio",
+      "title":
+        "From artist to software developer and back. A celloist’s perspective on Web Audio"
     },
     {
-      "abstract": "With cables, a new web-based visual programming environment, creating WebGL and Web Audio applications can be done using a visual editor, without writing any code. It allows to create audio-visual experiments in a playful way.",
+      "abstract":
+        "With cables, a new web-based visual programming environment, creating WebGL and Web Audio applications can be done using a visual editor, without writing any code. It allows to create audio-visual experiments in a playful way.",
       "authors": [
         {
           "link": "http://timpulver.de/",
@@ -749,11 +832,14 @@
           "name": "Thomas Kombüchen"
         }
       ],
-      "slug": "cables—a-web-based-visual-programming-language-for-webgl-and-web-audio",
-      "title": "cables—a web based visual programming language for WebGL and Web Audio"
+      "slug":
+        "cables—a-web-based-visual-programming-language-for-webgl-and-web-audio",
+      "title":
+        "cables—a web based visual programming language for WebGL and Web Audio"
     },
     {
-      "abstract": "This talk will give an overview about the current state of timing on the web and the problems this presents when trying to sync multiple sources of multimedia. Examples demonstrated will include setTimeout, webaudio ‘currentTime’, DOMHighResTimeStamp, and html5 media timing. The concept of the TimingObject will introduce the initiative for a unifying time model for varying sources of multimedia presented on a single device, as well as multi device web support.",
+      "abstract":
+        "This talk will give an overview about the current state of timing on the web and the problems this presents when trying to sync multiple sources of multimedia. Examples demonstrated will include setTimeout, webaudio ‘currentTime’, DOMHighResTimeStamp, and html5 media timing. The concept of the TimingObject will introduce the initiative for a unifying time model for varying sources of multimedia presented on a single device, as well as multi device web support.",
       "authors": [
         {
           "link": "http://naomiaro.github.io/",
@@ -764,7 +850,8 @@
       "title": "Orchestrate Your Web!"
     },
     {
-      "abstract": "2018 is the year deep neural networks have arrived in the web browser. This development has many exciting prospects. One of them is that all the work AI researchers have put into musical applications of neural nets is suddenly available to use in web apps. We can now use generative musical deep learning models and build interactive web-based experiences on top of them, with the help of Web Audio and the rest of the web platform.\n\nIn this talk I will present some recent experiments I’ve made using deep neural nets and Web Audio in the browser. They’re mostly based on Google’s Magenta.js library and neural net models trained by the Magenta team. We’ll see how recurrent neural networks can be used to build melodic “autocompletion” tools and arpeggiators, as well as generative drum patterns. We’ll also see how to use variational autoencoder models to explore latent musical spaces: Interpolating between melodies, and exploring musical generative space with vector arithmetic.",
+      "abstract":
+        "2018 is the year deep neural networks have arrived in the web browser. This development has many exciting prospects. One of them is that all the work AI researchers have put into musical applications of neural nets is suddenly available to use in web apps. We can now use generative musical deep learning models and build interactive web-based experiences on top of them, with the help of Web Audio and the rest of the web platform.\n\nIn this talk I will present some recent experiments I’ve made using deep neural nets and Web Audio in the browser. They’re mostly based on Google’s Magenta.js library and neural net models trained by the Magenta team. We’ll see how recurrent neural networks can be used to build melodic “autocompletion” tools and arpeggiators, as well as generative drum patterns. We’ll also see how to use variational autoencoder models to explore latent musical spaces: Interpolating between melodies, and exploring musical generative space with vector arithmetic.",
       "authors": [
         {
           "link": "https://teropa.info/",
@@ -775,7 +862,8 @@
       "title": "Musical Deep Neural Networks in the Browser"
     },
     {
-      "abstract": "The recording and playback of audio on a computer is always subject to latency and Web Audio applications are no different. Latency makes it difficult to write software that properly synchronizes computer audio with “real world” audio and interactions. In many situations, Web Audio apps have to deal with huge amounts of latency.\nHumans have issues with timing too: it’s often hard for us to perform actions perfectly on rhythm or in synchrony with our computer’s understanding of time.\nIn this talk, I’ll detail the techniques I used to develop a live-looping app using Web Audio, including methods for measuring and handling various types of latency and structuring code to avoid spreading latency-handling logic throughout the application.\nI’ll also discuss features that help humans more easily express timing in music, like allowing a loop to start before the “record” button was pressed and implementing button press “fudging” that starts, stops, and records loops at the time the performer meant to press the button, not the time they actually pressed the button.",
+      "abstract":
+        "The recording and playback of audio on a computer is always subject to latency and Web Audio applications are no different. Latency makes it difficult to write software that properly synchronizes computer audio with “real world” audio and interactions. In many situations, Web Audio apps have to deal with huge amounts of latency.\nHumans have issues with timing too: it’s often hard for us to perform actions perfectly on rhythm or in synchrony with our computer’s understanding of time.\nIn this talk, I’ll detail the techniques I used to develop a live-looping app using Web Audio, including methods for measuring and handling various types of latency and structuring code to avoid spreading latency-handling logic throughout the application.\nI’ll also discuss features that help humans more easily express timing in music, like allowing a loop to start before the “record” button was pressed and implementing button press “fudging” that starts, stops, and records loops at the time the performer meant to press the button, not the time they actually pressed the button.",
       "authors": [
         {
           "link": "https://www.resonator.app/",
@@ -786,7 +874,8 @@
       "title": "Latency and Synchronization in Web Audio"
     },
     {
-      "abstract": "The web knows many different timing mechanisms which all have their unique use case. Unfortunately there is no easy way to align any of those timers. They often have their own timeline, unit and level of accuracy. How would you for example synchronize a slide show on a beamer with the audio recording of the speaker played back on a different device?\n\nThe Timing Object is aiming to solve that problem. It is a W3C Draft which introduces yet another timing mechanism. But it is completely unopinionated about what it controls. It is specifically designed to control multiple timed sources in snyc.\n\nSadly the Timing Object hasn't gained much traction so far. No browser vendor has implemented it yet or is currently planning to do so. The specification process itself seems to be slowing down as well. But that doesn't have to be the end of the story. The Timing Object can mostly be implemented in user land and some parts of the spec are purposefully incomplete to allow different implementations by third party vendors. I want to show what is already possible and how everybody can start using the Timing Object right now in their applications. As many of the presentations and demos at previous WACs have shown, many people have built their own custom solution to realize distributed synchronization. I hope to raise interest in the Timing Object Draft and motivate more people to contribute their experience to the standardization process.\n\nOne of the things which is meant to be implemented by third party vendors is the TimingProvider. The TimingProvider is responsible for synchronizing Timing Objects across different devices. I want to demonstrate the usage of a TimingProvider which uses WebRTC internally to setup the communication between participating devices.\n\nThere are of course also some parts of the specification which have to be build by browser vendors. But I'm sure that if the Timing Object gets used in the wild the browser vendors will eventually start to implement it natively.",
+      "abstract":
+        "The web knows many different timing mechanisms which all have their unique use case. Unfortunately there is no easy way to align any of those timers. They often have their own timeline, unit and level of accuracy. How would you for example synchronize a slide show on a beamer with the audio recording of the speaker played back on a different device?\n\nThe Timing Object is aiming to solve that problem. It is a W3C Draft which introduces yet another timing mechanism. But it is completely unopinionated about what it controls. It is specifically designed to control multiple timed sources in snyc.\n\nSadly the Timing Object hasn't gained much traction so far. No browser vendor has implemented it yet or is currently planning to do so. The specification process itself seems to be slowing down as well. But that doesn't have to be the end of the story. The Timing Object can mostly be implemented in user land and some parts of the spec are purposefully incomplete to allow different implementations by third party vendors. I want to show what is already possible and how everybody can start using the Timing Object right now in their applications. As many of the presentations and demos at previous WACs have shown, many people have built their own custom solution to realize distributed synchronization. I hope to raise interest in the Timing Object Draft and motivate more people to contribute their experience to the standardization process.\n\nOne of the things which is meant to be implemented by third party vendors is the TimingProvider. The TimingProvider is responsible for synchronizing Timing Objects across different devices. I want to demonstrate the usage of a TimingProvider which uses WebRTC internally to setup the communication between participating devices.\n\nThere are of course also some parts of the specification which have to be build by browser vendors. But I'm sure that if the Timing Object gets used in the wild the browser vendors will eventually start to implement it natively.",
       "authors": [
         {
           "link": "http://media-codings.com/",
