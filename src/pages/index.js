@@ -2,12 +2,14 @@ import React from 'react';
 import Link from 'gatsby-link';
 import Twitter from '../components/twitter';
 import Announcement from '../components/announcement';
-import ExternalLink from '../components/link';
 
 import './index.css';
 
 const IndexPage = () => (
   <section itemScope itemType="http://schema.org/Event">
+    <Announcement>
+      🎼🌐🎁 We are sold out! 🎁🌐🎼
+    </Announcement>
     <div className="index__splash">
       <h1 className="index__headline">
         <span itemProp="name">Web Audio Conf</span><span className="index__headlineDelimiter"> | </span><span itemProp="location">Berlin</span>
@@ -24,10 +26,6 @@ const IndexPage = () => (
         We welcome web developers, music technologists, computer musicians, application designers, researchers, and people involved in web standards.
       </p>
     </div>
-
-    <Announcement>
-      🎼🌐🎁 We published the final version of the <Link to="/schedule">schedule</Link>! 🎁🌐🎼
-    </Announcement>
 
     <div className="index__moreInfo">
       <h4>Stay up to date</h4>
